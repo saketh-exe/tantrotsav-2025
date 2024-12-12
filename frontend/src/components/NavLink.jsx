@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function NavLink({ to, text }) {
+function NavLink({ to, text, setIsMenuOpen }) {
   return (
-    <Link to={to} className="group relative">
+    <Link
+      to={to}
+      className="group relative"
+      onClick={() => setIsMenuOpen(false)}
+    >
       <span className="hover:text-[#C50B4C] transition-colors duration-300">
         {text}
       </span>
@@ -15,6 +19,7 @@ function NavLink({ to, text }) {
 NavLink.propTypes = {
   to: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
+  setIsMenuOpen: PropTypes.func,
 };
 
 export default NavLink;

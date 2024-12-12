@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Event = require('../models/Event');
+const xlsx = require('xlsx');
 const User = require('../models/User');
 
 // Route to get all events
@@ -59,6 +60,113 @@ router.post('/:eventId/register', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error registering user for event' });
+  }
+});
+
+router.post('/add', async (req, res) => {
+  const {
+    title,
+    description,
+    date,
+    time,
+    location,
+    capacity,
+    documents,
+    clubName,
+    thumbnail,
+    registrationFee,
+  } = req.body;
+
+  try {
+    const newEvent = new Event({
+      title,
+      description,
+      date,
+      time,
+      location,
+      capacity,
+      documents,
+      clubName,
+      thumbnail,
+      registrationFee,
+    });
+
+    await newEvent.save();
+    res.status(201).json({
+      message: 'Event created successfully!',
+      event: newEvent,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error creating event' });
+  }
+});
+
+// In the eventRoute.js file
+router.get('/:eventId/registrations', async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const event = await Event.findById(eventId);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    res.status(200).json({
+      registeredUsers: event.registeredUsers,
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching registrations' });
+  }
+});
+
+// Route to export registration details as an Excel file
+router.get('/:eventId/registrations/excel', async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const id = mongoose.Types.ObjectId(eventId);
+    const event = await Event.findById(id);
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' });
+    }
+
+    const registeredUsers = event.registeredUsers;
+
+    if (registeredUsers.length === 0) {
+      return res.status(404).json({ message: 'No registrations found' });
+    }
+
+    // Create Excel worksheet
+    const ws = xlsx.utils.json_to_sheet(
+      registeredUsers.map((user) => ({
+        Name: user.name,
+        Email: user.email,
+        'Phone Number': user.phoneNumber,
+        'Registration Date': new Date(user.registrationDate).toLocaleString(),
+      }))
+    );
+
+    // Create Excel workbook
+    const wb = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, 'Registrations');
+
+    // Set response headers for file download
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=registrations.xlsx'
+    );
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+
+    // Send the Excel file as response
+    res.send(xlsx.write(wb, { bookType: 'xlsx', type: 'buffer' }));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error generating Excel file' });
   }
 });
 

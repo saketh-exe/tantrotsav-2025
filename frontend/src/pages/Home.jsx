@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 function Home() {
   return (
     <div className="flex items-center justify-center h-screen bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 text-white">
@@ -10,12 +12,18 @@ function Home() {
           festivities and experience the extraordinary!
         </p>
         <div className="flex justify-center gap-4">
-          <button className="px-6 py-3 bg-yellow-300 text-red-600 font-semibold rounded-full shadow-md hover:bg-yellow-400 transition-all duration-300">
+          <Link
+            to="/events"
+            className="px-6 py-3 bg-yellow-300 text-red-600 font-semibold rounded-full shadow-md hover:bg-yellow-400 transition-all duration-300"
+          >
             Explore Events
-          </button>
-          <button className="px-6 py-3 bg-white text-red-600 font-semibold rounded-full shadow-md hover:bg-gray-200 transition-all duration-300">
+          </Link>
+          <Link
+            to="#about"
+            className="px-6 py-3 bg-white text-red-600 font-semibold rounded-full shadow-md hover:bg-gray-200 transition-all duration-300"
+          >
             About Us
-          </button>
+          </Link>
         </div>
       </div>
     </div>

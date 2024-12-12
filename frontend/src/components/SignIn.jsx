@@ -47,7 +47,7 @@ function SignIn() {
 
   return (
     <button
-      className="py-2 px-5 bg-[#C50B4C] text-white rounded shadow-md hover:bg-[#a10a3e] transition-all duration-300"
+      className="lg:py-2 lg:px-5 py-1 px-3 text-sm lg:text-md bg-[#C50B4C] text-white rounded shadow-md hover:bg-[#a10a3e] transition-all duration-300"
       onClick={signInWithGoogle}
     >
       Login
