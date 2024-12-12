@@ -21,7 +21,6 @@ const schema = z.object({
   city: z.string().nonempty({ message: 'City is required' }),
   state: z.string().nonempty({ message: 'State is required' }),
 });
-j;
 
 function UserDetails() {
   const { user, setUserRegistrationStatus } = useAuthStore();
