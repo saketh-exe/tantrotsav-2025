@@ -8,6 +8,7 @@ import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './components/ProtectedRoute';
 import Events from './pages/Events';
 import RouteGuard from './components/RouteGuard'; // Import the global route guard
+import EventDetails from './pages/EventDetails';
 
 function App() {
   return (
@@ -45,6 +46,14 @@ function App() {
             element={
               <RouteGuard>
                 <Home />
+              </RouteGuard>
+            }
+          />
+          <Route
+            path="/events/:eventId"
+            element={
+              <RouteGuard>
+                <EventDetails />
               </RouteGuard>
             }
           />

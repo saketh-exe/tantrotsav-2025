@@ -170,4 +170,21 @@ router.get('/:eventId/registrations/excel', async (req, res) => {
   }
 });
 
+// Route to get event details by ID
+router.get('/:eventId', async (req, res) => {
+  const { eventId } = req.params;
+
+  try {
+    const event = await Event.findById(eventId); // Find event by ID
+    if (!event) {
+      return res.status(404).json({ message: 'Event not found' }); // Handle if event is not found
+    }
+
+    res.status(200).json(event); // Return the event details
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error fetching event details' }); // Handle errors
+  }
+});
+
 module.exports = router;
