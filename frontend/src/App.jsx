@@ -2,6 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './pages/Home';
 import Navbar from './components/Navbar';
 import UserDetails from './pages/UserDetails';
+import Profile from './pages/Profile';
+import Cart from './pages/Cart';
 import { Toaster } from 'react-hot-toast';
 import ProtectedRoute from './components/ProtectedRoute';
 import Events from './pages/Events';
@@ -51,7 +53,15 @@ function App() {
               path="/profile"
               element={
                 <RouteGuard>
-                  <Home />
+                  <Profile />
+                </RouteGuard>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <RouteGuard>
+                  <Cart />
                 </RouteGuard>
               }
             />
