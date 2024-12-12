@@ -1,8 +1,9 @@
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { auth } from '../firebase';
 import useAuthStore from '../store/authStore';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom'; // useNavigate hook for navigation
+import axios from 'axios'; // Axios for making HTTP requests
+import { toast } from 'react-hot-toast';
 
 function Register() {
   const setUser = useAuthStore((state) => state.setUser); // Access the setUser function from Zustand
@@ -14,36 +15,26 @@ function Register() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      console.log('User Info:', user);
-
-      try {
-        // Send the user's email to the backend to check if the user exists
-        const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/auth/register`,
-          {
-            name: user.displayName,
-            email: user.email,
-            profileImage: user.photoURL,
-          }
-        );
-        console.log('Response from the backend:', response.data);
-        // Set the user in Zustand regardless of the response status
-        setUser(user);
-        if (response.status === 200) {
-          // If user is successfully registered, redirect to the dashboard
-          navigate('/dashboard'); // Redirect to the dashboard or any other page
-        } else if (response.status === 404) {
-          // If the user already exists, redirect to the profile completion page or any other page
-          navigate('/profile'); // Redirect to a page where the user can complete their profile
+      const response = await axios.post(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth`,
+        {
+          email: user.email,
         }
-      } catch (error) {
-        // Handle network or other request errors here
-        console.error('Error during sign-in:', error.message);
-        // Optionally, handle other error codes here
+      );
+
+      if (response.data.message === 'User exists') {
+        toast.success('User exists');
+        setUser(user);
+        return navigate('/');
       }
+
+      // Save the user to Zustand store
+      setUser(user);
+
+      // Redirect to UserDetails form for registration
+      navigate('/register');
     } catch (error) {
       console.error('Error during sign-in:', error.message);
-      // Handle errors from Firebase sign-in
     }
   };
 

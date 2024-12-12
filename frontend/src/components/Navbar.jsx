@@ -1,9 +1,11 @@
+import { Link } from 'react-router-dom';
 import Logo from '../assets/uniLogo.svg';
 import useAuthStore from '../store/authStore';
 import Logout from './Logout';
 import NavLink from './NavLink';
 import Register from './Register';
 import SignIn from './SignIn';
+import { FaShoppingCart } from 'react-icons/fa'; // Import cart icon from react-icons
 
 function Navbar() {
   const { user } = useAuthStore();
@@ -21,10 +23,17 @@ function Navbar() {
           </div>
         </div>
         <div className="flex items-center gap-4">
+          {/* User Logged In */}
           {user ? (
             <div className="flex items-center gap-4">
+              <Link to={'/cart'} className="relative">
+                <FaShoppingCart className="h-6 w-6 text-gray-700 cursor-pointer" />
+                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                  {user?.cart?.length || 0}
+                </span>
+              </Link>
               <img
-                src={user.photoURL}
+                src={user.profileImage || user.photoURL}
                 alt="Profile"
                 className="h-8 w-8 rounded-full"
                 referrerPolicy="no-referrer"
