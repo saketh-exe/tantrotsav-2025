@@ -5,6 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/eventRoute');
+const userRoutes = require('./routes/userRoutes');
 const dotenv = require('dotenv');
 
 dotenv.config(); // Load environment variables from a .env file
@@ -27,6 +28,7 @@ mongoose
 // Use the auth routes
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
+app.use('/api/users', userRoutes);
 
 const PORT = 5000;
 app.listen(PORT, () => {

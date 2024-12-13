@@ -22,11 +22,11 @@ function Navbar() {
 
         {/* Navigation Links (Responsive) */}
         <div
-          className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-gradient-to-br from-white to-gray-50 shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
+          className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-white shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
-          } lg:static lg:block lg:w-auto lg:translate-x-0 lg:rounded-none lg:shadow-none`}
+          } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
         >
-          <div className="flex flex-col lg:flex-row lg:gap-8 p-6 lg:p-0 h-full">
+          <div className="flex flex-col md:flex-row md:gap-8 p-6 md:p-0 h-full">
             <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} />
             {user ? (
               <NavLink
@@ -47,7 +47,7 @@ function Navbar() {
               setIsMenuOpen={setIsMenuOpen}
             />
             {!user && (
-              <div className="flex flex-col gap-4 mt-6 lg:hidden">
+              <div className="flex flex-col gap-4 mt-6 md:hidden">
                 <Register />
                 <SignIn />
               </div>
@@ -56,7 +56,7 @@ function Navbar() {
         </div>
 
         {/* Cart and Profile Section */}
-        <div className="flex items-center gap-4 lg:gap-4 z-40">
+        <div className="flex items-center gap-4 md:gap-4 z-40">
           {user ? (
             <div className="flex items-center gap-4">
               <Link to={'/cart'} className="relative">
@@ -68,20 +68,20 @@ function Navbar() {
               <img
                 src={user.profileImage || user.photoURL}
                 alt="Profile"
-                className="h-8 w-8 rounded-full hidden lg:block"
+                className="h-8 w-8 rounded-full hidden md:block"
                 referrerPolicy="no-referrer"
               />
               <Logout />
             </div>
           ) : (
-            <div className="hidden lg:flex lg:items-center lg:gap-4">
+            <div className="hidden md:flex md:items-center md:gap-4">
               <Register />
               <SignIn />
             </div>
           )}
           {/* Hamburger Icon */}
           <button
-            className="lg:hidden text-gray-700 focus:outline-none"
+            className="md:hidden text-gray-700 focus:outline-none"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
