@@ -4,11 +4,12 @@ import CreateEvent from './pages/CreateEvent';
 import Home from './pages/Home';
 import Logo from './assets/uniLogo.svg';
 import GetRegistrations from './pages/GetRegistrations';
+import UpdateEvent from './pages/UpdateEvent';
 
 const App = () => {
   return (
     <Router>
-      <div className="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+      <div className="min-h-screen p-8 bg-gray-100 flex flex-col items-center justify-center">
         {/* Center the logo */}
         <Link to={'/'}>
           <img
@@ -22,6 +23,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-event" element={<CreateEvent />} />
+          <Route path="/update-event" element={<UpdateEvent />} />
           <Route path="/get-registrations" element={<GetRegistrations />} />
         </Routes>
 
