@@ -13,13 +13,14 @@ const eventSchema = new mongoose.Schema({
   registrationFee: { type: Number, default: 0 }, // Registration fee (if any)
   registeredUsers: [
     {
-      email: { type: String, required: true }, // User's email as identifier
-      name: { type: String }, // User name
-      phoneNumber: { type: String }, // User phone number
-      registrationDate: { type: Date, default: Date.now }, // Date of registration
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User', // Reference to the User model
     },
   ],
 });
+
+// Add an index for efficient queries on registered users
+eventSchema.index({ registeredUsers: 1 });
 
 const Event = mongoose.model('Event', eventSchema);
 

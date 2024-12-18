@@ -70,6 +70,8 @@ router.post('/register', async (req, res) => {
       collegeRollNumber,
       city,
       state,
+      isAmritaChennaiStudent,
+      department,
     } = req.body;
 
     let user = await User.findOne({ email });
@@ -87,6 +89,8 @@ router.post('/register', async (req, res) => {
       collegeRollNumber,
       city,
       state,
+      isAmritaChennaiStudent,
+      department,
       registeredEvents: [],
       cart: [],
     });
@@ -111,6 +115,8 @@ router.post('/update', async (req, res) => {
       collegeRollNumber,
       city,
       state,
+      isAmritaChennaiStudent,
+      department,
     } = req.body;
 
     const user = await User.findOne({ email });
@@ -126,6 +132,8 @@ router.post('/update', async (req, res) => {
     user.collegeRollNumber = collegeRollNumber;
     user.city = city;
     user.state = state;
+    user.isAmritaChennaiStudent = isAmritaChennaiStudent;
+    user.department = department;
 
     await user.save();
 

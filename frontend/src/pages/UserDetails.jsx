@@ -7,20 +7,28 @@ import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'; // useNavigate hook for navigation
 
-const schema = z.object({
-  name: z.string().nonempty({ message: 'Name is required' }),
-  email: z.string().email({ message: 'Invalid email address' }),
-  profileImage: z.string().url({ message: 'Invalid URL' }),
-  phoneNumber: z
-    .string()
-    .regex(/^\d{10}$/, { message: 'Phone number must be 10 digits' }),
-  collegeName: z.string().nonempty({ message: 'College name is required' }),
-  collegeRollNumber: z
-    .string()
-    .nonempty({ message: 'College roll number is required' }),
-  city: z.string().nonempty({ message: 'City is required' }),
-  state: z.string().nonempty({ message: 'State is required' }),
-});
+const schema = z
+  .object({
+    name: z.string().nonempty({ message: 'Name is required' }),
+    email: z.string().email({ message: 'Invalid email address' }),
+    profileImage: z.string().url({ message: 'Invalid URL' }),
+    phoneNumber: z
+      .string()
+      .regex(/^\d{10}$/, { message: 'Phone number must be 10 digits' }),
+    collegeName: z.string().nonempty({ message: 'College name is required' }),
+    collegeRollNumber: z
+      .string()
+      .nonempty({ message: 'College roll number is required' }),
+    city: z.string().nonempty({ message: 'City is required' }),
+    state: z.string().nonempty({ message: 'State is required' }),
+    isAmritaChennaiStudent: z.boolean().optional(),
+    department: z.string().optional(),
+  })
+  .refine((data) => !data.isAmritaChennaiStudent || data.department, {
+    message:
+      'Department is required if "Is Amrita Chennai student?" is checked',
+    path: ['department'],
+  });
 
 function UserDetails() {
   const { user, setUserRegistrationStatus } = useAuthStore();
@@ -34,6 +42,8 @@ function UserDetails() {
     collegeRollNumber: '',
     city: '',
     state: '',
+    isAmritaChennaiStudent: false,
+    department: '',
   });
 
   const {
@@ -41,10 +51,13 @@ function UserDetails() {
     handleSubmit,
     formState: { errors },
     reset,
+    watch,
   } = useForm({
     resolver: zodResolver(schema),
     defaultValues: formValues,
   });
+
+  const isAmritaChennaiStudent = watch('isAmritaChennaiStudent');
 
   useEffect(() => {
     if (user) {
@@ -57,6 +70,8 @@ function UserDetails() {
         collegeRollNumber: '',
         city: '',
         state: '',
+        isAmritaChennaiStudent: false,
+        department: '',
       });
     }
   }, [user, reset]);
@@ -82,7 +97,7 @@ function UserDetails() {
       {/* Centered Image */}
       <div className="flex justify-center mb-6">
         <img
-          src={user.photoURL}
+          src={user.photoURL || user.profileImage}
           alt="Profile Pic"
           referrerPolicy="no-referrer"
           className="h-[100px] w-[100px] rounded-full"
@@ -110,6 +125,47 @@ function UserDetails() {
             <p className="text-sm text-red-500">{errors.name.message}</p>
           )}
         </div>
+
+        <div>
+          <label className="flex items-center space-x-2 text-sm font-medium text-[#C50B4C]">
+            <Controller
+              name="isAmritaChennaiStudent"
+              control={control}
+              render={({ field }) => <input {...field} type="checkbox" />}
+            />
+            <span>Is Amrita Chennai student?</span>
+          </label>
+        </div>
+
+        {isAmritaChennaiStudent && (
+          <div>
+            <label className="block text-sm font-medium text-[#C50B4C]">
+              Department
+            </label>
+            <Controller
+              name="department"
+              control={control}
+              render={({ field }) => (
+                <select
+                  {...field}
+                  className="w-full px-4 py-2 mt-2 border border-[#C50B4C] rounded-lg focus:ring-[#C50B4C] focus:outline-none"
+                >
+                  <option value="">Select department</option>
+                  <option value="CSE">CSE</option>
+                  <option value="ECE">ECE</option>
+                  <option value="EEE">EEE</option>
+                  <option value="MECH">MECH</option>
+                  <option value="CIVIL">CIVIL</option>
+                </select>
+              )}
+            />
+            {errors.department && (
+              <p className="text-sm text-red-500">
+                {errors.department.message}
+              </p>
+            )}
+          </div>
+        )}
 
         {/* Email Field */}
         <div>

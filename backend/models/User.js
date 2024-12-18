@@ -20,6 +20,8 @@ const userSchema = new mongoose.Schema({
   collegeRollNumber: { type: String },
   city: { type: String },
   state: { type: String },
+  isAmritaChennaiStudent: { type: Boolean, default: false },
+  department: { type: String },
   // Events the user is registered for
   registeredEvents: [
     {
