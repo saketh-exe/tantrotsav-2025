@@ -21,7 +21,7 @@ const schema = z
       .nonempty({ message: 'College roll number is required' }),
     city: z.string().nonempty({ message: 'City is required' }),
     state: z.string().nonempty({ message: 'State is required' }),
-    isAmritaChennaiStudent: z.boolean().optional(),
+    isAmritaChennaiStudent: z.boolean(),
     department: z.string().optional(),
   })
   .refine((data) => !data.isAmritaChennaiStudent || data.department, {

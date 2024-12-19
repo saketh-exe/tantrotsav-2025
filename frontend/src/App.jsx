@@ -9,6 +9,7 @@ import ProtectedRoute from './components/ProtectedRoute';
 import Events from './pages/Events';
 import RouteGuard from './components/RouteGuard'; // Import the global route guard
 import EventDetails from './pages/EventDetails';
+import Gallery from './pages/Gallery';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             }
           />
           <Route path="/register" element={<UserDetails />} />
+          <Route element={<Gallery />} path="/gallery" />
           <Route
             path="/events"
             element={
