@@ -10,7 +10,29 @@ const cartItemSchema = new mongoose.Schema({
   registrationFee: { type: Number, required: true },
 });
 
-// User Schema
+// Order Schema
+const orderSchema = new mongoose.Schema({
+  orderId: { type: String, required: true }, // Unique order ID from the payment gateway
+  paymentStatus: {
+    type: String,
+    enum: ['Pending', 'Success', 'Failure', 'Aborted', 'Invalid', 'Timeout'], // Payment status
+    default: 'Pending',
+  },
+  paymentDetails: {
+    // Store additional details like transaction ID, etc.
+    transactionId: { type: String },
+    paymentMode: { type: String },
+    amount: { type: Number },
+    date: { type: Date, default: Date.now },
+  },
+  events: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Event',
+    },
+  ],
+});
+
 const userSchema = new mongoose.Schema({
   email: { type: String, required: true, unique: true },
   name: { type: String, required: true },
@@ -30,8 +52,7 @@ const userSchema = new mongoose.Schema({
     },
   ],
   cart: [cartItemSchema], // Cart items embedded directly
-
-  // Additional fields can be added if needed
+  orders: [orderSchema], // List of user's orders and payment details
 });
 
 const User = mongoose.model('User', userSchema);
