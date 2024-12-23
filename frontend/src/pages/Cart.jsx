@@ -5,6 +5,7 @@ import { FaShoppingCart } from 'react-icons/fa'; // Import React Icons
 import CartItem from '../components/CartItem';
 // import { useNavigate } from 'react-router-dom';
 import CCAvenue from '../utils/CCAvenue';
+import crypto from 'crypto';
 
 function Cart() {
   const { user } = useAuthStore(); // Get the user info
@@ -41,9 +42,13 @@ function Cart() {
     );
 
     const generateOrderId = (userEmail) => {
-      const timestamp = Date.now();
-      const emailPart = userEmail.split('@')[0]; // Use part of the email (before the '@')
-      return `ORD${emailPart}${timestamp}`;
+      const timestamp = Date.now().toString().slice(-6); // Last 6 digits of timestamp
+      const emailHash = crypto
+        .createHash('sha256')
+        .update(userEmail)
+        .digest('hex')
+        .slice(0, 4); // First 4 chars of email hash
+      return `ORD${emailHash}${timestamp}`;
     };
 
     let paymentData = {
