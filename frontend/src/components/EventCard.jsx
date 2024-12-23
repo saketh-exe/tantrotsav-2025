@@ -105,10 +105,6 @@ function EventCard({ event }) {
               {event.registrationFee ? `₹${event.registrationFee}` : 'Free'}
             </span>
           </p>
-          <p className="text-sm">
-            <strong className="text-[#000000]">Slots Remaining:</strong>{' '}
-            <span className="text-black">{event.capacity} slots</span>
-          </p>
         </div>
       </div>
 

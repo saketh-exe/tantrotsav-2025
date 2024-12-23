@@ -44,10 +44,7 @@ function EventDetails() {
         <strong>Location: </strong>
         {event.location}
       </p>
-      <p className="text-sm text-gray-500">
-        <strong>Capacity: </strong>
-        {event.capacity}
-      </p>
+
       {event.registrationFee && (
         <p className="text-lg font-semibold text-blue-500 mt-4">
           Registration Fee: ₹{event.registrationFee}

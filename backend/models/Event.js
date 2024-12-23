@@ -6,7 +6,6 @@ const eventSchema = new mongoose.Schema({
   date: { type: Date, required: true },
   time: { type: String },
   location: { type: String },
-  capacity: { type: Number, required: true }, // Maximum registrations allowed
   documents: { type: String },
   clubName: { type: String, required: true }, // Club name organizing the event
   thumbnail: { type: String }, // Event thumbnail image URL

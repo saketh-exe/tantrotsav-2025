@@ -9,7 +9,6 @@ function CreateEvent() {
     date: '',
     time: '',
     location: '',
-    capacity: '',
     documents: '',
     clubName: '',
     thumbnail: '',
@@ -53,7 +52,6 @@ function CreateEvent() {
         date: '',
         time: '',
         location: '',
-        capacity: '',
         documents: '',
         clubName: '',
         thumbnail: '',
@@ -160,24 +158,6 @@ function CreateEvent() {
             name="location"
             value={formData.location}
             onChange={handleChange}
-            className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="capacity"
-            className="block text-sm font-semibold text-gray-700"
-          >
-            Capacity
-          </label>
-          <input
-            type="number"
-            id="capacity"
-            name="capacity"
-            value={formData.capacity}
-            onChange={handleChange}
-            required
             className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
