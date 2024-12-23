@@ -60,14 +60,6 @@ function EventDetails() {
           </button>
         </a>
       )}
-      <div className="flex justify-center mt-6">
-        <button
-          onClick={() => alert('Event added to cart')}
-          className="bg-green-500 text-white py-2 px-6 rounded-lg hover:bg-green-600 transition"
-        >
-          Add to Cart
-        </button>
-      </div>
     </div>
   );
 }
