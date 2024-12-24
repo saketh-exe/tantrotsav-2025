@@ -1,40 +1,40 @@
 import React from 'react';
-
+// convert these to webp and reduce the size of the images
 const images = [
-  'https://iili.io/2wIjNB2.jpg',
-  'https://iili.io/2wIjhX4.jpg',
-  'https://iili.io/2wIjXIf.jpg',
-  'https://iili.io/2wIj0gt.jpg',
-  'https://iili.io/2wIjl1I.jpg',
-  'https://iili.io/2wIjcqN.jpg',
-  'https://iili.io/2wIjYsp.jpg',
-  'https://iili.io/2wIj7XR.jpg',
-  'https://iili.io/2wIj5zv.jpg',
-  'https://iili.io/2wIjuea.jpg',
-  'https://iili.io/2wIjIdF.jpg',
-  'https://iili.io/2wIjo0P.jpg',
-  'https://iili.io/2wIjnqB.jpg',
-  'https://iili.io/2wIjBsV.jpg',
-  'https://iili.io/2wIjqWQ.jpg',
-  'https://iili.io/2wIjFbj.jpg',
-  'https://iili.io/2wIj25u.jpg',
-  'https://iili.io/2wIjVmG.jpg',
-  'https://iili.io/2wIjEdX.jpg',
-  'https://iili.io/2wIjHg9.jpg',
-  'https://iili.io/2wIj907.jpg',
-  'https://iili.io/2wIhyfS.jpg',
-  'https://iili.io/2wIhbWl.jpg',
-  'https://iili.io/2wIhDx4.jpg',
-  'https://iili.io/2wIhLRs.jpg',
-  'https://iili.io/2wIEFMF.jpg',
-  'https://iili.io/2wIE3n1.jpg',
-  'https://iili.io/2wIEdZP.jpg',
-  'https://iili.io/2wI15kQ.jpg',
-  'https://iili.io/2wI1zBe.jpg',
-  'https://iili.io/2wI1oQ9.jpg',
-  'https://iili.io/2wI1nh7.jpg',
-  'https://iili.io/2wI1CIS.jpg',
-  'https://iili.io/2wIIE1S.jpg',
+  "https://iili.io/2Orws7j.webp",
+  "https://iili.io/2OrNdYJ.webp",
+  "https://iili.io/2OrNJ2a.webp",
+  "https://iili.io/2OrN9rg.webp",
+  "https://iili.io/2OrwyEF.webp",
+  "https://iili.io/2OrwpB1.webp",
+  "https://iili.io/2OrwbLP.webp",
+  "https://iili.io/2OrwDhB.webp",
+  "https://iili.io/2OrwQmQ.webp",
+  "https://iili.io/2OrwLkx.webp",
+  "https://iili.io/2Orwidb.webp",
+  "https://iili.io/2Orw41e.webp",
+  "https://iili.io/2OrwrB9.webp",
+  "https://iili.io/2OrwUL7.webp",
+  "https://iili.io/2OrwSXS.webp",
+  "https://iili.io/2Orwkml.webp",
+  "https://iili.io/2Orwee4.webp",
+  "https://iili.io/2OrwNdG.webp",
+  "https://iili.io/2Orwjgs.webp",
+  "https://iili.io/2Orwh1n.webp",
+  "https://iili.io/2OrwXqX.webp",
+  "https://iili.io/2OrwGzN.webp",
+  "https://iili.io/2Orw1bp.webp",
+  "https://iili.io/2Orw0eR.webp",
+  "https://iili.io/2Orwl5v.webp",
+  "https://iili.io/2OrwcdJ.webp",
+  "https://iili.io/2Orw5qF.webp",
+  "https://iili.io/2OrwAs1.webp",
+  "https://iili.io/2OrwuWP.webp",
+  "https://iili.io/2OrwTzB.webp",
+  "https://iili.io/2OrwzbV.webp",
+  "https://iili.io/2OrwxOQ.webp",
+  "https://iili.io/2Orwo5x.webp",
+  "https://iili.io/2OrwnJj.webp",
 ];
 
 function Gallery() {
@@ -53,7 +53,7 @@ function Gallery() {
             <img
               src={image}
               alt={`Techfest ${index}`}
-              loading='lazy'
+              
               className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:opacity-80"
             />
           </div>

@@ -12,6 +12,7 @@ function Logout() {
       // Clear the user from the Zustand store
       clearUser();
       console.log('User logged out successfully');
+      alert('Logged out successfully');
       // Navigate to / page
       window.location.href = '/';
     } catch (error) {
@@ -21,7 +22,7 @@ function Logout() {
 
   return (
     <button
-      className="lg:py-2 lg:px-5 py-1 px-3 border border-[#C50B4C] text-[#C50B4C] rounded hover:shadow-md hover:bg-[#C50B4C] hover:text-white transition-all duration-300"
+      className="lg:py-2 lg:px-5 py-1 px-3 border border-[#000000] text-[#000000] rounded hover:shadow-md hover:bg-[#000000] hover:text-white transition-all duration-300 lg:text-sm text-xs"
       onClick={handleLogout}
     >
       Logout

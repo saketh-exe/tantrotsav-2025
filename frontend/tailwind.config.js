@@ -10,7 +10,8 @@ export const darkMode = "class";
 export const theme = {
   extend: {
   screens: {
-      'md': '950px', // Change the 'md' breakpoint to 900px
+      'md': '950px',
+      'hide-img': { min: '950px', max: '1250px' }, // Change the 'md' breakpoint to 900px
     },
     
   },

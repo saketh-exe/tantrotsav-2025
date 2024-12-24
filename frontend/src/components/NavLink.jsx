@@ -8,10 +8,10 @@ function NavLink({ to, text, setIsMenuOpen }) {
       className="group relative flex items-center"
       onClick={() => setIsMenuOpen(false)}
     >
-      <span className="hover:text-[#C50B4C] transition-all duration-300 hover:bg-amber-100 p-3 rounded-md">
+      <span className="hover:text-[#ffffff] transition-all duration-300 hover:bg-black p-2 rounded-md font-[500]">
         {text}
       </span>
-      <span className="absolute left-0 bottom-[-2px] h-[2px] w-0 bg-[#C50B4C] transition-all duration-300 group-hover:w-full"></span>
+      <span className="absolute left-0 bottom-[-2px] h-[2px] w-0 bg-[#000000] transition-all duration-300 group-hover:w-full"></span>
     </Link>
   );
 }

@@ -3,7 +3,7 @@ import PinDemo from './PinDemo';
 
 export default function Contact() {
   return (
-    <div className="shadow-xl shadow-slate-600 flex justify-center align-middle flex-col text-white w-3/4 mx-auto my-10 mb-48 bg-slate-900 bg-opacity-40 backdrop-filter backdrop-blur-xl rounded-lg p-6">
+    <div className="shadow-xl shadow-slate-600 flex justify-center align-middle flex-col text-white w-3/4 mx-auto my-10 mb-24 bg-slate-900 bg-opacity-40 backdrop-filter backdrop-blur-xl rounded-lg p-6">
       <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl  text-center mb-6">
         Contact Us
       </h1>

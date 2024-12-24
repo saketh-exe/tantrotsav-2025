@@ -8,7 +8,7 @@ import { toast } from 'react-hot-toast'; // Import react-hot-toast
 function EventCard({ event }) {
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-
+  console.log("log message"+ !user);
   const addToCart = async () => {
     if (!user) {
       toast.error('Please sign in to add to cart');
@@ -116,7 +116,7 @@ function EventCard({ event }) {
         >
           View Details
         </Link>
-        <button
+        {user&&<button
           onClick={addToCart}
           className={`text-xs py-[8px] w-full px-[10px] border-2 border-black text-black font-medium text-center rounded-[5px] hover:bg-black hover:text-white transition-colors duration-300 ${
             isLoading ? 'bg-gray-300 cursor-not-allowed' : ''
@@ -124,7 +124,7 @@ function EventCard({ event }) {
           disabled={isLoading}
         >
           {isLoading ? 'Adding...' : 'Add to Cart'}
-        </button>
+        </button>}
       </div>
     </div>
   );

@@ -88,7 +88,7 @@ function Cart() {
   );
 
   return (
-    <div className="flex max-w-6xl mx-auto p-6 space-x-6">
+    <div className="flex max-w-6xl mx-auto p-6 space-x-6 mt-20">
       {/* Left Side: Cart Items */}
       <div className="flex-1 max-h-screen overflow-y-auto">
         {cartItems.length === 0 ? (
