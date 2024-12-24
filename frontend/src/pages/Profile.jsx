@@ -252,7 +252,7 @@ function Profile() {
   };
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col items-center justify-center mt-10 p-4">
+    <div className="max-w-5xl w-full mx-auto flex flex-col items-center justify-center mt-20 p-4">
       <div className="flex w-full">
         <div className="flex rounded-md mr-4">
           <img

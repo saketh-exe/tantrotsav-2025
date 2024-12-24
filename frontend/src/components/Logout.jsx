@@ -12,6 +12,8 @@ function Logout() {
       // Clear the user from the Zustand store
       clearUser();
       console.log('User logged out successfully');
+      // Navigate to / page
+      window.location.href = '/';
     } catch (error) {
       console.error('Error during logout:', error.message);
     }

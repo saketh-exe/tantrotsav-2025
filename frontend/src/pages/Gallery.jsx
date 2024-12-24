@@ -4,8 +4,6 @@ const images = [
   'https://iili.io/2wIjNB2.jpg',
   'https://iili.io/2wIjhX4.jpg',
   'https://iili.io/2wIjXIf.jpg',
-  'https://iili.io/2wIjVmG.jpg',
-  'https://iili.io/2wIjEdX.jpg',
   'https://iili.io/2wIj0gt.jpg',
   'https://iili.io/2wIjl1I.jpg',
   'https://iili.io/2wIjcqN.jpg',
@@ -20,6 +18,8 @@ const images = [
   'https://iili.io/2wIjqWQ.jpg',
   'https://iili.io/2wIjFbj.jpg',
   'https://iili.io/2wIj25u.jpg',
+  'https://iili.io/2wIjVmG.jpg',
+  'https://iili.io/2wIjEdX.jpg',
   'https://iili.io/2wIjHg9.jpg',
   'https://iili.io/2wIj907.jpg',
   'https://iili.io/2wIhyfS.jpg',
@@ -38,8 +38,9 @@ const images = [
 ];
 
 function Gallery() {
+  console.log("loaded gallery");
   return (
-    <div className="min-h-screen bg-gray-900 py-12 flex flex-col justify-center items-center">
+    <div className="min-h-screen bg-gray-900 py-12 flex flex-col justify-center items-center mt-10">
       <h2 className="text-4xl font-semibold text-center text-white mb-12 animate__animated animate__fadeIn">
         Techfest Gallery
       </h2>
@@ -52,6 +53,7 @@ function Gallery() {
             <img
               src={image}
               alt={`Techfest ${index}`}
+              loading='lazy'
               className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:opacity-80"
             />
           </div>

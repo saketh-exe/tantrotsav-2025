@@ -1,29 +1,36 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Home from './pages/Home';
-import Navbar from './components/Navbar';
-import UserDetails from './pages/UserDetails';
-import Profile from './pages/Profile';
-import Cart from './pages/Cart';
-import { Toaster } from 'react-hot-toast';
-import ProtectedRoute from './components/ProtectedRoute';
-import Events from './pages/Events';
-import RouteGuard from './components/RouteGuard'; // Import the global route guard
-import EventDetails from './pages/EventDetails';
-import Gallery from './pages/Gallery';
-import Failed from './pages/Failed';
-import Success from './pages/Success';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Home from "./pages/Home";
+import Navbar from "./components/Navbar";
+import UserDetails from "./pages/UserDetails";
+import Profile from "./pages/Profile";
+import Cart from "./pages/Cart";
+import { Toaster } from "react-hot-toast";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Events from "./pages/Events";
+import RouteGuard from "./components/RouteGuard"; // Import the global route guard
+import EventDetails from "./pages/EventDetails";
+import Gallery from "./pages/Gallery";
+import Failed from "./pages/Failed";
+import Success from "./pages/Success";
+import { useState } from "react"; // Import `useState` from React
 function App() {
+  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
+
+  // Function to handle scroll and update the state
+  const handleScroll = (scrollTop) => {
+    setIsScrolled((scrollTop > 0)); // Set `isScrolled` based on scrollTop
+  };
+
   return (
     <div>
       <Router>
-        <Navbar />
+        <Navbar isScrolled={isScrolled} />
         <Routes>
           <Route
             path="/"
             element={
               <RouteGuard>
-                <Home />
+                <Home onScroll={handleScroll} />
               </RouteGuard>
             }
           />
@@ -43,7 +50,7 @@ function App() {
             path="/gallery"
             element={
               <RouteGuard>
-                <Home />
+                <Gallery />
               </RouteGuard>
             }
           />
