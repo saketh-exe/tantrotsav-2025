@@ -88,9 +88,9 @@ function Cart() {
   );
 
   return (
-    <div className="flex max-w-6xl mx-auto p-6 space-x-6 mt-20">
+    <div className="flex flex-col max-w-6xl mx-auto p-6  mt-20 justify-between align-middle flex-wrap md:flex-row">
       {/* Left Side: Cart Items */}
-      <div className="flex-1 max-h-screen overflow-y-auto">
+      <div className="flex-1 max-h-screen overflow-y-auto  ">
         {cartItems.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
@@ -103,7 +103,7 @@ function Cart() {
         ) : (
           <>
             <h2 className="text-2xl font-bold text-center mb-6">Your Cart</h2>
-            <div className="space-y-6 pb-2">
+            <div className="space-y-6 pb-2 ">
               {cartItems.map((item) => (
                 <CartItem
                   key={item.eventId._id}
@@ -118,8 +118,8 @@ function Cart() {
 
       {/* Right Side: Cart Summary */}
       {cartItems.length > 0 && (
-        <div className="w-96 sticky top-0 pt-14 max-h-screen">
-          <div className="bg-gray-100 p-4 rounded-lg shadow-md">
+        <div className="flex justify-center align-middle md:ml-4">
+          <div className="bg-gray-200 p-4 rounded-lg shadow-md h-fit">
             <div className="flex justify-between items-center mb-4">
               <p className="font-semibold text-lg">Cart Summary</p>
             </div>
@@ -132,8 +132,9 @@ function Cart() {
               <p className="font-medium">Total Cost:</p>
               <p className="font-semibold text-xl">₹{totalCost.toFixed(2)}</p>
             </div>
-
+            
             <div className="mt-6 flex justify-center">
+              
               <button
                 onClick={proceedToCheckout}
                 className="w-full bg-black text-white py-2 px-6 rounded-lg font-semibold hover:bg-white hover:text-black border-2 border-black transition-colors duration-300"

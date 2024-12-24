@@ -13,8 +13,6 @@ export default function Herotext() {
    * - Tamil
    * - Malayalam
    * - Korean
-   * - Japanese
-   * - Chinese
    */
   const text = [
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
@@ -23,8 +21,7 @@ export default function Herotext() {
     ["த", "ந்", "தி", "ரோ", "த்", "ச", "வ்" ],
     ["ത", "ന്ത്രോ", "ത്സ", "വം" ],
     ["탄", "트", "로", "츠", "바" ],
-    ["タ", "ン", "ト", "ロ", "ツ", "バ" ],
-    ["坦", "特", "罗", "茨", "瓦" ],
+    
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);

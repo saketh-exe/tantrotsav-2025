@@ -1,5 +1,5 @@
 import React from 'react';
-import PinDemo from './PinDemo';
+import Map from './Map';
 
 export default function Contact() {
   return (
@@ -9,7 +9,7 @@ export default function Contact() {
       </h1>
       <div className="flex flex-col lg:flex-row text-base sm:text-lg md:text-xl flex-wrap align-middle justify-evenly my-8">
         <div className="mb-10 lg:w-1/2">
-          <PinDemo />
+          <Map />
         </div>
         <div className="text-lg sm:text-xl lg:w-1/2">
           <h4 className="text-2xl sm:text-3xl md:text-4xl mb-2 font-semibold">Address:</h4>

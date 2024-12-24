@@ -1,6 +1,6 @@
 import React from "react";
 import { PinContainer } from "./Pin";
-export default function PinDemo() {
+export default function Map() {
   return (
     (<div className="h-fit w-full flex items-center justify-center ">
       <PinContainer title="Location" href="https://maps.app.goo.gl/KSXseiWPrpSjqXRVA">
