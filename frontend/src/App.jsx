@@ -22,7 +22,7 @@ function App() {
   };
 
   return (
-    <div>
+    <div className=" scrollbar-hide">
       <Router>
         <Navbar isScrolled={isScrolled} />
         <Routes>

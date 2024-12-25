@@ -252,75 +252,75 @@ function Profile() {
   };
 
   return (
-    <div className="max-w-5xl w-full mx-auto flex flex-col items-center justify-center mt-20 p-4">
-      <div className="flex w-full">
+    <div className=" w-full  flex-col items-center justify-center pt-28 p-4 h-screen bg-gray-900">
+      <div className="flex w-full justify-center align-middle flex-wrap">
         <div className="flex rounded-md mr-4">
           <img
             src={user.profileImage}
             alt="profile image"
-            className="rounded-md w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 transition-transform transform hover:scale-110 hover:rotate-12 duration-300 border-2 border-black"
+            className="rounded-xl w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 transition-transform transform hover:scale-110 hover:rotate-12 duration-300 border-2 border-white"
             referrerPolicy="no-referrer"
           />
         </div>
-        <div className="flex flex-col gap-4">
-          <div className="flex gap-4">
-            <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">Name</p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+        <div className="flex flex-col gap-4 flex-wrap justify-center align-middle">
+          <div className="flex gap-4 flex-wrap justify-center align-middle">
+            <div className="flex flex-col w-[250px] gap-1 ">
+              <p className="text-sm font-medium text-slate-200">Name</p>
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.name}
               </h1>
             </div>
             <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">Email</p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+              <p className="text-sm font-medium text-gray-200">Email</p>
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.email}
               </h1>
             </div>
             <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">Phone Number</p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+              <p className="text-sm font-medium text-gray-200">Phone Number</p>
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.phoneNumber}
               </h1>
             </div>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 flex-wrap justify-center align-middle">
             <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">College</p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+              <p className="text-sm font-medium text-gray-200">College</p>
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.collegeName}
               </h1>
             </div>
             <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">
+              <p className="text-sm font-medium text-gray-200">
                 College Roll Number
               </p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.collegeRollNumber}
               </h1>
             </div>
             <div className="flex flex-col w-[250px] gap-1">
-              <p className="text-sm font-medium text-gray-500">City</p>
-              <h1 className="font-bold border-2 rounded-lg border-black p-2 text-gray-800 truncate">
+              <p className="text-sm font-medium text-gray-200">City</p>
+              <h1 className="font-bold border-2 rounded-lg border-white p-2 text-gray-200 truncate">
                 {user.city}
               </h1>
             </div>
           </div>
         </div>
       </div>
-      <div className="flex flex-col mt-5 gap-4 w-full">
-        <div className="flex justify-between items-center w-full">
-          <h1 className="text-2xl font-bold text-gray-800">
+      <div className="flex flex-col mt-5 gap-4 w-full justify-center align-middle ">
+        <div className="flex justify-evenly items-center">
+          <h1 className="text-2xl font-bold text-gray-100">
             Registered Events
           </h1>
           <button
             onClick={downloadInvoice}
-            className="px-3 py-2 flex items-center gap-2 rounded-md border border-gray-800 hover:bg-green-500"
+            className="px-3 py-2 flex items-center gap-2 rounded-md border border-gray-400 hover:bg-green-100 bg-slate-300"
           >
             Download Invoice <GoDownload />
           </button>
         </div>
         {registeredEvents.length === 0 ? (
-          <p className="text-center text-gray-500">No events registered yet</p>
+          <p className="text-center text-gray-400">No events registered yet</p>
         ) : (
           <div className="flex flex-wrap gap-4">
             {registeredEvents.map((event) => (

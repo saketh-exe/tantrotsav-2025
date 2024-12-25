@@ -20,3 +20,7 @@
     transform: scale(-1,-1); /* Flips the div horizontally */
      /* Flips the div vertically */
 }
+
+:root::-webkit-scrollbar{
+    display: none;
+}

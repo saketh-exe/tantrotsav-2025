@@ -24,39 +24,54 @@ function EventDetails() {
   if (!event) return <div>Loading...</div>;
 
   return (
-    <div className="max-w-2xl mx-auto p-8 mt-20">
-      <h2 className="text-3xl font-bold text-gray-800 mb-6">{event.title}</h2>
-      <img
+    <div className="w-full mx-auto px-8 pt-24 pb-4 bg-gray-900 min-h-screen">
+      <button className='text-white py-2 px-3 bg-slate-400 w-fit mb-4 rounded-lg hover:bg-white hover:text-violet-600'
+      onClick={()=> {window.location.href = '/events';}}>
+        Back
+      </button>
+      <h2 className="text-3xl font-bold text-gray-200 mb-6 w-full text-center">{event.title}</h2>
+     { <img
         src={event.thumbnail || '/default-thumbnail.jpg'}
+        
         alt={event.title}
-        className="w-full h-64 object-cover rounded-lg mb-6"
-      />
-      <p className="text-gray-700 mb-4">{event.description}</p>
-      <p className="text-sm text-gray-500">
-        <strong>Date: </strong>
+        className="w-full h-72 object-cover rounded-lg mb-12"
+      />}
+      <strong className='text-white text-2xl'>Description :</strong>
+      <p className="text-gray-300 mb-4 mt-2 text-justify">{event.description}</p>
+      
+      <p className="text-xl text-gray-200">
+        <strong className='text-2xl'>Date: </strong>
         {new Date(event.date).toLocaleDateString()}
       </p>
-      <p className="text-sm text-gray-500">
-        <strong>Time: </strong>
+      <p className="text-xl text-gray-200">
+        <strong className='text-2xl mr-2'>Time: </strong>
         {event.time}
       </p>
-      <p className="text-sm text-gray-500">
-        <strong>Location: </strong>
+      <p className="text-xl text-gray-200">
+        <strong className='text-2xl mr-2'>Location: </strong>
         {event.location}
       </p>
-
+      
+      <div className='flex justify-between align-middle flex-wrap mt-4'>
       {event.registrationFee && (
-        <p className="text-lg font-semibold text-blue-500 mt-4">
-          Registration Fee: ₹{event.registrationFee}
-        </p>
+        <div className='flex align-bottom mt-2 gap-4'>
+        <strong className='text-2xl text-gray-200'>Registration Fee: </strong>
+        <div className="text-2xl font-medium text-green-200 ">
+          {event.registrationFee} INR
+        </div>
+        </div>
       )}
-      {event.documents && (
+      
+      { event.documents && (
         <a href={event.documents} target="_blank">
-          <button className="block text-center bg-blue-500 text-white py-2 px-3 rounded-lg hover:bg-blue-600 transition mt-4">
+          <button className="block text-center bg-blue-500 text-white py-2 px-3 rounded-lg hover:bg-blue-600 transition ">
             Download Documents
           </button>
         </a>
       )}
+
+      </div>
+      
     </div>
   );
 }

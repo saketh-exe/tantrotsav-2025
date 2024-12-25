@@ -25,7 +25,7 @@ function Navbar({isScrolled}) {
     transform: "translateX(-50%)", // Adjust for centering
     width: "70%", // Normal width
     padding: "10px 5px",
-    backgroundColor: "aliceblue",
+    backgroundColor: "#dff0ff",
     color: "black",
     borderRadius: "14px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
@@ -42,7 +42,7 @@ function Navbar({isScrolled}) {
     transform: "none",
     width: "100%",
     padding: "10px 20px",
-    backgroundColor: "aliceblue",
+    backgroundColor: "#dff0ff",
     color: "black",
     borderRadius: "0",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
@@ -61,11 +61,11 @@ function Navbar({isScrolled}) {
 
         {/* Navigation Links (Responsive) */}
         <div
-          className={`fixed  opacity-70 top-0 left-0 h-full w-2/3 max-w-sm bg-[aliceblue] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
+          className={`fixed  opacity-70 top-0 left-0 h-full w-2/3 max-w-sm bg-[#dff0ff] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
             isMenuOpen ? 'translate-x-0' : '-translate-x-full'
           } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
         >
-          <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full">
+          <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full bg-[#dff0ff]">
           <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} />
           {user ? (
             <NavLink
