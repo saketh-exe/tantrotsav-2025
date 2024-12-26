@@ -72,10 +72,10 @@ function EventCard({ event }) {
   };
 
   return (
-    <div className="w-[250px] h-[350px] bg-white rounded-[10px] shadow-md shadow-slate-600 flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200">
+    <div className="w-[300px] h-[400px] bg-white rounded-[10px] shadow-md shadow-slate-300 flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200">
       <div className="transition-all duration-500 flex justify-center">
         {/* Card Image with fixed size */}
-        <div className="w-full h-[120px] relative border-2 rounded-md border-black bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.3)]">
+        <div className="w-full h-[140px] relative border-2 rounded-md border-black bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.3)]">
           <img
             src={event.thumbnail || "/default-thumbnail.jpg"}
             alt={event.title}
@@ -88,7 +88,7 @@ function EventCard({ event }) {
         <h3 className="text-[20px] font-bold text-black hover:text-[#1d4ed8] transition-colors duration-300">
           {event.title}
         </h3>
-        <p className="text-[14px] max-w-[200px] font-normal text-[#4a4a4a] truncate">
+        <p className="text-[14px] max-w-[240px] font-normal text-[#4a4a4a]  line-clamp-3 text-center">
           {event.description}
         </p>
 

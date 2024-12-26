@@ -25,7 +25,7 @@ function Register() {
       if (response.data.message === 'User exists') {
         toast.success('User exists');
         setUser(user);
-        return navigate('/');
+        return (window.location.href = '/');
       }
 
       // Save the user to Zustand store
@@ -40,10 +40,10 @@ function Register() {
 
   return (
     <button
-      className="lg:py-2 lg:px-5 py-1 px-3 text-sm lg:text-md border border-[#000000] text-[#000000] rounded hover:shadow-md hover:bg-[#000000] hover:text-white transition-all duration-300 w-24"
+      className="lg:py-2 lg:px-5 py-1 px-3 text-sm lg:text-md border border-[#000000] text-[#000000] rounded hover:shadow-md hover:bg-[#000000] hover:text-white transition-all duration-300 w-fit"
       onClick={signInWithGoogle}
     >
-      Register
+      Login / Register
     </button>
   );
 }

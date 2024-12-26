@@ -85,7 +85,7 @@ function UserDetails() {
       if (response.status === 201) {
         toast.success('User details updated successfully');
         setUserRegistrationStatus(true);
-        return navigate('/');
+        return (window.location.href = '/');
       }
     } catch (error) {
       console.error(error);

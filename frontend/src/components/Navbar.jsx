@@ -76,11 +76,11 @@ function Navbar({isScrolled}) {
           ) : null}
           <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} />
           <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} />
-          <NavLink to="/support" text="Support" setIsMenuOpen={setIsMenuOpen} />
+          <NavLink to="/support" text="Services" setIsMenuOpen={setIsMenuOpen} />
             {!user && (
               <div className="flex flex-col gap-4 mt-6 md:hidden">
                 <Register />
-                <SignIn />
+                
               </div>
             )}
           </div>
@@ -91,8 +91,8 @@ function Navbar({isScrolled}) {
           {user ? (
             <div className="flex items-center gap-4">
               <Link to={'/cart'} className="relative">
-                <FaShoppingCart className="h-6 w-6 text-gray-700 cursor-pointer" />
-                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
+                <FaShoppingCart className="h-6 w-6 text-gray-700 " />
+                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
                   {user?.cart?.length || 0}
                 </span>
               </Link>
@@ -107,7 +107,7 @@ function Navbar({isScrolled}) {
           ) : (
             <div className="hidden md:flex md:items-center md:gap-4">
               <Register />
-              <SignIn />
+            
             </div>
           )}
           {/* Hamburger Icon */}

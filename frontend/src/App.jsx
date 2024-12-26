@@ -13,6 +13,7 @@ import Gallery from "./pages/Gallery";
 import Failed from "./pages/Failed";
 import Success from "./pages/Success";
 import { useState } from "react"; // Import `useState` from React
+import Accommodation from "./pages/Accommodation"
 function App() {
   const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
 
@@ -22,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className=" scrollbar-hide">
+    <div>
       <Router>
         <Navbar isScrolled={isScrolled} />
         <Routes>
@@ -58,7 +59,7 @@ function App() {
             path="/support"
             element={
               <RouteGuard>
-                <Home />
+                <Accommodation />
               </RouteGuard>
             }
           />

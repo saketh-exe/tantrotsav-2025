@@ -252,8 +252,8 @@ function Profile() {
   };
 
   return (
-    <div className=" w-full  flex-col items-center justify-center pt-28 p-4 h-screen bg-gray-900">
-      <div className="flex w-full justify-center align-middle flex-wrap">
+    <div className=" w-full  flex-col items-center justify-center pt-28 p-4 min-h-screen h-fit bg-gradient-to-br from-black to-blue-950">
+      <div className="flex w-full justify-center align-middle flex-wrap"> 
         <div className="flex rounded-md mr-4">
           <img
             src={user.profileImage}

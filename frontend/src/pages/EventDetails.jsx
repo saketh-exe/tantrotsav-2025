@@ -25,7 +25,7 @@ function EventDetails() {
 
   return (
     <div className="w-full mx-auto px-8 pt-24 pb-4 bg-gray-900 min-h-screen">
-      <button className='text-white py-2 px-3 bg-slate-400 w-fit mb-4 rounded-lg hover:bg-white hover:text-violet-600'
+      <button className='text-white py-2 px-3 bg-slate-700 w-fit mb-4 rounded-lg hover:bg-white hover:text-violet-600'
       onClick={()=> {window.location.href = '/events';}}>
         Back
       </button>
@@ -34,7 +34,7 @@ function EventDetails() {
         src={event.thumbnail || '/default-thumbnail.jpg'}
         
         alt={event.title}
-        className="w-full h-72 object-cover rounded-lg mb-12"
+        className="w-full h-[30rem] rounded-lg mb-12  object-contain"
       />}
       <strong className='text-white text-2xl'>Description :</strong>
       <p className="text-gray-300 mb-4 mt-2 text-justify">{event.description}</p>
@@ -75,5 +75,4 @@ function EventDetails() {
     </div>
   );
 }
-
 export default EventDetails;

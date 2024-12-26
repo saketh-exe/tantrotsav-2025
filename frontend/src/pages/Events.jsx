@@ -55,8 +55,8 @@ function Events() {
   }, {});
 
   return (
-    <div className="max-w-6xl mx-auto py-8 px-4 sm:px-6 lg:px-8 mt-20">
-      <h2 className="text-3xl font-bold text-center mb-8">Upcoming Events</h2>
+    <div className="w-full min-h-screen py-8 px-4 sm:px-6 lg:px-8 pt-28  bg-gradient-to-br from-black to-red-950 text-white">
+      <h2 className="text-5xl font-bold text-center mb-8">Upcoming Events</h2>
 
       {/* Search and Filter Section */}
       <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
@@ -92,12 +92,14 @@ function Events() {
       {/* Display Events */}
       {Object.keys(groupedEvents).map((clubName) => (
         <div key={clubName} className="mb-12">
-          <h3 className="text-2xl font-semibold text-[#323232] mb-6">
-            {clubName}
+          <h3 className="text-4xl font-semibold text-[#ffffff] my-20">
+            {clubName} :
           </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center">
             {groupedEvents[clubName].map((event) => (
+              
               <EventCard key={event._id} event={event} />
+              
             ))}
           </div>
         </div>
