@@ -41,7 +41,7 @@ function CartItem({ item }) {
             {item.eventId.title}
           </h3>
           <p className="text-sm text-gray-600">
-            {new Date(item.eventId.date).toLocaleDateString()}
+            {new Date(item.eventId.date).toLocaleDateString('en-GB')}
           </p>
           <p className="text-sm text-gray-800">
             ₹{item.eventId.registrationFee}

@@ -64,12 +64,14 @@ function Navbar({ isScrolled }) {
 
       {/* Navigation Links (Responsive) */}
       <div
-        className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-[#dff0ff] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
-          isMenuOpen ? "translate-x-0" : "-translate-x-full"
-        } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
+        className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-[#dff0ff] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${isMenuOpen ? "translate-x-0" : "-translate-x-full"
+          } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
       >
         <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full bg-[#dff0ff]">
           <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} />
+          <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} />
+          <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} />
+          <NavLink to="/support" text="Services" setIsMenuOpen={setIsMenuOpen} />
           {user ? (
             <NavLink
               to="/profile"
@@ -77,52 +79,49 @@ function Navbar({ isScrolled }) {
               setIsMenuOpen={setIsMenuOpen}
             />
           ) : null}
-          <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} />
-          <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} />
-          <NavLink to="/support" text="Services" setIsMenuOpen={setIsMenuOpen} />
-            {!user && (
-              <div className="flex flex-col gap-4 mt-6 md:hidden">
-                <Register />
-                
-              </div>
-            )}
-          </div>
-        </div>
+          {!user && (
+            <div className="flex flex-col gap-4 mt-6 md:hidden">
+              <Register />
 
-        {/* Cart and Profile Section */}
-        <div className="flex items-center gap-4 md:gap-4 z-40">
-          {user ? (
-            <div className="flex items-center gap-4">
-              <Link to={'/cart'} className="relative">
-                <FaShoppingCart className="h-6 w-6 text-gray-700 " />
-                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
-                  {user?.cart?.length || 0}
-                </span>
-              </Link>
-              <button className="hover:p-1 hover:bg-black focus:p-1 focus:bg-black rounded-full transition-all ease-in-out">
+            </div>
+          )}
+        </div>
+      </div>
+
+      {/* Cart and Profile Section */}
+      <div className="flex items-center gap-4 md:gap-4 z-40">
+        {user ? (
+          <div className="flex items-center gap-4">
+            <Link to={'/cart'} className="relative">
+              <FaShoppingCart className="h-6 w-6 text-gray-700 hover:scale-125 transition-transform duration-200" />
+              <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
+                {user?.cart?.length || 0}
+              </span>
+            </Link>
+            <button className="hover:p-1 hover:bg-black focus:p-1 focus:bg-black rounded-full transition-all ease-in-out">
 
               <img
                 src={user.profileImage || user.photoURL}
                 alt="Profile"
                 className="h-8 w-8 rounded-full hidden md:block"
                 referrerPolicy="no-referrer"
-                onClick={()=>{
+                onClick={() => {
                   navigate("/profile")
                 }}
-                
+
               />
-              </button>
-              
-              <Logout />
-            </div>
-          ) : (
-            <div className="hidden md:flex md:items-center md:gap-4">
-              <Register />
-            
-            </div>
-          )}
-          {/* Hamburger Icon */}
-          <button
+            </button>
+
+            <Logout />
+          </div>
+        ) : (
+          <div className="hidden md:flex md:items-center md:gap-4">
+            <Register />
+
+          </div>
+        )}
+        {/* Hamburger Icon */}
+        <button
           className="md:hidden text-gray-700 focus:outline-none"
           onClick={() => {
             setIsMenuOpen(!isMenuOpen);
