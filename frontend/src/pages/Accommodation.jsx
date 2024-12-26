@@ -10,11 +10,11 @@ export default function Accommodation() {
         <h1 className="text-2xl font-bold mb-8 mt-12 text-white">
           Travel & Accommodation
         </h1>
-        <div className="text-black grid grid-cols-1 md:grid-cols-2 gap-16 mx-10">
+        <div className="text-black grid grid-cols-1 md:grid-cols-2 gap-16 md:mx-10">
           {/* Accommodation Card */}
           <div className="flex justify-center items-center">
             <div
-              className="p-6 rounded-lg shadow-xl w-3/4"
+              className="px-2 py-6 w-full rounded-lg shadow-xl md:w-3/4 md:px-6"
               style={{
                 background: "rgba(255, 255, 255, 0.2)", // Semi-transparent background
                 backdropFilter: "blur(10px)", // Blur effect
@@ -57,7 +57,7 @@ export default function Accommodation() {
           {/* Travel Card */}
           <div className="flex justify-center items-center">
             <div
-              className="p-6 rounded-lg shadow-lg w-3/4"
+              className="px-2 py-6 w-full rounded-lg shadow-xl md:w-3/4 md:px-6"
               style={{
                 background: "rgba(255, 255, 255, 0.2)",
                 backdropFilter: "blur(10px)",

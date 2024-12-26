@@ -48,7 +48,7 @@ const SupportPage = ({ User }) => {
 
       <div className="flex items-start justify-center bg-transparent py-6 px-4 sm:px-6 lg:px-8">
         <div
-          className="shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 w-5/6"
+          className="shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 w-full md:5/6"
           style={{
             background: "rgba(255, 255, 255, 0.2)", // Semi-transparent white
             backdropFilter: "blur(10px)", // Apply blur
