@@ -1,5 +1,5 @@
 import React from "react";
-import EvenCard from "../EventCard";
+import EventCard from "../EventCard";
 import { useNavigate } from "react-router-dom";
 export default function Featured() {
   let navigate = useNavigate();
@@ -21,10 +21,9 @@ export default function Featured() {
     <div className="font-semibold text-center text-white text-4xl w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
       Featured
       <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-center gap-4 m-6 flex-wrap">
-        <EvenCard event={Dj} />
-        <EvenCard event={Dj} />
-        <EvenCard event={Dj} />
-        
+        <EventCard event={Dj} />
+        <EventCard event={Dj} />
+        <EventCard event={Dj} />
       </div>
       <button
         onClick={() => navigate("/events")}
