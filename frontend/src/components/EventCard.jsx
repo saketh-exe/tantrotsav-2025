@@ -88,7 +88,7 @@ function EventCard({ event }) {
         <h3 className="text-[20px] font-bold text-black hover:text-[#1d4ed8] transition-colors duration-300">
           {event.title}
         </h3>
-        <p className="text-[14px] max-w-[240px] font-normal text-[#4a4a4a]  line-clamp-3 text-center">
+        <p className="text-justify text-[14px] max-w-[240px] font-normal text-[#4a4a4a]  line-clamp-3">
           {event.description}
         </p>
 
