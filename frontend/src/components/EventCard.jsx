@@ -93,10 +93,10 @@ function EventCard({ event }) {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="text-[20px] font-bold text-black hover:text-[#1d4ed8] transition-colors duration-300">
+        <h3 className="text-[20px] font-bold text-white hover:text-[#1d4ed8] transition-colors duration-300">
           {event.title}
         </h3>
-        <p className="text-justify text-[14px] max-w-[240px] font-normal text-[#4a4a4a]  line-clamp-3">
+        <p className="text-justify text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
           {event.description}
         </p>
 
@@ -120,7 +120,7 @@ function EventCard({ event }) {
       <div className="flex gap-2 justify-between">
         <Link
           to={`/events/${event._id}`}
-          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white transition-colors duration-300"
+          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-black hover:border-white transition-colors duration-300"
         >
           View Details
         </Link>
