@@ -23,7 +23,9 @@ export default function Accommodation() {
                 boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Shadow for depth
               }}
             >
-              <h2 className="text-2xl font-semibold mb-4 text-white">Accommodation</h2>
+              <h2 className="text-2xl font-semibold mb-4 text-white">
+                Accommodation
+              </h2>
               <p className="text-sm mb-4 text-justify text-stone-100">
                 For participants who seek accommodation in the college campus
                 during the course of the fest, register yourself by clicking the
@@ -31,7 +33,7 @@ export default function Accommodation() {
               </p>
               <a
                 href="/"
-                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-black hover:bg-slate-100 transition-all ease-in-out"
+                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
               </a>
@@ -74,7 +76,7 @@ export default function Accommodation() {
               </p>
               <a
                 href="/"
-                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-black hover:bg-slate-100 transition-all ease-in-out"
+                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
               </a>
