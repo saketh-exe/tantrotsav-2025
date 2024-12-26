@@ -18,13 +18,13 @@ export default function Featured() {
   };
 
   return (
-    <div className="font-semibold text-center text-white text-4xl w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-slate-50 bg-opacity-10 backdrop-filter backdrop-blur-xl rounded-lg p-6">
+    <div className="font-semibold text-center text-white text-4xl w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
       Featured
       <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-center gap-4 m-6 flex-wrap">
         <EvenCard event={Dj} />
         <EvenCard event={Dj} />
         <EvenCard event={Dj} />
-        <EvenCard event={Dj} />
+        
       </div>
       <button
         onClick={() => navigate("/events")}

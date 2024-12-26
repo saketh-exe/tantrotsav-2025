@@ -40,7 +40,7 @@ const images = [
 function Gallery() {
   console.log("loaded gallery");
   return (
-    <div className="min-h-screen bg-gray-900 py-12 flex flex-col justify-center items-center pt-24">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-cyan-950 py-12 flex flex-col justify-center items-center pt-24">
       <h2 className="text-4xl font-semibold text-center text-white mb-12 animate__animated animate__fadeIn">
         Techfest Gallery
       </h2>
@@ -54,7 +54,7 @@ function Gallery() {
               src={image}
               alt={`Techfest ${index}`}
               loading='lazy'
-              className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:opacity-80"
+              className="w-full h-full object-cover rounded-lg transition-all duration-500 group-hover:opacity-80 pointer-events-none select-none"
             />
           </div>
         ))}

@@ -72,63 +72,72 @@ function EventCard({ event }) {
   };
 
   return (
-    <div className="w-[300px] h-[400px] bg-white rounded-[10px] shadow-md shadow-slate-300 flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200">
-      <div className="transition-all duration-500 flex justify-center">
-        {/* Card Image with fixed size */}
-        <div className="w-full h-[140px] relative border-2 rounded-md border-black bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.3)]">
-          <img
-            src={event.thumbnail || "/default-thumbnail.jpg"}
-            alt={event.title}
-            className="w-full h-full object-cover rounded-md"
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col items-center">
-        <h3 className="text-[20px] font-bold text-black hover:text-[#1d4ed8] transition-colors duration-300">
-          {event.title}
-        </h3>
-        <p className="text-[14px] max-w-[240px] font-normal text-[#4a4a4a]  line-clamp-3 text-center">
-          {event.description}
-        </p>
-
-        <div className="mt-[10px] text-[14px] text-[#323232] flex flex-col items-center gap-[5px]">
-          <p className="text-sm">
-            <strong className="text-[#000000]">Date:</strong>{" "}
-            <span className="text-black">
-              {new Date(event.date).toLocaleDateString()}
-            </span>
-          </p>
-          <p className="text-sm">
-            <strong className="text-[#000000]">Registration Fee:</strong>{" "}
-            <span className="text-black">
-              {event.registrationFee ? `₹${event.registrationFee}` : "Free"}
-            </span>
-          </p>
-        </div>
-      </div>
-
-      {/* Footer with Action Buttons */}
-      <div className="flex gap-2 justify-between">
-        <Link
-          to={`/events/${event._id}`}
-          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-black transition-colors duration-300"
-        >
-          View Details
-        </Link>
-        {user && (
-          <button
-            onClick={addToCart}
-            className={`text-xs py-[8px] w-full px-[10px] border-2 border-black text-black font-medium text-center rounded-[5px] hover:bg-black hover:text-white transition-colors duration-300 ${
-              isLoading ? "bg-gray-300 cursor-not-allowed" : ""
-            }`}
-            disabled={isLoading}
-          >
-            {isLoading ? "Adding..." : "Add to Cart"}
-          </button>
-        )}
-      </div>
+    <div
+  className="w-[300px] h-[400px] rounded-[10px]  flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200"
+  style={{
+    background: "rgba(255, 255, 255, 0.15)", // Glassmorphic transparent background
+    backdropFilter: "blur(100px)", // Blur effect for glassmorphism
+    WebkitBackdropFilter: "blur(10px)", // Safari compatibility
+    border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border
+  }}
+>
+  <div className="transition-all duration-500 flex justify-center">
+    {/* Card Image with fixed size */}
+    <div className="w-full h-[140px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)]">
+      <img
+        src={event.thumbnail || "/default-thumbnail.jpg"}
+        alt={event.title}
+        className="w-full h-full object-cover rounded-md"
+      />
     </div>
+  </div>
+
+  <div className="flex flex-col items-center">
+    <h3 className="text-[20px] font-bold text-white hover:text-[#dce6ff] transition-colors duration-300">
+      {event.title}
+    </h3>
+    <p className="text-[14px] max-w-[240px] font-normal text-gray-300 line-clamp-3 text-center">
+      {event.description}
+    </p>
+
+    <div className="mt-[10px] text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
+      <p className="text-sm">
+        <strong className="text-white">Date:</strong>{" "}
+        <span className="text-gray-100">
+          {new Date(event.date).toLocaleDateString()}
+        </span>
+      </p>
+      <p className="text-sm">
+        <strong className="text-white">Registration Fee:</strong>{" "}
+        <span className="text-gray-100">
+          {event.registrationFee ? `₹${event.registrationFee}` : "Free"}
+        </span>
+      </p>
+    </div>
+  </div>
+
+  {/* Footer with Action Buttons */}
+  <div className="flex gap-2 justify-between">
+    <Link
+      to={`/events/${event._id}`}
+      className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white transition-colors duration-300"
+    >
+      View Details
+    </Link>
+    {user && (
+      <button
+        onClick={addToCart}
+        className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+          isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+        }`}
+        disabled={isLoading}
+      >
+        {isLoading ? "Adding..." : "Add to Cart"}
+      </button>
+    )}
+  </div>
+</div>
+
   );
 }
 
