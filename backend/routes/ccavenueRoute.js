@@ -8,7 +8,7 @@ dotenv.config(); // Load environment variables from a .env file
 
 const router = express.Router();
 
-const deployed_url = process.env.DEPLOYED_URL | 'http://localhost:3000';
+const deployed_url = process.env.DEPLOYED_URL || 'http://localhost:3000';
 
 // Handle CCAvenue response
 router.post('/ccavenue-handle', async (req, res) => {
