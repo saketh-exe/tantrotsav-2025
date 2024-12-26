@@ -5,24 +5,33 @@ import useAuthStore from "../store/authStore";
 export default function Accommodation() {
   let { user } = useAuthStore();
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gradient-to-br from-gray-900 to-green-900 min-h-screen h-fit pt-10">
       <div className="text-center p-8">
-        <h1 className="text-2xl font-bold mb-8 mt-12">
+        <h1 className="text-2xl font-bold mb-8 mt-12 text-white">
           Travel & Accommodation
         </h1>
         <div className="text-black grid grid-cols-1 md:grid-cols-2 gap-16 mx-10">
           {/* Accommodation Card */}
           <div className="flex justify-center items-center">
-            <div className="bg-white p-6 rounded-lg shadow-xl w-3/4 shadow-zinc-300">
-              <h2 className="text-xl font-semibold mb-4">Accommodation</h2>
-              <p className="text-sm mb-4 text-justify">
+            <div
+              className="p-6 rounded-lg shadow-xl w-3/4"
+              style={{
+                background: "rgba(255, 255, 255, 0.2)", // Semi-transparent background
+                backdropFilter: "blur(10px)", // Blur effect
+                WebkitBackdropFilter: "blur(10px)", // Safari compatibility
+                border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Shadow for depth
+              }}
+            >
+              <h2 className="text-2xl font-semibold mb-4 text-white">Accommodation</h2>
+              <p className="text-sm mb-4 text-justify text-stone-100">
                 For participants who seek accommodation in the college campus
                 during the course of the fest, register yourself by clicking the
                 link;
               </p>
               <a
                 href="/"
-                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid hover:border-2 hover:border-zinc-800 hover:text-black"
+                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-black hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
               </a>
@@ -47,16 +56,25 @@ export default function Accommodation() {
 
           {/* Travel Card */}
           <div className="flex justify-center items-center">
-            <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 shadow-zinc-300">
-              <h2 className="text-xl font-semibold mb-4">Travel</h2>
-              <p className="text-sm mb-4 text-justify">
+            <div
+              className="p-6 rounded-lg shadow-lg w-3/4"
+              style={{
+                background: "rgba(255, 255, 255, 0.2)",
+                backdropFilter: "blur(10px)",
+                WebkitBackdropFilter: "blur(10px)",
+                border: "1px solid rgba(255, 255, 255, 0.3)",
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
+              }}
+            >
+              <h2 className="text-2xl font-semibold mb-4 text-white">Travel</h2>
+              <p className="text-sm mb-4 text-justify text-slate-100">
                 For participants who might need the services of college
                 transport during the course of the fest, register yourself by
                 clicking the link;
               </p>
               <a
                 href="/"
-                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid hover:border-2 hover:border-zinc-800 hover:text-black"
+                className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-black hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
               </a>
