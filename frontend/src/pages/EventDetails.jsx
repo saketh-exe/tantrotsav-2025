@@ -117,7 +117,7 @@ function EventDetails() {
           <div className="w-full lg:pl-8 flex flex-col justify-between p-8">
             <div className="text-white">
               <div className="flex items-center justify-between gap-2 sm:gap-0 mb-4">
-                <h1 className="text-4xl font-extrabold sm:test-2xl">
+                <h1 className="text-3xl font-extrabold sm:test-lg">
                   {event.title}
                 </h1>
                 {event.documents && (
@@ -133,7 +133,9 @@ function EventDetails() {
                 )}
               </div>
               <p className="my-2">
-                <span className="text-2xl font-bold text-white">Description :</span>
+                <span className="text-lg font-bold text-white">
+                  Description :
+                </span>
               </p>
               <p className="text-justify text-sm sm:text-base text-white ">
                 {event.description}
@@ -154,7 +156,9 @@ function EventDetails() {
                 <p>
                   <span className="text-lg font-bold">Registration Fee: </span>
                   <span>
-                    {event.registrationFee != 0 ? `₹${event.registrationFee}` : "Free"}
+                    {event.registrationFee != 0
+                      ? `₹${event.registrationFee}`
+                      : "Free"}
                   </span>
                 </p>
               )}
@@ -163,7 +167,7 @@ function EventDetails() {
                 {user && (
                   <button
                     onClick={addToCart}
-                    className={`text-sm sm:text-base px-2.5 border-2 border-black py-2 inline-block text-white bg-gray-900 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${
+                    className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${
                       isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                     }`}
                     disabled={isLoading}

@@ -12,7 +12,7 @@ const SupportPage = ({ User }) => {
 
   useEffect(() => {
     setForm({ ...form, name: User.name, email: User.email });
-  }, [User])
+  }, [User]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,11 +30,19 @@ const SupportPage = ({ User }) => {
       return;
     }
 
-    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ticket`, form);
+    const response = await axios.post(
+      `${import.meta.env.VITE_BACKEND_URL}/api/ticket`,
+      form
+    );
 
     if (response.status === 201) {
       toast.success("Ticket created successfully");
-      setForm({ name: User.name, email: User.email, category: "Payment Related", message: "" });
+      setForm({
+        name: User.name,
+        email: User.email,
+        category: "Payment Related",
+        message: "",
+      });
     } else {
       toast.error("Something went wrong");
     }
@@ -56,7 +64,9 @@ const SupportPage = ({ User }) => {
             border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border
           }}
         >
-          <h1 className="text-2xl font-bold text-center mb-1 text-white">Got a Problem?</h1>
+          <h1 className="text-2xl font-bold text-center mb-1 text-white">
+            Got a Problem?
+          </h1>
           <p className="text-center text-sm mb-4 text-gray-100 font-light">
             Please fill the below form.
           </p>
@@ -77,7 +87,7 @@ const SupportPage = ({ User }) => {
                     type="text"
                     value={User.name}
                     readOnly
-                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
+                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-900 bg-gray-300 cursor-not-allowed"
                   />
                 </div>
                 {/* Email Field (Non-editable) */}
@@ -94,7 +104,7 @@ const SupportPage = ({ User }) => {
                     type="email"
                     value={User.email}
                     readOnly
-                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
+                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-900 bg-gray-300 cursor-not-allowed"
                   />
                 </div>
 
@@ -112,7 +122,7 @@ const SupportPage = ({ User }) => {
                       name="category"
                       value={form.category}
                       onChange={handleChange}
-                      className="shadow border rounded w-3/4 py-2 px-3 text-gray-700 bg-white focus:outline-none focus:shadow-outline"
+                      className="shadow border rounded w-11/12 py-2 px-3 text-gray-700 bg-white focus:outline-none focus:shadow-outline"
                     >
                       <option value="Payment Related">Payment Related</option>
                       <option value="Event Related">Event Related</option>
