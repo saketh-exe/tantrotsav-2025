@@ -12,11 +12,11 @@ createRoot(document.getElementById("root")).render(
       innerSize={15}
       outerSize={35}
       innerScale={1.5}
-      outerScale={1.7}
+      outerScale={1.2}
       outerAlpha={0.5}
-      trailingSpeed={1}
+      trailingSpeed={3}
       outerStyle={{
-        mixBlendMode: "difference",
+        mixBlendMode: "hardlight",
       }}
     />
   </StrictMode>

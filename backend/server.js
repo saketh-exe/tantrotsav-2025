@@ -6,6 +6,7 @@ const bodyParser = require('body-parser');
 const authRoutes = require('./routes/auth');
 const eventRoutes = require('./routes/eventRoute');
 const userRoutes = require('./routes/userRoutes');
+const ticketRoutes = require('./routes/ticketRoute');
 const ccavenueRoutes = require('./routes/ccavenueRoute'); // Import the CCAvenue route
 const dotenv = require('dotenv');
 
@@ -28,6 +29,7 @@ mongoose
 app.use('/api/auth', authRoutes);
 app.use('/api/events', eventRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/ticket', ticketRoutes);
 
 app.use('/api', ccavenueRoutes);
 

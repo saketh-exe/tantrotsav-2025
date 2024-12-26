@@ -1,44 +1,72 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
-const SupportPage = () => {
+const SupportPage = ({ User }) => {
   const [form, setForm] = useState({
-    name: "User Name",
-    email: "User Email",
+    name: User.name,
+    email: User.email,
     category: "Payment Related",
     message: "",
   });
+
+  useEffect(() => {
+    setForm({ ...form, name: User.name, email: User.email });
+  }, [User])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
+    if (!form.message || form.message.trim() === "") {
+      toast("Message is required", { icon: "📝" });
+      return;
+    }
+    if (!form.category || form.category.trim() === "") {
+      toast("Category is required", { icon: "📝" });
+      return;
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ticket`, form);
+
+    if (response.status === 201) {
+      toast.success("Ticket created successfully");
+      setForm({ name: User.name, email: User.email, category: "Payment Related", message: "" });
+    } else {
+      toast.error("Something went wrong");
+    }
   };
 
   return (
     <>
       <div className="text-center m-5">
-        <h2 className="text-2xl font-bold">Support</h2>
+        <h2 className="text-2xl font-bold text-white">Support</h2>
       </div>
 
-      <div className="min-h-screen flex items-start justify-center bg-gray-100 py-6 px-4 sm:px-6 lg:px-8">
-        <div className="bg-white shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 w-5/6">
-          <h1 className="text-2xl font-bold text-center mb-1">
-            Got a Problem?
-          </h1>
-          <p className="text-center text-xs mb-4 text-gray-700 font-light">
+      <div className="flex items-start justify-center bg-transparent py-6 px-4 sm:px-6 lg:px-8">
+        <div
+          className="shadow-md rounded-xl px-8 pt-6 pb-8 mb-4 w-5/6"
+          style={{
+            background: "rgba(255, 255, 255, 0.2)", // Semi-transparent white
+            backdropFilter: "blur(10px)", // Apply blur
+            WebkitBackdropFilter: "blur(10px)", // Safari compatibility
+            border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border
+          }}
+        >
+          <h1 className="text-2xl font-bold text-center mb-1 text-white">Got a Problem?</h1>
+          <p className="text-center text-sm mb-4 text-gray-100 font-light">
             Please fill the below form.
           </p>
           <form onSubmit={handleSubmit}>
             {/* Name Field (Non-editable) */}
-            <div className="flex gap-8">
-              <div className="w-1/3">
+            <div className="flex gap-8 flex-col md:flex-row">
+              <div className="w-full md:w-2/3">
                 <div className="mb-4">
                   <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-gray-100 text-lg font-bold mb-2"
                     htmlFor="name"
                   >
                     Name
@@ -47,15 +75,15 @@ const SupportPage = () => {
                     id="name"
                     name="name"
                     type="text"
-                    value={form.name}
+                    value={User.name}
                     readOnly
-                    className="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
+                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
                   />
                 </div>
                 {/* Email Field (Non-editable) */}
                 <div className="mb-4">
                   <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-gray-100 text-lg font-bold mb-2"
                     htmlFor="email"
                   >
                     Email
@@ -64,16 +92,16 @@ const SupportPage = () => {
                     id="email"
                     name="email"
                     type="email"
-                    value={form.email}
+                    value={User.email}
                     readOnly
-                    className="shadow appearance-none border rounded w-3/4 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
+                    className="shadow appearance-none border rounded w-11/12 py-2 px-3 text-gray-700 bg-gray-200 cursor-not-allowed"
                   />
                 </div>
 
                 {/* Category Dropdown */}
                 <div>
                   <label
-                    className="block text-gray-700 text-sm font-bold mb-2"
+                    className="block text-gray-100 text-lg font-bold mb-2"
                     htmlFor="category"
                   >
                     Category
@@ -98,7 +126,7 @@ const SupportPage = () => {
               <div className="w-3/4 mb-6">
                 {/* Message Box */}
                 <label
-                  className="block text-gray-700 text-sm font-bold mb-2"
+                  className="block text-gray-100 text-lg font-bold mb-2"
                   htmlFor="message"
                 >
                   Message

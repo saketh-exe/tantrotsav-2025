@@ -7,12 +7,14 @@ import Logout from "./Logout";
 import NavLink from "./NavLink";
 import Register from "./Register";
 import SignIn from "./SignIn";
+import { useNavigate } from 'react-router-dom';
 
 function Navbar({ isScrolled }) {
+
   const { user } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setscrolled] = useState(isScrolled);
-
+  const navigate = useNavigate()
   useEffect(() => {
     setscrolled(isScrolled);
   }, [isScrolled]);
@@ -97,12 +99,20 @@ function Navbar({ isScrolled }) {
                   {user?.cart?.length || 0}
                 </span>
               </Link>
+              <button className="hover:p-1 hover:bg-black focus:p-1 focus:bg-black rounded-full transition-all ease-in-out">
+
               <img
                 src={user.profileImage || user.photoURL}
                 alt="Profile"
                 className="h-8 w-8 rounded-full hidden md:block"
                 referrerPolicy="no-referrer"
+                onClick={()=>{
+                  navigate("/profile")
+                }}
+                
               />
+              </button>
+              
               <Logout />
             </div>
           ) : (
