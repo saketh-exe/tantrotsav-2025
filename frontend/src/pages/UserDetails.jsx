@@ -152,10 +152,13 @@ function UserDetails() {
                 >
                   <option value="">Select department</option>
                   <option value="CSE">CSE</option>
+                  <option value="CYS">CYS</option>
+                  <option value="AIE">AIE</option>
                   <option value="ECE">ECE</option>
-                  <option value="EEE">EEE</option>
+                  <option value="RAI">RAI</option>
+                  <option value="ARE">ARE</option>
                   <option value="MECH">MECH</option>
-                  <option value="CIVIL">CIVIL</option>
+                  <option value="CCE">CCE</option>
                 </select>
               )}
             />

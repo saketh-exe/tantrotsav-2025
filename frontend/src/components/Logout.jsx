@@ -1,6 +1,8 @@
 import { signOut } from 'firebase/auth'; // Import signOut from Firebase
 import { auth } from '../firebase'; // Import the auth object from Firebase
 import useAuthStore from '../store/authStore'; // Import the Zustand store
+import toast from 'react-hot-toast';
+import { Navigate } from 'react-router-dom';
 
 function Logout() {
   const clearUser = useAuthStore((state) => state.clearUser); // Access the setUser function from Zustand
@@ -13,7 +15,9 @@ function Logout() {
       clearUser();
       console.log('User logged out successfully')
       // Navigate to / page
-      window.location.href = '/';
+      // window.location.href = '/';
+      toast.success('Logged out successfully');
+      Navigate('/');
     } catch (error) {
       console.error('Error during logout:', error.message);
     }

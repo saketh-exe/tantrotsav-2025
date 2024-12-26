@@ -6,10 +6,13 @@ function GetRegistrations() {
   const [events, setEvents] = useState([]);
   const [departments, setDepartments] = useState([
     { value: 'CSE', label: 'CSE' },
+    { value: 'CYS', label: 'CYS' },
+    { value: 'AIE', label: 'AIE' },
     { value: 'ECE', label: 'ECE' },
-    { value: 'EEE', label: 'EEE' },
+    { value: 'RAI', label: 'RAI' },
+    { value: 'ARE', label: 'ARE' },
     { value: 'MECH', label: 'MECH' },
-    { value: 'CIVIL', label: 'CIVIL' },
+    { value: 'CCE', label: 'CCE' },
   ]);
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);

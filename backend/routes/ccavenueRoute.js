@@ -2,8 +2,13 @@ const express = require('express');
 const CCAvenue = require('../utils/CCAvenue');
 const User = require('../models/User'); // Import User model
 const Event = require('../models/Event'); // Import Event model
+const dotenv = require('dotenv');
+
+dotenv.config(); // Load environment variables from a .env file
 
 const router = express.Router();
+
+const deployed_url = process.env.DEPLOYED_URL | 'http://localhost:3000';
 
 // Handle CCAvenue response
 router.post('/ccavenue-handle', async (req, res) => {
@@ -14,7 +19,7 @@ router.post('/ccavenue-handle', async (req, res) => {
     // Check if decryption was successful
     if (!data) {
       console.error('Failed to decrypt response');
-      return res.redirect(302, 'http://localhost:3000/failed');
+      return res.redirect(302, `${deployed_url}/failed`);
     }
 
     const email = data.billing_email;
@@ -22,7 +27,7 @@ router.post('/ccavenue-handle', async (req, res) => {
 
     if (!email || !orderId) {
       console.error('Missing userId or orderId in response');
-      return res.redirect(302, 'http://localhost:3000/failed');
+      return res.redirect(302, `${deployed_url}/failed`);
     }
 
     // Fetch user
@@ -30,7 +35,7 @@ router.post('/ccavenue-handle', async (req, res) => {
 
     if (!user) {
       console.error(`User not found for email: ${email}`);
-      return res.redirect(302, 'http://localhost:3000/failed');
+      return res.redirect(302, `${deployed_url}/failed`);
     }
 
     // Fetch cart events
@@ -40,7 +45,7 @@ router.post('/ccavenue-handle', async (req, res) => {
       // Avoid processing if no events in the cart
       if (!cartEvents.length) {
         console.error('No events in the user cart to process');
-        return res.redirect(302, 'http://localhost:3000/failed');
+        return res.redirect(302, `${deployed_url}/failed`);
       }
 
       // Create a new order
@@ -69,7 +74,7 @@ router.post('/ccavenue-handle', async (req, res) => {
       );
 
       console.log(`Payment success for user ${email}, order ${orderId}`);
-      return res.redirect(302, 'http://localhost:3000/success');
+      return res.redirect(302, `${deployed_url}/success`);
     } else {
       // Handle failed payment
       const failedOrder = {
@@ -89,13 +94,13 @@ router.post('/ccavenue-handle', async (req, res) => {
       await user.save();
 
       console.error(`Payment failed for user ${email}, order ${orderId}`);
-      return res.redirect(302, 'http://localhost:3000/failed');
+      return res.redirect(302, `${deployed_url}/failed`);
     }
   } catch (error) {
     console.error('Error processing CCAvenue request:', error);
 
     // Redirect to Payment Failed Page
-    return res.redirect(302, 'http://localhost:3000/failed');
+    return res.redirect(302, `${deployed_url}/failed`);
   }
 });
 

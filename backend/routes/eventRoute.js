@@ -4,7 +4,7 @@ const Event = require('../models/Event');
 const xlsx = require('xlsx');
 const User = require('../models/User');
 
-const departments = ['CSE', 'ECE', 'EEE', 'MECH', 'CIVIL'];
+const departments = ['CSE', 'CYS', 'AIE', 'ECE', 'RAI', 'ARE', 'MECH', 'CCE'];
 
 // Route to get all events
 router.get('/', async (req, res) => {
