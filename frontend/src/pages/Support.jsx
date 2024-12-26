@@ -1,19 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const SupportPage = ({ User }) => {
   const [form, setForm] = useState({
+    name: User.name,
+    email: User.email,
     category: "Payment Related",
     message: "",
   });
+
+  useEffect(() => {
+    setForm({ ...form, name: User.name, email: User.email });
+  }, [User])
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm({ ...form, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Form submitted:", form);
+    if (!form.message || form.message.trim() === "") {
+      toast("Message is required", { icon: "📝" });
+      return;
+    }
+    if (!form.category || form.category.trim() === "") {
+      toast("Category is required", { icon: "📝" });
+      return;
+    }
+
+    const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/ticket`, form);
+
+    if (response.status === 201) {
+      toast.success("Ticket created successfully");
+      setForm({ name: User.name, email: User.email, category: "Payment Related", message: "" });
+    } else {
+      toast.error("Something went wrong");
+    }
   };
 
   return (
