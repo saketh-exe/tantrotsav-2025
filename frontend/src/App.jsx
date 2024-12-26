@@ -13,12 +13,13 @@ import Gallery from "./pages/Gallery";
 import Failed from "./pages/Failed";
 import Success from "./pages/Success";
 import { useState } from "react"; // Import `useState` from React
+import Accommodation from "./pages/Accommodation";
 function App() {
   const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
 
   // Function to handle scroll and update the state
   const handleScroll = (scrollTop) => {
-    setIsScrolled((scrollTop > 0)); // Set `isScrolled` based on scrollTop
+    setIsScrolled(scrollTop > 0); // Set `isScrolled` based on scrollTop
   };
 
   return (
@@ -58,7 +59,7 @@ function App() {
             path="/support"
             element={
               <RouteGuard>
-                <Home />
+                <Accommodation />
               </RouteGuard>
             }
           />

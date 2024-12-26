@@ -1,10 +1,15 @@
 import React from "react";
+import Support from "./Support.jsx";
+import useAuthStore from "../store/authStore";
 
 export default function Accommodation() {
+  let { user } = useAuthStore();
   return (
     <div className="bg-gray-100 min-h-screen">
       <div className="text-center p-8">
-        <h1 className="text-2xl font-bold mb-8">Travel & Accommodation</h1>
+        <h1 className="text-2xl font-bold mb-8 mt-12">
+          Travel & Accommodation
+        </h1>
         <div className="text-black grid grid-cols-1 md:grid-cols-2 gap-16 mx-10">
           {/* Accommodation Card */}
           <div className="flex justify-center items-center">
@@ -69,6 +74,9 @@ export default function Accommodation() {
           </div>
         </div>
       </div>
+
+      {/* Support Form */}
+      {user && <Support User={user} />}
     </div>
   );
 }
