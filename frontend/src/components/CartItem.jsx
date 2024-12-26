@@ -20,6 +20,10 @@ function CartItem({ item }) {
     }
   };
 
+  const handleRedirect = (eventId) => {
+    window.location.href = `/events/${eventId}`;
+  };
+
   return (
     <div
       key={item.eventId._id}
@@ -29,9 +33,10 @@ function CartItem({ item }) {
         <img
           src={item.eventId.thumbnail || '/default-thumbnail.jpg'}
           alt={item.eventId.title}
-          className="h-20 w-20 object-cover rounded-md"
+          className="h-20 w-20 object-cover rounded-md cursor-pointer"
+          onClick={() => handleRedirect(item.eventId._id)}
         />
-        <div className="flex flex-col">
+        <div className="flex flex-col cursor-pointer" onClick={() => handleRedirect(item.eventId._id)}>
           <h3 className="text-lg font-semibold text-black hover:text-[#1d4ed8] transition-colors duration-300">
             {item.eventId.title}
           </h3>

@@ -11,9 +11,11 @@ import RouteGuard from "./components/RouteGuard"; // Import the global route gua
 import EventDetails from "./pages/EventDetails";
 import Gallery from "./pages/Gallery";
 import Failed from "./pages/Failed";
+import NotFound from "./pages/NotFound";
 import Success from "./pages/Success";
 import { useState } from "react"; // Import `useState` from React
 import Accommodation from "./pages/Accommodation"
+
 function App() {
   const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
 
@@ -39,6 +41,7 @@ function App() {
           <Route element={<Gallery />} path="/gallery" />
           <Route element={<Success />} path="/success" />
           <Route element={<Failed />} path="/failed" />
+          <Route element={<NotFound />} path="/404" />
           <Route
             path="/events"
             element={
@@ -90,6 +93,7 @@ function App() {
             />
             {/* Add other protected routes here */}
           </Route>
+          <Route path="*" element={<NotFound />} /> {/* Default route for 404 */}
         </Routes>
       </Router>
       <Toaster />
