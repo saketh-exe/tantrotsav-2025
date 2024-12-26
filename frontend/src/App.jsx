@@ -19,7 +19,7 @@ function App() {
 
   // Function to handle scroll and update the state
   const handleScroll = (scrollTop) => {
-    setIsScrolled((scrollTop > 0)); // Set `isScrolled` based on scrollTop
+    setIsScrolled(scrollTop > 0); // Set `isScrolled` based on scrollTop
   };
 
   return (
