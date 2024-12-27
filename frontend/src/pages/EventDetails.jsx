@@ -10,8 +10,13 @@ import Clock from "../assets/Clock.svg"
 import Calender from "../assets/Calendar.svg"
 import Location from "../assets/Location.svg"
 import Rupee from "../assets/Rupee.svg"
-import Club from "../assets/Club.svg"
+import Club from "../assets/university-svgrepo-com.svg"
 import Phone from "../assets/Phone.svg"
+import team from "../assets/team.svg"
+import medal1 from "../assets/medal1.svg"
+import medal2 from "../assets/medal.svg"
+import EvntTyp from "../assets/Eventtype.svg"
+import Eventpill from "../components/Eventpill";
 
 
 function EventDetails() {
@@ -139,70 +144,9 @@ function EventDetails() {
                 <h1 className="text-3xl font-extrabold sm:test-lg">
                   {event.title}
                 </h1>
-                {event.documents && (
-                  <a
-                    href={event.documents}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="test-xl sm:test-2xl block text-center bg-blue-600 text-white py-1.5 px-3 rounded-lg hover:bg-blue-800 transition">
-                      Download Document
-                    </button>
-                  </a>
-                )}
-              </div>
-              <p className="my-2">
-                <span className="text-lg font-bold text-white">
-                  Description :
-                </span>
-              </p>
-              <p className="text-justify text-sm sm:text-base text-white ">
-                {event.description}
-              </p>
-              
-              <div className=" flex  mt-4 flex-wrap ">
-              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
-                <img src={Calender} className="w-8"/>
-              {new Date(event.date).toLocaleDateString()}
-              </div>
-              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
-                <img src={Clock} className="w-8"/>
-                {event.time?event.time:"12:00"}
-              </div>
-              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
-              <img src={Location} className="w-8 "/>
-                {event.location}
-              </div>
-              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
-              <img src={Club} className="w-8 "/>
-                {event.clubName}
-               
-              </div>
-              
-              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
-                    <img src={Rupee} className="w-8 " />
-                {event.registrationFee != 0
-                      ? `${event.registrationFee}`
-                      : "Free"}
-                    
-              </div>
-             
-
-              </div>
-              <div className=" flex  mt-6 flex-wrap ">
-              <div className="p-1 px-3 bg-orange-50 rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4">
-                <img src={Phone} className="w-4"/>
-                <p>person 1 : </p>
-                +91 123456789
-              </div>
-              <div className="p-1 px-3 bg-orange-50 rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4">
-                <img src={Phone} className="w-4"/>
-                <p>person 2 : </p>
-                +91 123456789
-              </div>
-              </div>
-              {/* Button */}
-              <div className="mt-6 flex justify-start">
+                <div className="flex gap-4">
+                   {/* Add to cart */}
+              <div className=" flex justify-start">
                 {user && (
                   <button
                     onClick={addToCart}
@@ -216,6 +160,65 @@ function EventDetails() {
                 )}
                 
               </div>
+              {event.documents && (
+                  <a
+                    href={event.documents}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
+                      Download Document
+                    </button>
+                  </a>
+                )} 
+                
+                </div>
+                
+              </div>
+              <p className="my-2">
+                <span className="text-lg font-bold text-white">
+                  Description :
+                </span>
+              </p>
+              <p className="text-justify text-sm sm:text-base text-white ">
+                {event.description}
+                {event.documents && <strong className="text-green-200">PLEASE REFER DOCUMENTS FOR MORE INFO.</strong>}
+              </p>
+              
+              <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start ">
+                <Eventpill imgsrc={Calender} content={new Date(event.date).toLocaleDateString() }/>
+                <Eventpill imgsrc={Clock} content={event.time?event.time:"12:00"}/>
+                <Eventpill imgsrc={Location} content={event.location}/>
+                <Eventpill imgsrc={Club} content={event.clubName}/>
+                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}`: "Free"}/>
+                <Eventpill imgsrc={team} content={4}/> {/* Team size here {event.teamSize} */}
+                {/* event.prize && */<Eventpill  content={(<div className="flex flex-col w-full gap-y-1 items-center justify-center">
+                  <div className="flex w-full border-b border-black justify-center items-center">
+                    <img src={medal1} className="w-6"/>
+                    100${/*1st prize money goes here */}
+                  </div>
+                  <div className="flex w-full justify-center items-center">
+                    <img src={medal2} className="w-6"/>
+                    100${/*2nd prize money goes here */}
+                  </div>
+                
+                </div>)}/> /* Team size here {event.teamSize} */}
+                <Eventpill imgsrc={EvntTyp} content={"Hackthon"}/> {/* Type of show event.type */}
+
+              </div>
+              <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start "> {/* need to map to no of coordinators */}
+              <div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out">
+                <img src={Phone} className="w-4"/>
+                <p>person 1 : </p>
+                +91 123456789
+              </div>
+              <div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out">
+                <img src={Phone} className="w-4"/>
+                <p>person 2 : </p> 
+                +91 123456789
+              </div>
+              </div>
+             
               
             </div>
           </div>

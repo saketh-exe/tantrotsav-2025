@@ -143,7 +143,7 @@ function Cart() {
               </button>
             </div>
             <p className=' line-clamp-2  text-sm text-red-800'>
-             *Events once registred can not be canclled.</p>
+             *Events once registred can not be cancelled.</p>
           </div>
         </div>
       )}

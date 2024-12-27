@@ -2,9 +2,11 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiSearch, FiFilter } from 'react-icons/fi'; // Import icons
 import EventCard from '../components/EventCard';
+import Loading from "../components/Loading";
 
 function Events() {
   const [events, setEvents] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
   const [clubFilter, setClubFilter] = useState('All'); // New state for filter
   const [filteredEvents, setFilteredEvents] = useState([]);
@@ -19,6 +21,9 @@ function Events() {
         setFilteredEvents(response.data); // Initial filtering
       } catch (error) {
         console.error('Error fetching events:', error);
+      }
+      finally{
+        setIsLoading(false)
       }
     };
 
@@ -53,6 +58,11 @@ function Events() {
     acc[event.clubName].push(event);
     return acc;
   }, {});
+
+  if (isLoading) {
+      // Display a loading spinner or placeholder while fetching
+      return <Loading/>;
+    }
 
   return (
     <div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28  bg-gradient-to-br from-black to-rose-950 text-white">
