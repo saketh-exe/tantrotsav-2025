@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast"; // Import react-hot-toast
 function EventCard({ event }) {
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  console.log("log message" + !user);
+  
   const addToCart = async () => {
     if (!user) {
       toast.error("Please sign in to add to cart");
@@ -96,7 +96,7 @@ function EventCard({ event }) {
         <h3 className="text-[20px] font-bold text-white hover:text-[#1d4ed8] transition-colors duration-300">
           {event.title}
         </h3>
-        <p className="text-justify text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
+        <p className="text-center  text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
           {event.description}
         </p>
 
@@ -120,7 +120,7 @@ function EventCard({ event }) {
       <div className="flex gap-2 justify-between">
         <Link
           to={`/events/${event._id}`}
-          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-black hover:border-white transition-colors duration-300"
+          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300"
         >
           View Details
         </Link>

@@ -5,12 +5,20 @@ import axios from "axios";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
+import Loading from "../components/Loading";
+import Clock from "../assets/Clock.svg"
+import Calender from "../assets/Calendar.svg"
+import Location from "../assets/Location.svg"
+import Rupee from "../assets/Rupee.svg"
+import Club from "../assets/Club.svg"
+import Phone from "../assets/Phone.svg"
+
 
 function EventDetails() {
   const navigate = useNavigate();
 
   const { user, setUser } = useAuthStore();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { eventId } = useParams();
   const [event, setEvent] = useState(null);
 
@@ -25,12 +33,23 @@ function EventDetails() {
         console.error("Error fetching event details:", error);
         setEvent(null);
       }
+      finally{
+        setIsLoading(false)
+      }
     };
 
     fetchEventDetails();
   }, [eventId]);
 
-  if (event === null) return <NotFound />;
+  if (isLoading) {
+    // Display a loading spinner or placeholder while fetching
+    return <Loading/>;
+  }
+  
+  if (event === null) {
+    // Render NotFound only if loading is complete and event is still null
+    return <NotFound />;
+  }
 
   const addToCart = async () => {
     if (!user) {
@@ -140,28 +159,48 @@ function EventDetails() {
               <p className="text-justify text-sm sm:text-base text-white ">
                 {event.description}
               </p>
-              <p className="mt-4">
-                <span className="text-lg font-bold">Date: </span>
-                <span>{new Date(event.date).toLocaleDateString()}</span>
-              </p>
-              <p>
-                <span className="text-lg font-bold">Time: </span>
-                <span>{event.time}</span>
-              </p>
-              <p>
-                <span className="text-lg font-bold">Venue: </span>
-                <span>{event.location}</span>
-              </p>
-              {event.registrationFee && (
-                <p>
-                  <span className="text-lg font-bold">Registration Fee: </span>
-                  <span>
-                    {event.registrationFee != 0
-                      ? `₹${event.registrationFee}`
+              
+              <div className=" flex  mt-4 flex-wrap ">
+              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
+                <img src={Calender} className="w-8"/>
+              {new Date(event.date).toLocaleDateString()}
+              </div>
+              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
+                <img src={Clock} className="w-8"/>
+                {event.time?event.time:"12:00"}
+              </div>
+              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
+              <img src={Location} className="w-8 "/>
+                {event.location}
+              </div>
+              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
+              <img src={Club} className="w-8 "/>
+                {event.clubName}
+               
+              </div>
+              
+              <div className="p-2 px-6 bg-orange-50 rounded-lg flex items-center gap-2 text-lg font-bold text-black mb:w-48 w-44 justify-center mr-2 md:mr-4 mb-4">
+                    <img src={Rupee} className="w-8 " />
+                {event.registrationFee != 0
+                      ? `${event.registrationFee}`
                       : "Free"}
-                  </span>
-                </p>
-              )}
+                    
+              </div>
+             
+
+              </div>
+              <div className=" flex  mt-6 flex-wrap ">
+              <div className="p-1 px-3 bg-orange-50 rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4">
+                <img src={Phone} className="w-4"/>
+                <p>person 1 : </p>
+                +91 123456789
+              </div>
+              <div className="p-1 px-3 bg-orange-50 rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4">
+                <img src={Phone} className="w-4"/>
+                <p>person 2 : </p>
+                +91 123456789
+              </div>
+              </div>
               {/* Button */}
               <div className="mt-6 flex justify-start">
                 {user && (
@@ -175,7 +214,9 @@ function EventDetails() {
                     {isLoading ? "Adding..." : "Add to Cart"}
                   </button>
                 )}
+                
               </div>
+              
             </div>
           </div>
         </div>

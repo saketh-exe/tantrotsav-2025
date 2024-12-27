@@ -15,6 +15,7 @@ import NotFound from "./pages/NotFound";
 import Success from "./pages/Success";
 import { useState } from "react"; // Import `useState` from React
 import Accommodation from "./pages/Accommodation"
+import AnimatedCursor from "react-animated-cursor";
 
 function App() {
   const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
@@ -97,6 +98,18 @@ function App() {
         </Routes>
       </Router>
       <Toaster />
+      <AnimatedCursor
+      color="255,155,0"
+      innerSize={15}
+      outerSize={35}
+      innerScale={1.5}
+      outerScale={1.2}
+      outerAlpha={0.5}
+      trailingSpeed={3}
+      outerStyle={{
+        mixBlendMode: "hardlight",
+      }}
+    />
     </div>
   );
 }

@@ -1,10 +1,16 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-function NavLink({ to, text, setIsMenuOpen }) {
+function NavLink({ to, text, setIsMenuOpen ,active}) {
+  const activeStyle = {
+    backgroundColor : "black",
+    borderRadius : "6px",
+    color:"white"
+  }
   return (
     <Link
       to={to}
+      style={active?activeStyle:{}}
       className="group relative flex items-center"
       onClick={() => setIsMenuOpen(false)}
     >

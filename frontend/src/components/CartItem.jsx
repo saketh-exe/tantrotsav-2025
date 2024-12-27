@@ -3,9 +3,11 @@ import PropTypes from 'prop-types';
 import { FaTrashAlt } from 'react-icons/fa'; // Import React Icons
 import useAuthStore from '../store/authStore';
 import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
 function CartItem({ item }) {
   const { user, setUser } = useAuthStore();
+  const navigate = useNavigate()
   const removeFromCart = async (eventId) => {
     try {
       const response = await axios.delete(
@@ -21,7 +23,7 @@ function CartItem({ item }) {
   };
 
   const handleRedirect = (eventId) => {
-    window.location.href = `/events/${eventId}`;
+    navigate(`/events/${eventId}`)
   };
 
   return (
@@ -33,10 +35,10 @@ function CartItem({ item }) {
         <img
           src={item.eventId.thumbnail || '/default-thumbnail.jpg'}
           alt={item.eventId.title}
-          className="h-20 w-20 object-cover rounded-md cursor-pointer"
+          className="h-20 w-20 object-cover rounded-md  "
           onClick={() => handleRedirect(item.eventId._id)}
         />
-        <div className="flex flex-col cursor-pointer" onClick={() => handleRedirect(item.eventId._id)}>
+        <div className="flex flex-col  " onClick={() => handleRedirect(item.eventId._id)}>
           <h3 className="text-lg font-semibold text-black hover:text-[#1d4ed8] transition-colors duration-300">
             {item.eventId.title}
           </h3>

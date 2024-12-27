@@ -22,7 +22,7 @@ export default function Contact() {
           <p className="text-lg line-clamp-1">+91 1234567890 person3</p>
           <h4 className="md:text-xl mt-8 mb-2 font-semibold">Mail to:</h4>
           <a
-            className="text-lg line-clamp-1 hover:text-red-400  cursor-pointer transition-all"
+            className="text-lg line-clamp-1 hover:text-red-400    transition-all"
             target="_blank"
           >
             tantrotsav@ch.amrita.edu
