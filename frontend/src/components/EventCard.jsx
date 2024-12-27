@@ -93,10 +93,10 @@ function EventCard({ event }) {
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="text-[20px] font-bold text-white hover:text-[#1d4ed8] transition-colors duration-300">
+        <h3 className="text-[20px] font-bold text-white transition-colors duration-300">
           {event.title}
         </h3>
-        <p className="text-center  text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
+        <p className="text-center text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
           {event.description}
         </p>
 

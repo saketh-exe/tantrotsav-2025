@@ -64,20 +64,19 @@ function GetRegistrations() {
       let response;
       if (selectedEvent) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/${
-            selectedEvent.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedEvent.value
           }/registrations`
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${
-            selectedDepartment.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${selectedDepartment.value
           }/registrations`
         );
       }
 
       if (response) {
-        setRegistrations(response.data.registeredUsers || []);
+        setRegistrations(response.data || []);
+        console.log(response)
       }
     } catch (error) {
       console.error('Error fetching registrations:', error);
@@ -93,15 +92,13 @@ function GetRegistrations() {
       let response;
       if (selectedEvent) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/${
-            selectedEvent.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedEvent.value
           }/registrations/excel`,
           { responseType: 'blob' }
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${
-            selectedDepartment.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${selectedDepartment.value
           }/registrations/excel`,
           { responseType: 'blob' }
         );
@@ -190,6 +187,39 @@ function GetRegistrations() {
       {registrations.length > 0 && (
         <div className="mt-6">
           <h3 className="text-lg font-semibold mb-4">Registration Details:</h3>
+          {/* create a table which shows the name, email, phoneNumber, collegeName attributes of the registrations variable, if department attribute exists then that also */}
+          <table className="w-full">
+            <thead>
+              <tr>
+                <th className="border border-gray-300 px-4 py-2">Name</th>
+                <th className="border border-gray-300 px-4 py-2">Email</th>
+                <th className="border border-gray-300 px-4 py-2">Phone Number</th>
+                <th className="border border-gray-300 px-4 py-2">College Name</th>
+                <th className="border border-gray-300 px-4 py-2">Department</th>
+              </tr>
+            </thead>
+            <tbody>
+              {registrations.map((registration) => (
+                <tr key={registration._id}>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {registration.name}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {registration.email}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {registration.phoneNumber}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {registration.collegeName}
+                  </td>
+                  <td className="border border-gray-300 px-4 py-2">
+                    {registration.department || '-'}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
           <div>
             <button
               onClick={handleDownloadExcel}
