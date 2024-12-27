@@ -127,7 +127,7 @@ function EventDetails() {
             navigate("/events");
           }}
         >
-          Back
+          {"<"} Events
         </button>
         <div className="flex flex-col lg:flex-row justify-center items-start lg:items-stretch gap-6 lg:gap-8">
           {/* Left Section (Image Placeholder) */}

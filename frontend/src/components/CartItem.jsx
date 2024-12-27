@@ -32,16 +32,21 @@ function CartItem({ item }) {
       className="flex justify-between items-center bg-white border-2 border-[#323232] rounded-lg shadow-md p-4 duration-200"
     >
       <div className="flex items-center gap-4">
+        <button>
         <img
           src={item.eventId.thumbnail || '/default-thumbnail.jpg'}
           alt={item.eventId.title}
           className="h-20 w-20 object-cover rounded-md  "
           onClick={() => handleRedirect(item.eventId._id)}
         />
+        </button>
         <div className="flex flex-col  " onClick={() => handleRedirect(item.eventId._id)}>
+          <button>
           <h3 className="text-lg font-semibold text-black hover:text-[#1d4ed8] transition-colors duration-300">
             {item.eventId.title}
           </h3>
+          </button>
+          
           <p className="text-sm text-gray-600">
             {new Date(item.eventId.date).toLocaleDateString('en-GB')}
           </p>
@@ -49,6 +54,8 @@ function CartItem({ item }) {
             ₹{item.eventId.registrationFee}
           </p>
         </div>
+        
+        
       </div>
       <button
         onClick={() => removeFromCart(item.eventId._id)}
