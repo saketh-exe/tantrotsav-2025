@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import EventRegistered from '../components/EventRegistered';
-import useAuthStore from '../store/authStore';
-import axios from 'axios';
-import { pdf } from '@react-pdf/renderer'; // Import pdf function from react-pdf
-import { GoDownload } from 'react-icons/go';
+import { useEffect, useState } from "react";
+import EventRegistered from "../components/EventRegistered";
+import useAuthStore from "../store/authStore";
+import axios from "axios";
+import { pdf } from "@react-pdf/renderer"; // Import pdf function from react-pdf
+import { GoDownload } from "react-icons/go";
 import {
   Document,
   Page,
@@ -11,116 +11,116 @@ import {
   View,
   StyleSheet,
   Image,
-} from '@react-pdf/renderer';
+} from "@react-pdf/renderer";
 
 // Create styles for the PDF document
 const styles = StyleSheet.create({
   page: {
     padding: 40,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: "#FFFFFF",
   },
   header: {
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 30,
-    fontWeight: 'bold',
+    fontWeight: "bold",
     marginBottom: 30,
-    color: '#2D3748',
+    color: "#2D3748",
     letterSpacing: 2,
   },
   logo: {
-    width: '50%',
-    height: 'auto',
+    width: "50%",
+    height: "auto",
     marginBottom: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
   content: {
     fontSize: 12,
-    color: '#4A5568',
+    color: "#4A5568",
     lineHeight: 1,
     marginBottom: 10,
   },
   row: {
     marginBottom: 6,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: "row",
+    alignItems: "center",
   },
   column: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    width: '100%',
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
     marginBottom: 10,
   },
   columnHeader: {
-    fontWeight: 'bold',
-    color: '#2D3748',
+    fontWeight: "bold",
+    color: "#2D3748",
     fontSize: 14,
-    width: '30%',
+    width: "30%",
   },
   columnData: {
     fontSize: 12,
-    color: '#4A5568',
+    color: "#4A5568",
     paddingLeft: 10,
-    textAlign: 'right',
+    textAlign: "right",
   },
   footer: {
-    position: 'absolute',
+    position: "absolute",
     bottom: 40,
-    left: '50%',
-    transform: 'translateX(-50%)',
+    left: "50%",
+    transform: "translateX(-50%)",
     fontSize: 10,
-    color: '#A0AEC0',
-    textAlign: 'center',
+    color: "#A0AEC0",
+    textAlign: "center",
   },
   sectionTitle: {
     fontSize: 14,
-    fontWeight: 'bold',
-    color: '#2D3748',
+    fontWeight: "bold",
+    color: "#2D3748",
     marginTop: 15,
     marginBottom: 15,
-    textTransform: 'uppercase',
+    textTransform: "uppercase",
   },
   borderBox: {
     borderWidth: 1,
-    borderColor: '#E2E8F0',
+    borderColor: "#E2E8F0",
     borderRadius: 10,
     padding: 15,
     marginBottom: 35,
-    backgroundColor: '#F7FAFC',
+    backgroundColor: "#F7FAFC",
   },
   totalRow: {
     marginTop: 25,
     borderTopWidth: 2,
-    borderTopColor: '#2D3748',
+    borderTopColor: "#2D3748",
     paddingTop: 15,
-    textAlign: 'right',
+    textAlign: "right",
   },
   totalText: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 16,
-    color: '#2D3748',
+    color: "#2D3748",
   },
   tableRow: {
-    flexDirection: 'row',
+    flexDirection: "row",
     marginBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: '#E2E8F0',
+    borderBottomColor: "#E2E8F0",
     paddingBottom: 12,
-    justifyContent: 'space-between', // Ensure the columns are spaced correctly
+    justifyContent: "space-between", // Ensure the columns are spaced correctly
   },
   tableColumn: {
     fontSize: 12,
-    color: '#4A5568',
+    color: "#4A5568",
     paddingLeft: 10,
-    textAlign: 'left',
-    width: '48%', // Set width to ensure alignment (use percentage or fixed pixel value)
+    textAlign: "left",
+    width: "48%", // Set width to ensure alignment (use percentage or fixed pixel value)
   },
   tableHeader: {
-    fontWeight: 'bold',
-    color: '#2D3748',
+    fontWeight: "bold",
+    color: "#2D3748",
     fontSize: 14,
-    textAlign: 'left',
+    textAlign: "left",
     paddingRight: 10,
-    width: '48%', // Ensure headers have the same width
+    width: "48%", // Ensure headers have the same width
   },
   pageBreak: {
     marginTop: 35,
@@ -171,7 +171,7 @@ function Profile() {
 
           {user.orders.length > 0 ? (
             user.orders
-              .filter((order) => order.paymentStatus === 'Success') // Only include successful payments
+              .filter((order) => order.paymentStatus === "Success") // Only include successful payments
               .map((order) => (
                 <View key={order._id} style={styles.borderBox}>
                   <Text style={styles.sectionTitle}>
@@ -219,9 +219,9 @@ function Profile() {
 
           <View style={styles.totalRow}>
             <Text style={styles.totalText}>
-              Total: INR{' '}
+              Total: INR{" "}
               {user.orders
-                .filter((order) => order.paymentStatus === 'Success') // Only include successful payments
+                .filter((order) => order.paymentStatus === "Success") // Only include successful payments
                 .reduce(
                   (total, order) =>
                     total +
@@ -244,16 +244,16 @@ function Profile() {
     // Generate the PDF and trigger download
     const blob = await pdf(<Invoice />).toBlob();
     const url = URL.createObjectURL(blob);
-    const link = document.createElement('a');
+    const link = document.createElement("a");
     link.href = url;
-    link.download = 'invoice.pdf';
+    link.download = "invoice.pdf";
     link.click();
     URL.revokeObjectURL(url);
   };
 
   return (
     <div className=" w-full  flex-col items-center justify-center pt-28 p-4 min-h-screen h-fit bg-gradient-to-br from-black to-blue-950">
-      <div className="flex w-full justify-center align-middle flex-wrap"> 
+      <div className="flex w-full justify-center align-middle flex-wrap">
         <div className="flex rounded-md mr-4">
           <img
             src={user.profileImage}
