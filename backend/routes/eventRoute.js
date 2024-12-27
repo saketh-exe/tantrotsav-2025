@@ -3,6 +3,7 @@ const router = express.Router();
 const Event = require('../models/Event');
 const xlsx = require('xlsx');
 const User = require('../models/User');
+const mongoose = require('mongoose');
 
 const departments = ['CSE', 'CYS', 'AIE', 'ECE', 'RAI', 'ARE', 'MECH', 'CCE'];
 
@@ -22,6 +23,7 @@ router.get('/departments', (req, res) => {
   res.status(200).json(departments);
 });
 
+// Event Adding
 router.post('/add', async (req, res) => {
   const {
     title,
@@ -69,9 +71,13 @@ router.get('/:eventId/registrations', async (req, res) => {
       return res.status(404).json({ message: 'Event not found' });
     }
 
-    res.status(200).json({
-      registeredUsers: event.registeredUsers,
+    const userDataPromises = event.registeredUsers.map(async (user) => {
+      return await User.findById(user);
     });
+
+    const UserData = await Promise.all(userDataPromises);
+
+    res.status(200).json(UserData);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching registrations' });
