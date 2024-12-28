@@ -29,39 +29,43 @@ function CartItem({ item }) {
   return (
     <div
       key={item.eventId._id}
-      className="flex justify-between items-center bg-white border-2 border-[#323232] rounded-lg shadow-md p-4 duration-200"
+      className="flex justify-between items-center bg-white border-4 border-[#acacac] rounded-lg shadow-md md:p-4 p-1 duration-200 mb-4 backdrop-blur-xl bg-opacity-25"
     >
-      <div className="flex items-center gap-4">
+      <button className="flex items-center gap-4 hover:bg-yellow-900 md:p-4  p-2 rounded-xl bg-opacity-5 transition-all ease-in-out w-full">
         <button>
         <img
           src={item.eventId.thumbnail || '/default-thumbnail.jpg'}
           alt={item.eventId.title}
-          className="h-20 w-20 object-cover rounded-md  "
+          className="h-20 w-20  object-cover rounded-md  "
           onClick={() => handleRedirect(item.eventId._id)}
         />
         </button>
-        <div className="flex flex-col  " onClick={() => handleRedirect(item.eventId._id)}>
+        <div className="flex flex-col  items-start" onClick={() => handleRedirect(item.eventId._id)}>
           <button>
-          <h3 className="text-lg font-semibold text-black hover:text-[#1d4ed8] transition-colors duration-300">
-            {item.eventId.title}
+          <h3 className="text-lg md:text-xl font-semibold text-slate-100 hover:text-[#1d4ed8] transition-colors duration-300 truncate">
+            {item.eventId.title} 
           </h3>
           </button>
           
-          <p className="text-sm text-gray-600">
+          <p className="text-sm md:text-base text-gray-200">
             {new Date(item.eventId.date).toLocaleDateString('en-GB')}
           </p>
-          <p className="text-sm text-gray-800">
+          <p className="text-sm text-gray-300">
             ₹{item.eventId.registrationFee}
           </p>
         </div>
         
         
-      </div>
+      </button>
       <button
         onClick={() => removeFromCart(item.eventId._id)}
-        className="text-sm text-red-500 hover:text-red-700 font-semibold flex items-center"
+        className="text-sm text-red-500 hover:text-red-100 hover:bg-slate-700 font-semibold flex items-center md:px-5 py-2 px-3 rounded-full transition-all ease-in-out duration-300 "
       >
-        <FaTrashAlt className="mr-2" /> Remove
+        <FaTrashAlt className="mr-2 text-lg " /> 
+        <span className='hidden sm:inline-block'>
+        Remove
+          
+        </span>
       </button>
     </div>
   );

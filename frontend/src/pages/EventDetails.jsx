@@ -140,7 +140,7 @@ function EventDetails() {
           {/* Right Section (Content) */}
           <div className="w-full lg:pl-8 flex flex-col justify-between p-8">
             <div className="text-white">
-              <div className="flex items-center justify-between gap-2 sm:gap-0 mb-4">
+              <div className="flex items-center justify-between gap-2 sm:gap-0 mb-4 flex-wrap">
                 <h1 className="text-3xl font-extrabold sm:test-lg">
                   {event.title}
                 </h1>
@@ -189,7 +189,7 @@ function EventDetails() {
                 <Eventpill imgsrc={Calender} content={new Date(event.date).toLocaleDateString() }/>
                 <Eventpill imgsrc={Clock} content={event.time?event.time:"12:00"}/>
                 <Eventpill imgsrc={Location} content={event.location}/>
-                <Eventpill imgsrc={Club} content={event.clubName}/>
+                <Eventpill imgsrc={Club} content={event.clubName }/>
                 <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}`: "Free"}/>
                 <Eventpill imgsrc={team} content={4}/> {/* Team size here {event.teamSize} */}
                 {/* event.prize && */<Eventpill  content={(<div className="flex flex-col w-full gap-y-1 items-center justify-center">
@@ -215,7 +215,7 @@ function EventDetails() {
               <div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out">
                 <img src={Phone} className="w-4"/>
                 <p>person 2 : </p> 
-                +91 123456789
+                +91 12345678
               </div>
               </div>
              

@@ -88,22 +88,22 @@ function Cart() {
   );
 
   return (
-    <div className="flex flex-col max-w-6xl mx-auto p-6  mt-20 justify-between align-middle flex-wrap md:flex-row">
+    <div className="flex py-28 w-full bg-gradient-to-br from-gray-900 to-green-950 justify-center flex-col md:flex-row min-h-screen h-fit">
       {/* Left Side: Cart Items */}
-      <div className="flex-1   ">
+      <div className="w-full flex flex-col items-center md:w-1/2">
         {cartItems.length === 0 ? (
           <div className="flex items-center justify-center h-full">
             <div className="text-center">
-              <h2 className="text-2xl font-bold text-center mb-6">Your Cart</h2>
-              <p className="text-lg text-gray-500">
+              <h2 className="text-2xl font-bold text-center mb-6 text-white">Your Cart</h2>
+              <p className="text-lg text-gray-100">
                 Your cart is empty. Add some events!
               </p>
             </div>
           </div>
         ) : (
           <>
-            <h2 className="text-2xl font-bold text-center mb-6">Your Cart</h2>
-            <div className="space-y-6 pb-2 ">
+            <h2 className="text-2xl font-bold text-center mb-6 text-white">Your Cart</h2>
+            <div className="w-11/12 md:w-3/4 ">
               {cartItems.map((item) => (
                 <CartItem
                   key={item.eventId._id}
@@ -118,7 +118,7 @@ function Cart() {
 
       {/* Right Side: Cart Summary */}
       {cartItems.length > 0 && (
-        <div className="flex justify-center align-middle md:ml-4">
+        <div className="flex justify-center align-middle md:ml-4 ">
           <div className="bg-gray-200 p-4 rounded-lg shadow-md h-fit">
             <div className="flex justify-between items-center mb-4">
               <p className="font-semibold text-xl">Cart Summary :</p>
