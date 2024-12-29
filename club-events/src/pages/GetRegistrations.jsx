@@ -69,7 +69,7 @@ function GetRegistrations() {
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${selectedDepartment.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/events/department/${selectedDepartment.value
           }/registrations`
         );
       }
@@ -98,7 +98,7 @@ function GetRegistrations() {
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/departments/${selectedDepartment.value
+          `${import.meta.env.VITE_BACKEND_URL}/api/events/department/${selectedDepartment.value
           }/registrations/excel`,
           { responseType: 'blob' }
         );

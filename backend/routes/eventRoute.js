@@ -105,13 +105,18 @@ router.get('/:eventId/registrations/excel', async (req, res) => {
   const { eventId } = req.params;
 
   try {
-    const id = mongoose.Types.ObjectId(eventId);
-    const event = await Event.findById(id);
+    const event = await Event.findById(eventId);
     if (!event) {
       return res.status(404).json({ message: 'Event not found' });
     }
 
     const registeredUsers = event.registeredUsers;
+
+    const userDataPromises = event.registeredUsers.map(async (user) => {
+      return await User.findById(user);
+    });
+
+    const UserData = await Promise.all(userDataPromises);
 
     if (registeredUsers.length === 0) {
       return res.status(404).json({ message: 'No registrations found' });
@@ -119,11 +124,17 @@ router.get('/:eventId/registrations/excel', async (req, res) => {
 
     // Create Excel worksheet
     const ws = xlsx.utils.json_to_sheet(
-      registeredUsers.map((user) => ({
+      UserData.map((user) => ({
         Name: user.name,
         Email: user.email,
         'Phone Number': user.phoneNumber,
-        'Registration Date': new Date(user.registrationDate).toLocaleString(),
+        Department: user.department,
+        'Transaction ID': user.orders?.[0]?.paymentDetails?.transactionId || 'N/A',
+        'Payment Mode': user.orders?.[0]?.paymentDetails?.paymentMode || 'N/A',
+        Amount: user.orders?.[0]?.paymentDetails?.amount || 'N/A',
+        'Payment Status': user.orders?.[0]?.paymentStatus || 'N/A',
+        Events: (user.orders?.[0]?.events || []).join(', '),
+        'Registration Date': new Date(user.orders?.[0]?.paymentDetails?.date).toLocaleString(),
       }))
     );
 
@@ -148,6 +159,7 @@ router.get('/:eventId/registrations/excel', async (req, res) => {
     res.status(500).json({ message: 'Error generating Excel file' });
   }
 });
+
 
 // Route to get event details by ID
 router.get('/:eventId', async (req, res) => {
@@ -224,7 +236,7 @@ router.put('/:eventId', async (req, res) => {
 });
 
 // Route to filter users by department
-router.get('/:department/registrations', async (req, res) => {
+router.get('/department/:department/registrations', async (req, res) => {
   const { department } = req.params;
 
   // Check if the department is valid
@@ -235,6 +247,7 @@ router.get('/:department/registrations', async (req, res) => {
   try {
     // Find users by department
     const users = await User.find({ department }); // Assuming `department` is a field in the User model
+
     if (users.length === 0) {
       return res
         .status(404)
@@ -245,6 +258,56 @@ router.get('/:department/registrations', async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error fetching users' });
+  }
+});
+
+router.get('/department/:department/registrations/excel', async (req, res) => {
+  const { department } = req.params;
+
+  if (!departments.includes(department)) {
+    return res.status(400).json({ message: 'Invalid department' });
+  }
+
+  try {
+    const users = await User.find({ department });
+
+    if (users.length === 0) {
+      return res
+        .status(404)
+        .json({ message: 'No users found in this department' });
+    }
+
+    const ws = xlsx.utils.json_to_sheet(
+      users.map((user) => ({
+        Name: user.name,
+        Email: user.email,
+        'Phone Number': user.phoneNumber,
+        Department: user.department,
+        'Transaction ID': user.orders?.[0]?.paymentDetails?.transactionId || 'N/A',
+        'Payment Mode': user.orders?.[0]?.paymentDetails?.paymentMode || 'N/A',
+        Amount: user.orders?.[0]?.paymentDetails?.amount || 'N/A',
+        'Payment Status': user.orders?.[0]?.paymentStatus || 'N/A',
+        Events: (user.orders?.[0]?.events || []).join(', '),
+        'Registration Date': new Date(user.orders?.[0]?.paymentDetails?.date).toLocaleString(),
+      }))
+    );
+
+    const wb = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(wb, ws, 'Registrations');
+
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=registrations.xlsx'
+    );
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+
+    res.send(xlsx.write(wb, { bookType: 'xlsx', type: 'buffer' }));
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Error generating Excel file' });
   }
 });
 
