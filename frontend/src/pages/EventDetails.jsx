@@ -38,7 +38,7 @@ function EventDetails() {
         console.error("Error fetching event details:", error);
         setEvent(null);
       }
-      finally{
+      finally {
         setIsLoading(false)
       }
     };
@@ -48,9 +48,9 @@ function EventDetails() {
 
   if (isLoading) {
     // Display a loading spinner or placeholder while fetching
-    return <Loading/>;
+    return <Loading />;
   }
-  
+
   if (event === null) {
     // Render NotFound only if loading is complete and event is still null
     return <NotFound />;
@@ -110,7 +110,7 @@ function EventDetails() {
       } else {
         toast.error(
           error.response?.data?.error ||
-            "Failed to add event to cart. Try again!"
+          "Failed to add event to cart. Try again!"
         );
       }
     } finally {
@@ -145,35 +145,34 @@ function EventDetails() {
                   {event.title}
                 </h1>
                 <div className="flex gap-4">
-                   {/* Add to cart */}
-              <div className=" flex justify-start">
-                {user && (
-                  <button
-                    onClick={addToCart}
-                    className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${
-                      isLoading ? "bg-gray-300 cursor-not-allowed" : ""
-                    }`}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? "Adding..." : "Add to Cart"}
-                  </button>
-                )}
-                
-              </div>
-              {event.documents && (
-                  <a
-                    href={event.documents}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
-                      Download Document
-                    </button>
-                  </a>
-                )} 
-                
+                  {/* Add to cart */}
+                  <div className=" flex justify-start">
+                    {user && (
+                      <button
+                        onClick={addToCart}
+                        className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+                          }`}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Adding..." : "Add to Cart"}
+                      </button>
+                    )}
+
+                  </div>
+                  {event.documents && (
+                    <a
+                      href={event.documents}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
+                        Download Document
+                      </button>
+                    </a>
+                  )}
+
                 </div>
-                
+
               </div>
               <p className="my-2">
                 <span className="text-lg font-bold text-white">
@@ -184,42 +183,43 @@ function EventDetails() {
                 {event.description}
                 {event.documents && <strong className="text-green-200">PLEASE REFER DOCUMENTS FOR MORE INFO.</strong>}
               </p>
-              
+
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start ">
-                <Eventpill imgsrc={Calender} content={new Date(event.date).toLocaleDateString() }/>
-                <Eventpill imgsrc={Clock} content={event.time?event.time:"12:00"}/>
-                <Eventpill imgsrc={Location} content={event.location}/>
-                <Eventpill imgsrc={Club} content={event.clubName }/>
-                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}`: "Free"}/>
-                <Eventpill imgsrc={team} content={4}/> {/* Team size here {event.teamSize} */}
-                {/* event.prize && */<Eventpill  content={(<div className="flex flex-col w-full gap-y-1 items-center justify-center">
+                <Eventpill imgsrc={Calender} content={new Date(event.date).toLocaleDateString('en-GB')} />
+                {event.time && <Eventpill imgsrc={Clock} content={event.time ? event.time : "12:00"} />}
+                <Eventpill imgsrc={Location} content={event.location} />
+                <Eventpill imgsrc={Club} content={event.clubName} />
+                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} />
+                <Eventpill imgsrc={team} content={event.teamSize} /> {/* Team size here {event.teamSize} */}
+                {event.prize1st && <Eventpill content={(<div className="flex flex-col w-full gap-y-1 items-center justify-center">
                   <div className="flex w-full border-b border-black justify-center items-center">
-                    <img src={medal1} className="w-6"/>
-                    100${/*1st prize money goes here */}
+                    <img src={medal1} className="w-6" />
+                    ₹{event.prize1st}{/*1st prize money goes here */}
                   </div>
                   <div className="flex w-full justify-center items-center">
-                    <img src={medal2} className="w-6"/>
-                    100${/*2nd prize money goes here */}
+                    <img src={medal2} className="w-6" />
+                    ₹{event.prize2nd}{/*2nd prize money goes here */}
                   </div>
-                
-                </div>)}/> /* Team size here {event.teamSize} */}
-                <Eventpill imgsrc={EvntTyp} content={"Hackthon"}/> {/* Type of show event.type */}
+                </div>)} />}
+                <Eventpill imgsrc={EvntTyp} content={event.type} /> {/* Type of show event.type */}
 
               </div>
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start "> {/* need to map to no of coordinators */}
-              <div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out">
-                <img src={Phone} className="w-4"/>
-                <p>person 1 : </p>
-                +91 123456789
+                {event.contact1 && (<div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out"
+                onClick={() => window.location.href = `tel://${event.contact1num}`}>
+                  <img src={Phone} className="w-4" />
+                  <p>{event.contact1} : </p>
+                  {event.contact1num}
+                </div>)}
+                {event.contact2 && (<div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out"
+                  onClick={() => window.location.href = `tel://${event.contact2num}`}>
+                  <img src={Phone} className="w-4" />
+                  <p>{event.contact2} : </p>
+                  {event.contact2num}
+                </div>)}
               </div>
-              <div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out">
-                <img src={Phone} className="w-4"/>
-                <p>person 2 : </p> 
-                +91 12345678
-              </div>
-              </div>
-             
-              
+
+
             </div>
           </div>
         </div>

@@ -10,6 +10,14 @@ const eventSchema = new mongoose.Schema({
   clubName: { type: String, required: true }, // Club name organizing the event
   thumbnail: { type: String }, // Event thumbnail image URL
   registrationFee: { type: Number, default: 0 }, // Registration fee (if any)
+  teamSize: { type: Number, default: 1 }, // Team size (default is 1)
+  prize1st: { type: Number },
+  prize2nd: { type: Number },
+  contact1: { type: String },
+  contact1num: { type: String },
+  contact2: { type: String },
+  contact2num: { type: String },
+  type: { type: String }, 
   registeredUsers: [
     {
       type: mongoose.Schema.Types.ObjectId,

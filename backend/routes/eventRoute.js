@@ -35,6 +35,14 @@ router.post('/add', async (req, res) => {
     clubName,
     thumbnail,
     registrationFee,
+    teamSize,
+    prize1st,
+    prize2nd,
+    contact1,
+    contact1num,
+    contact2,
+    contact2num,
+    type,
   } = req.body;
 
   try {
@@ -48,6 +56,14 @@ router.post('/add', async (req, res) => {
       clubName,
       thumbnail,
       registrationFee,
+      teamSize,
+      prize1st,
+      prize2nd,
+      contact1,
+      contact1num,
+      contact2,
+      contact2num,
+      type,
     });
 
     await newEvent.save();
@@ -164,6 +180,14 @@ router.put('/:eventId', async (req, res) => {
     clubName,
     thumbnail,
     registrationFee,
+    teamSize,
+    prize1st,
+    prize2nd,
+    contact1,
+    contact1num,
+    contact2,
+    contact2num,
+    type,
   } = req.body;
 
   try {
@@ -182,6 +206,14 @@ router.put('/:eventId', async (req, res) => {
     event.clubName = clubName;
     event.thumbnail = thumbnail;
     event.registrationFee = registrationFee;
+    event.teamSize = teamSize;
+    event.prize1st = prize1st;
+    event.prize2nd = prize2nd;
+    event.contact1 = contact1;
+    event.contact1num = contact1num;
+    event.contact2 = contact2;
+    event.contact2num = contact2num;
+    event.type = type;
 
     await event.save(); // Save the updated event details
     res.status(200).json({ message: 'Event updated successfully', event }); // Return success message
