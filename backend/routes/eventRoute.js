@@ -112,31 +112,44 @@ router.get('/:eventId/registrations/excel', async (req, res) => {
 
     const registeredUsers = event.registeredUsers;
 
-    const userDataPromises = event.registeredUsers.map(async (user) => {
-      return await User.findById(user);
-    });
-
-    const UserData = await Promise.all(userDataPromises);
-
     if (registeredUsers.length === 0) {
       return res.status(404).json({ message: 'No registrations found' });
     }
 
-    // Create Excel worksheet
-    const ws = xlsx.utils.json_to_sheet(
-      UserData.map((user) => ({
+    // Fetch User and Event Data
+    const userDataPromises = registeredUsers.map((user) => User.findById(user));
+    const userData = await Promise.all(userDataPromises);
+
+    // Helper function to fetch event names
+    const getEventName = async (eventId) => {
+      const event = await Event.findById(eventId);
+      return event ? event.title : 'Unknown Event';
+    };
+
+    // Prepare data for the Excel sheet
+    const sheetDataPromises = userData.map(async (user) => {
+      const eventNames = await Promise.all(
+        (user.orders?.[0]?.events || []).map(getEventName)
+      );
+
+      return {
         Name: user.name,
         Email: user.email,
         'Phone Number': user.phoneNumber,
         Department: user.department,
+        'Event Names': eventNames.join(', '),
         'Transaction ID': user.orders?.[0]?.paymentDetails?.transactionId || 'N/A',
         'Payment Mode': user.orders?.[0]?.paymentDetails?.paymentMode || 'N/A',
         Amount: user.orders?.[0]?.paymentDetails?.amount || 'N/A',
         'Payment Status': user.orders?.[0]?.paymentStatus || 'N/A',
-        Events: (user.orders?.[0]?.events || []).join(', '),
         'Registration Date': new Date(user.orders?.[0]?.paymentDetails?.date).toLocaleString(),
-      }))
-    );
+      };
+    });
+
+    const sheetData = await Promise.all(sheetDataPromises);
+
+    // Create Excel worksheet
+    const ws = xlsx.utils.json_to_sheet(sheetData);
 
     // Create Excel workbook
     const wb = xlsx.utils.book_new();
@@ -246,13 +259,16 @@ router.get('/department/:department/registrations', async (req, res) => {
 
   try {
     // Find users by department
-    const users = await User.find({ department }); // Assuming `department` is a field in the User model
+    var users = await User.find({ department }); // Assuming `department` is a field in the User model
 
     if (users.length === 0) {
       return res
         .status(404)
         .json({ message: 'No users found in this department' });
     }
+
+    // filter out users who have registeredEvents attribute of length 0
+    users = users.filter((user) => user.registeredEvents.length > 0);
 
     res.status(200).json(users);
   } catch (error) {
@@ -269,7 +285,7 @@ router.get('/department/:department/registrations/excel', async (req, res) => {
   }
 
   try {
-    const users = await User.find({ department });
+    var users = await User.find({ department });
 
     if (users.length === 0) {
       return res
@@ -277,24 +293,44 @@ router.get('/department/:department/registrations/excel', async (req, res) => {
         .json({ message: 'No users found in this department' });
     }
 
-    const ws = xlsx.utils.json_to_sheet(
-      users.map((user) => ({
+    users = users.filter((user) => user.registeredEvents.length > 0);
+
+    // Helper function to fetch event names
+    const getEventName = async (eventId) => {
+      const event = await Event.findById(eventId);
+      return event ? event.title : 'Unknown Event';
+    };
+
+    // Prepare data for the Excel sheet
+    const sheetDataPromises = users.map(async (user) => {
+      const eventNames = await Promise.all(
+        (user.orders?.[0]?.events || []).map(getEventName)
+      );
+
+      return {
         Name: user.name,
         Email: user.email,
         'Phone Number': user.phoneNumber,
         Department: user.department,
+        'Event Names': eventNames.join(', '),
         'Transaction ID': user.orders?.[0]?.paymentDetails?.transactionId || 'N/A',
         'Payment Mode': user.orders?.[0]?.paymentDetails?.paymentMode || 'N/A',
         Amount: user.orders?.[0]?.paymentDetails?.amount || 'N/A',
         'Payment Status': user.orders?.[0]?.paymentStatus || 'N/A',
-        Events: (user.orders?.[0]?.events || []).join(', '),
         'Registration Date': new Date(user.orders?.[0]?.paymentDetails?.date).toLocaleString(),
-      }))
-    );
+      };
+    });
 
+    const sheetData = await Promise.all(sheetDataPromises);
+
+    // Create Excel worksheet
+    const ws = xlsx.utils.json_to_sheet(sheetData);
+
+    // Create Excel workbook
     const wb = xlsx.utils.book_new();
     xlsx.utils.book_append_sheet(wb, ws, 'Registrations');
 
+    // Set response headers for file download
     res.setHeader(
       'Content-Disposition',
       'attachment; filename=registrations.xlsx'
@@ -304,11 +340,13 @@ router.get('/department/:department/registrations/excel', async (req, res) => {
       'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
     );
 
+    // Send the Excel file as response
     res.send(xlsx.write(wb, { bookType: 'xlsx', type: 'buffer' }));
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: 'Error generating Excel file' });
   }
 });
+
 
 module.exports = router;
