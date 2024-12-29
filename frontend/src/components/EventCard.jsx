@@ -8,7 +8,7 @@ import { toast } from "react-hot-toast"; // Import react-hot-toast
 function EventCard({ event }) {
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  
+
   const addToCart = async () => {
     if (!user) {
       toast.error("Please sign in to add to cart");
@@ -84,18 +84,22 @@ function EventCard({ event }) {
       <div className="transition-all duration-500 flex justify-center">
         {/* Card Image with fixed size */}
         <div className="w-full h-[140px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)]">
-          <img
-            src={event.thumbnail || "/default-thumbnail.jpg"}
-            alt={event.title}
-            className="w-full h-full object-cover rounded-md"
-          />
+          <Link to={`/events/${event._id}`}>
+            <img
+              src={event.thumbnail || "/default-thumbnail.jpg"}
+              alt={event.title}
+              className="w-full h-full object-cover rounded-md"
+            />
+          </Link>
         </div>
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="text-[20px] font-bold text-white transition-colors duration-300">
-          {event.title}
-        </h3>
+        <Link to={`/events/${event._id}`}>
+          <h3 className="text-[20px] font-bold text-white transition-colors duration-300">
+            {event.title}
+          </h3>
+        </Link>
         <p className="text-center text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
           {event.description}
         </p>
