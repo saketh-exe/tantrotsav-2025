@@ -12,7 +12,6 @@ export default function Herotext() {
    * - Telugu
    * - Tamil
    * - Malayalam
-   * - Korean
    */
   const text = [
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
@@ -20,7 +19,7 @@ export default function Herotext() {
     ["తం", "త్రో", "త్స", "వ్"], // change last letter
     ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்" ],
     ["ത", "ന്ത്രോ", "ത്സ", "വം" ],
-    ["탄", "트", "로", "츠", "바" ],
+
     
   ];
 

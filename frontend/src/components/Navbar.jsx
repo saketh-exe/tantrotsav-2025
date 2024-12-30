@@ -1,13 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
-import Logo from "../assets/uniLogo1.svg";
 import useAuthStore from "../store/authStore";
 import Logout from "./Logout";
 import NavLink from "./NavLink";
 import Register from "./Register";
-import SignIn from "./SignIn";
+import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import Logos from "./Logos";
+
 
 function Navbar({ isScrolled }) {
   const { user } = useAuthStore();
@@ -15,18 +16,19 @@ function Navbar({ isScrolled }) {
   const [scrolled, setscrolled] = useState(isScrolled);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(pathname);
+
+  
+
   useEffect(() => {
     setscrolled(isScrolled);
   }, [isScrolled]);
 
-  // Normal state style
   const sstyle = {
     position: "fixed",
     top: 0,
-    left: "50%", // Center horizontally
-    transform: "translateX(-50%)", // Adjust for centering
-    width: "70%", // Normal width
+    left: "50%",
+    transform: "translateX(-50%)",
+    width: "70%",
     padding: "10px 5px",
     backgroundColor: "#dff0ff",
     color: "black",
@@ -36,7 +38,6 @@ function Navbar({ isScrolled }) {
     margin: "10px",
   };
 
-  // Reduced (scrolled) state style
   const norm = {
     position: "fixed",
     top: 0,
@@ -50,46 +51,25 @@ function Navbar({ isScrolled }) {
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease",
   };
-
+  const MemoizedLogos = useMemo(() => <Logos />, []);
   return (
     <nav
       className="flex justify-evenly items-center overflow-x-hidden fixed z-50 h-16 w-full mx-auto md:justify-around "
       style={scrolled ? sstyle : norm}
     >
       {/* Logo */}
-      <Link to="/">
-        {
-          <div className="flex items-center">
-            <img src={Logo} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
-          </div>
-        }
-      </Link>
+      {MemoizedLogos}
 
-      {/* Navigation Links (Responsive) */}
+      {/* Navigation Links */}
       <div
         className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-[#dff0ff] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
       >
         <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full bg-[#dff0ff]">
-          <NavLink
-            to="/"
-            text="Home"
-            setIsMenuOpen={setIsMenuOpen}
-            active={pathname === "/"}
-          />
-          <NavLink
-            to="/events"
-            text="Events"
-            setIsMenuOpen={setIsMenuOpen}
-            active={pathname === "/events"}
-          />
-          <NavLink
-            to="/gallery"
-            text="Gallery"
-            setIsMenuOpen={setIsMenuOpen}
-            active={pathname === "/gallery"}
-          />
+          <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} active={pathname === "/"} />
+          <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} active={pathname === "/events"} />
+          <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} active={pathname === "/gallery"} />
           <NavLink
             to="/support"
             text="Services"
@@ -149,11 +129,7 @@ function Navbar({ isScrolled }) {
             setscrolled(false);
           }}
         >
-          {isMenuOpen ? (
-            <FaTimes className="h-6 w-6" />
-          ) : (
-            <FaBars className="h-6 w-6" />
-          )}
+          {isMenuOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
         </button>
       </div>
     </nav>
