@@ -20,7 +20,7 @@ export default function Logos() {
             const nextIndex = (currentIndex + 1) % logos.length;
             return logos[nextIndex];
           });
-        }, 3000); // Change every 5 seconds
+        }, 3000);
     
         return () => clearInterval(logoInterval); // Cleanup interval on unmount
       }, [logos]);
@@ -29,9 +29,9 @@ export default function Logos() {
       <motion.div
               className="flex items-center"
               key={currentLogo} // Use the logo as the key for animation
-              initial={{ opacity: 0, scale: 1 , x:-10 }}
-              animate={{ opacity: 1, scale: 1,x:0 }}
-              exit={{ opacity: 0, scale: 1 ,x:10}}
+              initial={{ opacity: 0, scale: 1  }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
               <img src={currentLogo} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />

@@ -97,8 +97,13 @@ function Events() {
             ))}
           </select>
         </div>
+        <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
+        <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition" >
+                        All Events
+                      </button>
+        </a>
+        
       </div>
-
       {/* Display Events */}
       {Object.keys(groupedEvents).map((clubName) => (
         <div key={clubName} className="mb-12 ">
