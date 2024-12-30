@@ -4,9 +4,7 @@ import Herotext from "./Herotext";
 import About from "./About";
 import Featured from "./Featured";
 import Contact from "./Contact";
-
-
-
+import Sponsor from "./Sponsor";
 
 export default function Body({ onScroll }) {
   const scrollContainerRef = useRef(null); // Ref for the scrollable container
@@ -37,13 +35,13 @@ export default function Body({ onScroll }) {
       className="relative z-10 overflow-y-scroll h-screen w-full scrollbar-hide"
     >
       <div className="flex justify-center items-center flex-col w-full min-h-screen ">
-        
         <Herotext />
         <Coundown />
       </div>
-        <About />
-        <Featured />
-        <Contact />
+      <About />
+      <Featured />
+      <Sponsor />
+      <Contact />
     </div>
   );
 }
