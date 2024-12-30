@@ -1,6 +1,6 @@
 import React from "react";
 import Sponsor1 from "../../assets/Decathlon_Logo.png";
-import Sponsor2 from "../../assets/IIT_Madras_Logo.svg.png";
+import Sponsor2 from "../../assets/IIT_Madras_Logo.png";
 
 export default function Sponsor() {
   return (

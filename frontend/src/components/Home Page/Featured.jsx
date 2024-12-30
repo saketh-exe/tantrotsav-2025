@@ -7,14 +7,40 @@ export default function Featured() {
   let Dj = {
     // Sample Special Event
     thumbnail:
-      "https://images.unsplash.com/photo-1618402881194-8d4f2f6f3d6e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyMjA3NjN8MHwxfGFsbHwxf",
+      "https://static.vecteezy.com/system/resources/previews/029/332/148/non_2x/ai-generative-dj-playing-and-mixing-music-in-nightclub-party-at-night-edm-dance-music-club-with-crowd-of-young-people-free-photo.jpg",
     title: "DJ Night",
-    description: "A night full of music and dance",
-    date: "2022-05-01",
-    time: "8:00 PM",
+    description: "Coming Soon...",
+    // date: "2022-05-01",
+    // time: "8:00 PM",
     capacity: 100,
-    registrationFee: 200,
-    _id: "100",
+    // registrationFee: 200,
+    // _id: "100",
+  };
+
+  let SF = {
+    // Sample Special Event
+    thumbnail:
+      "https://turftown.s3.ap-south-1.amazonaws.com/super_admin/tt-1689859284905.webp",
+    title: "Soapy Football",
+    description: "Coming Soon...",
+    // date: "2022-05-01",
+    // time: "8:00 PM",
+    capacity: 100,
+    // registrationFee: 200,
+    // _id: "101",
+  };
+
+  let CZ = {
+    // Sample Special Event
+    thumbnail:
+      "https://iili.io/2kO6XBp.md.jpg",
+    title: "Combat Zone",
+    description: "Coming Soon...",
+    // date: "2022-05-01",
+    // time: "8:00 PM",
+    capacity: 100,
+    // registrationFee: 200,
+    // _id: "102",
   };
 
   return (
@@ -22,8 +48,8 @@ export default function Featured() {
       Featured
       <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-center gap-4 m-6 flex-wrap">
         <EventCard event={Dj} />
-        <EventCard event={Dj} />
-        <EventCard event={Dj} />
+        <EventCard event={SF} />
+        <EventCard event={CZ} />
       </div>
       <button
         onClick={() => navigate("/events")}

@@ -105,23 +105,23 @@ function EventCard({ event }) {
         </p>
 
         <div className="mt-[10px] text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
-          <p className="text-sm">
+          {event.date && <p className="text-sm">
             <strong className="text-white">Date:</strong>{" "}
             <span className="text-gray-100">
-              {new Date(event.date).toLocaleDateString()}
+              {event.date && new Date(event.date).toLocaleDateString()}
             </span>
-          </p>
+          </p>}
           <p className="text-sm">
             <strong className="text-white">Registration Fee:</strong>{" "}
             <span className="text-gray-100">
-              {event.registrationFee ? `₹${event.registrationFee}` : "Free"}
+              {event.registrationFee ? `₹${event.registrationFee}` : "N/A"}
             </span>
           </p>
         </div>
       </div>
 
       {/* Footer with Action Buttons */}
-      <div className="flex gap-2 justify-between">
+      {event._id && <div className="flex gap-2 justify-between">
         <Link
           to={`/events/${event._id}`}
           className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300"
@@ -139,7 +139,7 @@ function EventCard({ event }) {
             {isLoading ? "Adding..." : "Add to Cart"}
           </button>
         )}
-      </div>
+      </div>}
     </div>
   );
 }
