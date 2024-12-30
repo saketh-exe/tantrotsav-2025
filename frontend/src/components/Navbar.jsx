@@ -7,15 +7,15 @@ import Logout from "./Logout";
 import NavLink from "./NavLink";
 import Register from "./Register";
 import SignIn from "./SignIn";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 function Navbar({ isScrolled }) {
   const { user } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setscrolled] = useState(isScrolled);
   const navigate = useNavigate();
-  const {pathname} = useLocation()
-  console.log(pathname)
+  const { pathname } = useLocation();
+  console.log(pathname);
   useEffect(() => {
     setscrolled(isScrolled);
   }, [isScrolled]);
@@ -57,11 +57,13 @@ function Navbar({ isScrolled }) {
       style={scrolled ? sstyle : norm}
     >
       {/* Logo */}
-      {
-        <div className="flex items-center">
-          <img src={Logo} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
-        </div>
-      }
+      <Link to="/">
+        {
+          <div className="flex items-center">
+            <img src={Logo} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
+          </div>
+        }
+      </Link>
 
       {/* Navigation Links (Responsive) */}
       <div
@@ -70,21 +72,36 @@ function Navbar({ isScrolled }) {
         } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
       >
         <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full bg-[#dff0ff]">
-          <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} active = {pathname === "/"}/>
-          <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} active = {pathname === "/events"}/>
-          <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} active = {pathname === "/gallery"} />
+          <NavLink
+            to="/"
+            text="Home"
+            setIsMenuOpen={setIsMenuOpen}
+            active={pathname === "/"}
+          />
+          <NavLink
+            to="/events"
+            text="Events"
+            setIsMenuOpen={setIsMenuOpen}
+            active={pathname === "/events"}
+          />
+          <NavLink
+            to="/gallery"
+            text="Gallery"
+            setIsMenuOpen={setIsMenuOpen}
+            active={pathname === "/gallery"}
+          />
           <NavLink
             to="/support"
             text="Services"
             setIsMenuOpen={setIsMenuOpen}
-            active = {pathname === "/support"}
+            active={pathname === "/support"}
           />
           {user ? (
             <NavLink
               to="/profile"
               text="Profile"
               setIsMenuOpen={setIsMenuOpen}
-              active = {pathname === "/profile"}
+              active={pathname === "/profile"}
             />
           ) : null}
           {!user && (
