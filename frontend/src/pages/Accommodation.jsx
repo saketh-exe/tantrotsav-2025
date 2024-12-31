@@ -32,7 +32,8 @@ export default function Accommodation() {
                 link;
               </p>
               <a
-                href="/"
+                href="https://forms.office.com/r/LFQP2niepT"
+                target="_blank"
                 className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
@@ -41,16 +42,18 @@ export default function Accommodation() {
                 ** only limited seats are available and facilities will be
                 provided in{" "}
                 <strong className="font-bold">FIRST COME FIRST SERVE</strong>{" "}
-                basis
+                basis.
               </div>
               <div className="grid grid-cols-2 gap-4 text-sm font-medium">
                 <div className="text-black text-sm font-medium bg-[#fff2e4] p-3 rounded-lg">
                   <p>BOYS</p>
-                  <p className="font-semibold mt-2">Ph: +91 9392167089</p>
+                  <p className="font-semibold mt-2">
+                    Karthikeyan: +91 6380588382
+                  </p>
                 </div>
                 <div className="text-black text-sm font-medium bg-[#fff2e4] p-3 rounded-lg">
                   <p>GIRLS</p>
-                  <p className="font-semibold mt-2">Ph: +91 8309249658</p>
+                  <p className="font-semibold mt-2">Padmaja: +91 8056377525</p>
                 </div>
               </div>
             </div>
@@ -75,7 +78,8 @@ export default function Accommodation() {
                 clicking the link;
               </p>
               <a
-                href="/"
+                href="https://forms.office.com/r/TNKz4GL4Ln"
+                target="_blank"
                 className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
                 Book Now
@@ -84,11 +88,11 @@ export default function Accommodation() {
                 ** only limited seats are available and facilities will be
                 provided in{" "}
                 <strong className="font-bold">FIRST COME FIRST SERVE</strong>{" "}
-                basis
+                basis.
               </div>
               <div className="text-black text-sm font-medium bg-[#fff2e4] p-3 rounded-lg">
                 <p>College Transport</p>
-                <p className="mt-2 font-semibold">Ph: +91 123456789</p>
+                <p className="mt-2 font-semibold">Sowrish: +91 9566199877 </p>
               </div>
             </div>
           </div>
