@@ -2,7 +2,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <div className="font-semibold text-center text-white text-4xl w-full md:w-3/4 mx-auto my-10 mb-30 bg-slate-50 bg-opacity-10 backdrop-filter backdrop-blur-xl rounded-lg p-6">
+    <div className="font-semibold text-center text-white text-4xl w-full md:w-3/4 mx-auto my-10 mb-30 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm rounded-lg p-6">
       About
       <div className="font-normal text-justify text-lg mt-6">
         Tantrotsav is the annual technical and non-technical festival of the

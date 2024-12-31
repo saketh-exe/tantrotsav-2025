@@ -320,7 +320,7 @@ function Profile() {
           </button>
         </div>
         {registeredEvents.length === 0 ? (
-          <p className="text-center text-gray-400">No events registered yet</p>
+          <p className="text-center text-gray-400">No events registered yet, Hurry up!!</p>
         ) : (
           <div className="flex flex-wrap gap-4">
             {registeredEvents.map((event) => (

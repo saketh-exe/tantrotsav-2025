@@ -96,7 +96,7 @@ function Events() {
       </div>
 
       {/* Display Events */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center mt-24">
         {filteredEvents.map((event) => (
           <EventCard key={event._id} event={event} />
         ))}

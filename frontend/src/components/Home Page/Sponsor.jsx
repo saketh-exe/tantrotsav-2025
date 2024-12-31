@@ -5,7 +5,7 @@ import Sponsor2 from "../../assets/IIT_Madras_Logo.png";
 export default function Sponsor() {
   return (
     <div className="mt-12">
-      <h2 className="text-white text-center text-2xl font-bold">
+      <h2 className="font-semibold text-4xl sm:text-2xl md:text-3xl lg:text-4xl  text-center mb-3 text-white">
         Partners & Sponsors
       </h2>
       <div className="w-full h-auto bg-gradient-to-r from-black via-slate-700 to-black flex flex-wrap justify-center items-center gap-4 p-4 sm:gap-6 sm:p-6 lg:gap-8 lg:p-8 my-6">

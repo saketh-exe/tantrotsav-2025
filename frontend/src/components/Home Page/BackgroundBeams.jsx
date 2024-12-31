@@ -2,7 +2,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import { cn } from "../../lib/utils";
 
-export const BackgroundBeams = React.memo(({ className, num, pathCount = 30 }) => {
+export const BackgroundBeams = React.memo(({ className, num, pathCount = 24 }) => {
   // Dynamically generate paths if they follow a pattern
   const generatePaths = (count) => {
     const paths = [];

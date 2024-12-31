@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast"; // Import react-hot-toast
 function EventCard({ event }) {
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
-  const pending = ["67737e4188d8600ff314c594","67738c877b3bfd288ffb7dbc","6773a110de2fd564adc4eae2","6773a24ede2fd564adc4eaee"]
+  const pending = ["67737e4188d8600ff314c594","67738c877b3bfd288ffb7dbc","6773a110de2fd564adc4eae2","6773a24ede2fd564adc4eaee"] // id's of pending events 
 
   const addToCart = async () => {
     if (!user) {
@@ -74,33 +74,44 @@ function EventCard({ event }) {
 
   return (
     <div
-  className="w-[300px] h-[400px] rounded-[10px]  flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200"
-  style={{
-    background: "rgba(255, 255, 255, 0.15)", // Glassmorphic transparent background
-    backdropFilter: "blur(100px)", // Blur effect for glassmorphism
-    WebkitBackdropFilter: "blur(10px)", // Safari compatibility
-    border: "1px solid rgba(255, 255, 255, 0.3)", // Subtle border
-  }}
+  className="w-[300px] h-[420px] rounded-[12px]  flex flex-col justify-start pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white "
+  
 >
   <div className="transition-all duration-500 flex justify-center">
     {/* Card Image with fixed size */}
-    <div className="w-full h-[140px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)]">
-      <Link to={`/events/${event._id}`}>
+    <div className="w-full h-[180px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)] border-opacity-50">
+      { pending.includes(event._id) ? 
+      <>
         <img
           src={event.thumbnail || "/default-thumbnail.jpg"}
           alt={event.title}
-          className="w-full h-full object-cover rounded-md"
+          className="w-full h-full object-cover rounded-md select-none"
         />
-      </Link>
+      </>
+        :
+        <Link to={`/events/${event._id}`}>
+        <img
+          src={event.thumbnail || "/default-thumbnail.jpg"}
+          alt={event.title}
+          className="w-full h-full object-cover rounded-md select-none "
+        />
+      </Link>}
     </div>
   </div>
 
   <div className="flex flex-col items-center">
-    <Link to={`/events/${event._id}`}>
-      <h3 className="text-[20px] font-bold text-white transition-colors duration-300">
+   { pending.includes(event._id) ?
+   <>
+   <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1">
         {event.title}
       </h3>
-    </Link>
+   </>
+   : 
+   <Link to={`/events/${event._id}`}>
+      <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1">
+        {event.title}
+      </h3>
+    </Link>}
     <p className="text-center text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
       {event.description}
     </p>

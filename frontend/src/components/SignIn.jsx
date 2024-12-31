@@ -14,7 +14,7 @@ function SignIn() {
       const result = await signInWithPopup(auth, provider);
       const user = result.user;
 
-      console.log('User Info:', user);
+    
 
       try {
         // Send the user's email to the backend to check if the user exists

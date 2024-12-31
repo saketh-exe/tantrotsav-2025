@@ -40,8 +40,8 @@ let [events,setEvents] = useState([])
   
 
   return (
-    <div className="font-semibold text-center text-white w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
-      <h3 className="text-4xl">
+    <div className=" text-center text-white w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
+      <h3 className="text-4xl font-semibold">
         Featured
         
         </h3>

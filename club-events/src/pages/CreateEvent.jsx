@@ -31,7 +31,8 @@ function CreateEvent() {
     'Literature Club',
     'Sports Club',
     'Drama Club',
-    "Shows"
+    "Shows",
+    "IEEE STUDENT BRANCH"
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook

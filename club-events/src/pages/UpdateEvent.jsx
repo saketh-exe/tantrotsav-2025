@@ -59,7 +59,8 @@ function UpdateEvent() {
     'Literature Club',
     'Sports Club',
     'Drama Club',
-    'Shows'
+    'Shows',
+    "IEEE STUDENT BRANCH"
   ];
 
   // Fetch events for selection

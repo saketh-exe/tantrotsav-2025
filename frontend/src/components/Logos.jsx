@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState,useEffect } from 'react';
-import { motion } from "framer-motion";
+import { motion,AnimatePresence } from "framer-motion";
 import logo1 from "../assets/uniLogo1.svg"
 import logo2 from "../assets/Tantrotsav.svg"
 
@@ -10,32 +10,35 @@ export default function Logos() {
         logo1,logo2
       
       ]; // Add your logo paths here
-      const [currentLogo, setCurrentLogo] = useState(logos[0]);
+      const [currentLogoidx, setCurrentLogoidx] = useState(0);
     
       useEffect(() => {
         // Change logo periodically
         const logoInterval = setInterval(() => {
-          setCurrentLogo((prevLogo) => {
-            const currentIndex = logos.indexOf(prevLogo);
-            const nextIndex = (currentIndex + 1) % logos.length;
-            return logos[nextIndex];
+          setCurrentLogoidx((prevLogoidx) => {
+           return ((prevLogoidx + 1) % logos.length);
+            
           });
         }, 3000);
     
         return () => clearInterval(logoInterval); // Cleanup interval on unmount
-      }, [logos]);
+      }, []);
   return (
     <div>
+      <AnimatePresence mode='wait'>
       <motion.div
-              className="flex items-center"
-              key={currentLogo} // Use the logo as the key for animation
+              
+              key={currentLogoidx} 
               initial={{ opacity: 0, scale: 1  }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
             >
-              <img src={currentLogo} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
+              <img src={logos[currentLogoidx]} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
             </motion.div>
+
+      </AnimatePresence>
+      
     </div>
   )
 }
