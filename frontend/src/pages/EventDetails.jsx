@@ -191,16 +191,26 @@ function EventDetails() {
                 <Eventpill imgsrc={Club} content={event.clubName} />
                 <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} />
                 <Eventpill imgsrc={team} content={event.teamSize} /> {/* Team size here {event.teamSize} */}
-                {event.prize1st && <Eventpill content={(<div className="flex flex-col w-full gap-y-1 items-center justify-center">
-                  <div className="flex w-full border-b border-black justify-center items-center">
-                    <img src={medal1} className="w-6" />
-                    ₹{event.prize1st}{/*1st prize money goes here */}
-                  </div>
-                  <div className="flex w-full justify-center items-center">
-                    <img src={medal2} className="w-6" />
-                    ₹{event.prize2nd}{/*2nd prize money goes here */}
-                  </div>
-                </div>)} />}
+                {(event.prize1st > 0 || event.prize2nd > 0) && (
+                <Eventpill
+                  content={
+                    <div className="flex flex-col w-full gap-y-1 items-center justify-center">
+                      {event.prize1st > 0 && (
+                        <div className="flex w-full border-b border-black justify-center items-center">
+                          <img src={medal1} className="w-6" alt="1st Prize" />
+                          ₹{event.prize1st}
+                        </div>
+                      )}
+                      {event.prize2nd > 0 && (
+                        <div className="flex w-full justify-center items-center">
+                          <img src={medal2} className="w-6" alt="2nd Prize" />
+                          ₹{event.prize2nd}
+                        </div>
+                      )}
+                    </div>
+                  }
+                />
+              )}
                 <Eventpill imgsrc={EvntTyp} content={event.type} /> {/* Type of show event.type */}
 
               </div>
