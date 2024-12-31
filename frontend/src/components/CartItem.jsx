@@ -11,7 +11,7 @@ function CartItem({ item }) {
   const removeFromCart = async (eventId) => {
     try {
       const response = await axios.delete(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/${
+        `/api/users/${
           user.email
         }/cart/${eventId}`
       );

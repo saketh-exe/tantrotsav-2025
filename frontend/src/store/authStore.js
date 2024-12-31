@@ -23,7 +23,7 @@ onAuthStateChanged(auth, async (user) => {
 
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/${user.email}`
+        `/api/auth/${user.email}`
       );
       if (response.data.code === 200) {
         // Set the user registration status

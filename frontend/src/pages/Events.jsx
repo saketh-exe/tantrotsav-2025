@@ -15,7 +15,7 @@ function Events() {
     const fetchEvents = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events`
+          `/api/events`
         );
         setEvents(response.data);
         setFilteredEvents(response.data); // Initial filtering

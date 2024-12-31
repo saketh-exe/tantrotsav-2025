@@ -31,7 +31,7 @@ const SupportPage = ({ User }) => {
     }
 
     const response = await axios.post(
-      `${import.meta.env.VITE_BACKEND_URL}/api/ticket`,
+      `/api/ticket`,
       form
     );
 
