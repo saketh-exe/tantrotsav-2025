@@ -1,55 +1,54 @@
 import React from "react";
 import EventCard from "../EventCard";
+import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useState,useEffect } from "react";
 export default function Featured() {
   let navigate = useNavigate();
 
-  let Dj = {
-    // Sample Special Event
-    thumbnail:
-      "https://static.vecteezy.com/system/resources/previews/029/332/148/non_2x/ai-generative-dj-playing-and-mixing-music-in-nightclub-party-at-night-edm-dance-music-club-with-crowd-of-young-people-free-photo.jpg",
-    title: "DJ Night",
-    description: "Coming Soon...",
-    // date: "2022-05-01",
-    // time: "8:00 PM",
-    capacity: 100,
-    // registrationFee: 200,
-    // _id: "100",
-  };
-
-  let SF = {
-    // Sample Special Event
-    thumbnail:
-      "https://turftown.s3.ap-south-1.amazonaws.com/super_admin/tt-1689859284905.webp",
-    title: "Soapy Football",
-    description: "Coming Soon...",
-    // date: "2022-05-01",
-    // time: "8:00 PM",
-    capacity: 100,
-    // registrationFee: 200,
-    // _id: "101",
-  };
-
-  let CZ = {
-    // Sample Special Event
-    thumbnail:
-      "https://iili.io/2kO6XBp.md.jpg",
-    title: "Combat Zone",
-    description: "Coming Soon...",
-    // date: "2022-05-01",
-    // time: "8:00 PM",
-    capacity: 100,
-    // registrationFee: 200,
-    // _id: "102",
-  };
+  
+let [events,setEvents] = useState([])
+  useEffect(() => {
+    const fetchEvents = async () => {
+      try {
+        const pending = [
+          "67737e4188d8600ff314c594",
+          "67738c877b3bfd288ffb7dbc",
+          "6773a110de2fd564adc4eae2",
+          "6773a24ede2fd564adc4eaee",
+        ];
+  
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/events`
+        );
+  
+        const filteredEvents = response.data.filter(event =>
+          pending.includes(event._id)
+        );
+        setEvents(filteredEvents);
+        
+      } catch (error) {
+        console.error("Error fetching events:", error);
+      } finally {
+        
+      }
+    };
+    
+    fetchEvents();
+  }, []);
+  
+  
 
   return (
-    <div className="font-semibold text-center text-white text-4xl w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
-      Featured
+    <div className="font-semibold text-center text-white w-11/12 sm:w-3/4 mx-auto my-10 mb-34 bg-black bg-opacity-40">
+      <h3 className="text-4xl">
+        Featured
+        
+        </h3>
       <div className="flex flex-col items-center justify-center sm:flex-row sm:justify-center gap-4 m-6 flex-wrap">
-        <EventCard event={Dj} />
-        <EventCard event={SF} />
-        <EventCard event={CZ} />
+        {events.map((evnt)=>{
+         return <EventCard event={evnt} key={evnt._id}/>
+        })}
       </div>
       <button
         onClick={() => navigate("/events")}

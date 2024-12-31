@@ -31,6 +31,7 @@ function CreateEvent() {
     'Literature Club',
     'Sports Club',
     'Drama Club',
+    "Shows"
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook

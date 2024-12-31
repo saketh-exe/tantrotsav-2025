@@ -59,6 +59,7 @@ function UpdateEvent() {
     'Literature Club',
     'Sports Club',
     'Drama Club',
+    'Shows'
   ];
 
   // Fetch events for selection
