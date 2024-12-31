@@ -17,7 +17,7 @@ export default function Contact() {
             337/1 A, Vallal RCK Nagar, SH 50A, Vengal, Tamil Nadu 601103
           </p>
           <h4 className="md:text-xl mt-8 mb-2 font-semibold">Phone:</h4>
-          <p className="text-lg line-clamp-1">Mokshagna Buhvan : +91 9392167089</p>
+          <p className="text-lg line-clamp-1">Mokshagna Bhuvan : +91 9392167089</p>
           <p className="text-lg line-clamp-1">Sai Sudharshan : +91 8309249658 </p>
           <p className="text-lg line-clamp-1">Deepan Avinaas : +91 7010962506</p>
           <h4 className="md:text-xl mt-8 mb-2 font-semibold">Mail to:</h4>
