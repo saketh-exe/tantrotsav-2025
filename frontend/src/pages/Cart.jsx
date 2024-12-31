@@ -19,7 +19,7 @@ function Cart() {
     const fetchCartItems = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/users/${user.email}/cart`
+          `/api/users/${user.email}/cart`
         );
         setCartItems(response.data.cart); // Set the cart items
         console.log('Cart items:', response.data.cart);
@@ -58,8 +58,8 @@ function Cart() {
       currency: 'INR',
       billing_email: user.email,
       billing_name: user.name, // Assuming `name` exists in `user`
-      redirect_url: `${import.meta.env.VITE_BACKEND_URL}/api/ccavenue-handle`,
-      cancel_url: `${import.meta.env.VITE_BACKEND_URL}/api/ccavenue-handle`,
+      redirect_url: `https://tantrotsav.amrita.edu/api/ccavenue-handle`,
+      cancel_url: `https://tantrotsav.amrita.edu/api/ccavenue-handle`,
     };
     console.log('Payment Data:', paymentData);
     try {

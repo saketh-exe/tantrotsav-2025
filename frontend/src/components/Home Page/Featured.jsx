@@ -19,7 +19,7 @@ let [events,setEvents] = useState([])
         ];
   
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events`
+          `/api/events`
         );
   
         const filteredEvents = response.data.filter(event =>

@@ -19,7 +19,7 @@ function SignIn() {
       try {
         // Send the user's email to the backend to check if the user exists
         const response = await axios.post(
-          `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+          `/api/auth/login`,
           { email: user.email }
         );
         console.log('Response from the backend:', response.data);

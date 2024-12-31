@@ -16,7 +16,7 @@ function Register() {
       const user = result.user;
 
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth`,
+        `/api/auth`,
         {
           email: user.email,
         }

@@ -138,7 +138,7 @@ function Profile() {
       const events = await Promise.all(
         user.registeredEvents.map(async (eventId) => {
           const data = await axios.get(
-            `${import.meta.env.VITE_BACKEND_URL}/api/events/${eventId}`
+            `/api/events/${eventId}`
           );
           return data.data;
         })

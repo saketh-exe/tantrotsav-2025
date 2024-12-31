@@ -31,7 +31,7 @@ function EventDetails() {
     const fetchEventDetails = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/${eventId}`
+          `/api/events/${eventId}`
         );
         setEvent(response.data);
       } catch (error) {
@@ -67,7 +67,7 @@ function EventDetails() {
     try {
       // Fetch user's cart to check for any conflicting events
       const cartResponse = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/${user.email}/cart`
+        `/api/users/${user.email}/cart`
       );
       const cartItems = cartResponse.data.cart;
 
@@ -91,13 +91,13 @@ function EventDetails() {
       // Proceed to add the event to the cart if no conflict
       // eslint-disable-next-line no-unused-vars
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/users/${user.email}/cart`,
+        `/api/users/${user.email}/cart`,
         { eventId: event._id }
       );
 
       // Refetch updated user data
       const updatedUserResponse = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/auth/${user.email}`
+        `/api/auth/${user.email}`
       );
 
       // Update the Zustand store with new user data
