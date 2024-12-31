@@ -22,8 +22,8 @@ function Events() {
       } catch (error) {
         console.error('Error fetching events:', error);
       }
-      finally{
-        setIsLoading(false)
+      finally {
+        setIsLoading(false);
       }
     };
 
@@ -50,19 +50,10 @@ function Events() {
     ...new Set(events.map((event) => event.clubName)),
   ];
 
-  // Group events by club name
-  const groupedEvents = filteredEvents.reduce((acc, event) => {
-    if (!acc[event.clubName]) {
-      acc[event.clubName] = [];
-    }
-    acc[event.clubName].push(event);
-    return acc;
-  }, {});
-
   if (isLoading) {
-      // Display a loading spinner or placeholder while fetching
-      return <Loading/>;
-    }
+    // Display a loading spinner or placeholder while fetching
+    return <Loading />;
+  }
 
   return (
     <div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28  bg-gradient-to-br from-black to-indigo-950 text-white">
@@ -98,30 +89,18 @@ function Events() {
           </select>
         </div>
         <a href="https://www.google.com" target="_blank" rel="noopener noreferrer">
-        <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition" >
-                        All Events
-                      </button>
+          <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
+            All Events
+          </button>
         </a>
-        
       </div>
+
       {/* Display Events */}
-      {Object.keys(groupedEvents).map((clubName) => (
-        <div key={clubName} className="mb-12 ">
-          <h3 className="text-4xl font-semibold text-[#ffffff] my-20 text-center">
-            {clubName}
-          </h3>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center">
-            {groupedEvents[clubName].map((event) => (
-              
-              <EventCard key={event._id} event={event} />
-              
-              
-            
-              
-            ))}
-          </div>
-        </div>
-      ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center">
+        {filteredEvents.map((event) => (
+          <EventCard key={event._id} event={event} />
+        ))}
+      </div>
 
       {/* No Results Fallback */}
       {filteredEvents.length === 0 && (
