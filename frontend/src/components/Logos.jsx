@@ -24,7 +24,7 @@ export default function Logos() {
         return () => clearInterval(logoInterval); // Cleanup interval on unmount
       }, []);
   return (
-    <div>
+    <div className='w-[124.55px] lg:h-8 h-6 hide-img:hidden'>
       <AnimatePresence mode='wait'>
       <motion.div
               

@@ -5,7 +5,6 @@ import useAuthStore from "../store/authStore";
 import Logout from "./Logout";
 import NavLink from "./NavLink";
 import Register from "./Register";
-import React, { useMemo } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logos from "./Logos";
 
@@ -53,14 +52,14 @@ function Navbar({ isScrolled }) {
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
     transition: "all 0.3s ease",
   };
-  const MemoizedLogos = useMemo(() => <Logos />, []);
+
   return (
     <nav
       className="flex justify-evenly items-center overflow-x-hidden fixed z-50 h-16 w-full mx-auto md:justify-around "
       style={scrolled ? sstyle : norm}
     >
       {/* Logo */}
-      {MemoizedLogos}
+      <Logos />
 
       {/* Navigation Links */}
       <div
