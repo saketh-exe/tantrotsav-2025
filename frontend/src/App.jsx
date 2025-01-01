@@ -101,10 +101,10 @@ function App() {
       <Toaster />
       {<div className="hidden  hide-cursor:block"><AnimatedCursor
       color="255,155,0"
-      innerSize={25}
+      innerSize={18}
       outerSize={30}
       innerScale={.7}
-      outerScale={2}
+      outerScale={1.4}
       outerAlpha={0.9}
       trailingSpeed={4}
       
