@@ -1,38 +1,36 @@
-import { useState } from 'react';
-import axios from 'axios';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useState } from "react";
+import axios from "axios";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 function CreateEvent() {
   const [formData, setFormData] = useState({
-    title: '',
-    description: '',
-    date: '',
-    time: '',
-    location: '',
-    documents: '',
-    clubName: '',
-    thumbnail: '',
+    title: "",
+    description: "",
+    date: "",
+    time: "",
+    location: "",
+    documents: "",
+    clubName: "",
+    thumbnail: "",
     registrationFee: 0,
     teamSize: 1,
     prize1st: 0,
     prize2nd: 0,
-    contact1: '',
-    contact1num: '',
-    contact2: '',
-    contact2num: '',
-    type: '',
+    contact1: "",
+    contact1num: "",
+    contact2: "",
+    contact2num: "",
+    type: "",
   });
 
   const clubNames = [
-    'Tech Club',
-    'Science Club',
-    'Art Club',
-    'Music Club',
-    'Literature Club',
-    'Sports Club',
-    'Drama Club',
     "Shows",
-    "IEEE STUDENT BRANCH"
+    "IEEE STUDENT BRANCH",
+    "MAC2H-1",
+    "Neuronix Club",
+    "Cognizance",
+    "Literary and Fine Arts Club",
+    "AMIGOS Gaming Club",
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -40,20 +38,20 @@ function CreateEvent() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    if (name === 'contact1' && !value) {
+    if (name === "contact1" && !value) {
       setFormData((prevData) => ({
         ...prevData,
         contact1: value,
-        contact1num: '',
+        contact1num: "",
       }));
       return;
     }
 
-    if (name === 'contact2' && !value) {
+    if (name === "contact2" && !value) {
       setFormData((prevData) => ({
         ...prevData,
         contact2: value,
-        contact2num: '',
+        contact2num: "",
       }));
       return;
     }
@@ -68,12 +66,12 @@ function CreateEvent() {
     e.preventDefault();
 
     if (formData.contact1 && !formData.contact1num) {
-      alert('Please enter contact number for contact person 1');
+      alert("Please enter contact number for contact person 1");
       return;
     }
 
     if (formData.contact2 && !formData.contact2num) {
-      alert('Please enter contact number for contact person 2');
+      alert("Please enter contact number for contact person 2");
       return;
     }
 
@@ -82,38 +80,38 @@ function CreateEvent() {
         `${import.meta.env.VITE_BACKEND_URL}/api/events/add`,
         formData
       );
-      console.log('Event Created:', response.data);
-      alert('Event created successfully!');
+      console.log("Event Created:", response.data);
+      alert("Event created successfully!");
       // Optionally, reset the form or redirect after success
       setFormData({
-        title: '',
-        description: '',
-        date: '',
-        time: '',
-        location: '',
-        documents: '',
-        clubName: '',
-        thumbnail: '',
+        title: "",
+        description: "",
+        date: "",
+        time: "",
+        location: "",
+        documents: "",
+        clubName: "",
+        thumbnail: "",
         registrationFee: 0,
         teamSize: 1,
         prize1st: 0,
         prize2nd: 0,
-        contact1: '',
-        contact1num: '',
-        contact2: '',
-        contact2num: '',
-        type: '',
+        contact1: "",
+        contact1num: "",
+        contact2: "",
+        contact2num: "",
+        type: "",
       });
       // Redirect to home page after event creation
-      navigate('/'); // Adjust the route to your home page
+      navigate("/"); // Adjust the route to your home page
     } catch (error) {
-      console.error('Error creating event:', error);
-      alert('Failed to create event. Please try again.');
+      console.error("Error creating event:", error);
+      alert("Failed to create event. Please try again.");
     }
   };
 
   const handleCancel = () => {
-    navigate('/'); // Redirect to home page when cancel button is clicked
+    navigate("/"); // Redirect to home page when cancel button is clicked
   };
 
   return (
@@ -302,10 +300,14 @@ function CreateEvent() {
         </div>
 
         <div>
-          <label htmlFor="teamSize" className="block text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="teamSize"
+            className="block text-sm font-semibold text-gray-700"
+          >
             Team Size
           </label>
-          <input type="number"
+          <input
+            type="number"
             id="teamSize"
             name="teamSize"
             value={formData.teamSize}
@@ -315,10 +317,14 @@ function CreateEvent() {
         </div>
 
         <div>
-          <label htmlFor="prize1st" className="block text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="prize1st"
+            className="block text-sm font-semibold text-gray-700"
+          >
             1st Place Prize Money
           </label>
-          <input type="number"
+          <input
+            type="number"
             id="prize1st"
             name="prize1st"
             value={formData.prize1st}
@@ -328,10 +334,14 @@ function CreateEvent() {
         </div>
 
         <div>
-          <label htmlFor="prize2nd" className="block text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="prize2nd"
+            className="block text-sm font-semibold text-gray-700"
+          >
             2nd Place Prize Money
           </label>
-          <input type="number"
+          <input
+            type="number"
             id="prize2nd"
             name="prize2nd"
             value={formData.prize2nd}
@@ -341,10 +351,14 @@ function CreateEvent() {
         </div>
 
         <div>
-          <label htmlFor="contact1" className="block text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="contact1"
+            className="block text-sm font-semibold text-gray-700"
+          >
             Contact Person 1
           </label>
-          <input type="text"
+          <input
+            type="text"
             id="contact1"
             name="contact1"
             value={formData.contact1}
@@ -356,10 +370,14 @@ function CreateEvent() {
         {formData.contact1 && (
           <>
             <div>
-              <label htmlFor="contact1num" className="block text-sm font-semibold text-gray-700">
+              <label
+                htmlFor="contact1num"
+                className="block text-sm font-semibold text-gray-700"
+              >
                 Contact Number 1 (Please include country code without '+')
               </label>
-              <input type="text"
+              <input
+                type="text"
                 id="contact1num"
                 name="contact1num"
                 value={formData.contact1num}
@@ -369,10 +387,14 @@ function CreateEvent() {
             </div>
 
             <div>
-              <label htmlFor="contact2" className="block text-sm font-semibold text-gray-700">
+              <label
+                htmlFor="contact2"
+                className="block text-sm font-semibold text-gray-700"
+              >
                 Contact Person 2 (Please include country code without '+')
               </label>
-              <input type="text"
+              <input
+                type="text"
                 id="contact2"
                 name="contact2"
                 value={formData.contact2}
@@ -383,17 +405,22 @@ function CreateEvent() {
 
             {formData.contact2 && (
               <div>
-                <label htmlFor="contact2num" className="block text-sm font-semibold text-gray-700">
+                <label
+                  htmlFor="contact2num"
+                  className="block text-sm font-semibold text-gray-700"
+                >
                   Contact Number 2
                 </label>
-                <input type="text"
+                <input
+                  type="text"
                   id="contact2num"
                   name="contact2num"
                   value={formData.contact2num}
                   onChange={handleChange}
                   className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-              </div>)}
+              </div>
+            )}
           </>
         )}
 
