@@ -10,8 +10,6 @@ import "react-lazy-load-image-component/src/effects/blur.css"; // Import effect 
 
 function EventCard({ event }) {
 
-   if(event.isHidden) return;
-
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   const pending = ["67737e4188d8600ff314c594","67738c877b3bfd288ffb7dbc","6773a110de2fd564adc4eae2","6773a24ede2fd564adc4eaee"] // id's of pending events 

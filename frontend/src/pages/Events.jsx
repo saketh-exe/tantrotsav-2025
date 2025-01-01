@@ -98,9 +98,9 @@ function Events() {
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
       {filteredEvents.map((event) => (
-  <div key={event._id} className="lazy-card">
+ event.ishidden? <div key={event._id} className="lazy-card">
     <EventCardLazy event={event} />
-  </div>
+  </div> : <> </>
 ))}
 
       </div>
