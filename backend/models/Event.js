@@ -18,6 +18,8 @@ const eventSchema = new mongoose.Schema({
   contact2: { type: String },
   contact2num: { type: String },
   type: { type: String }, 
+  isHidden: { type: Boolean, default: true }, // Hide the event from public view,
+  duration: { type: Number, default: 1 }, // Duration of the event in hours
   registeredUsers: [
     {
       type: mongoose.Schema.Types.ObjectId,

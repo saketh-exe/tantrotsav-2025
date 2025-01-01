@@ -21,16 +21,26 @@ function CreateEvent() {
     contact2: "",
     contact2num: "",
     type: "",
+    isHidden: true,
+    duration:1
   });
 
   const clubNames = [
     "Shows",
     "IEEE STUDENT BRANCH",
+    "FACT",
+    "Robotics Club",
+    "CAMHI Club",
     "MAC2H-1",
     "Neuronix Club",
-    "Cognizance",
-    "Literary and Fine Arts Club",
     "AMIGOS Gaming Club",
+    "Cognizance",
+    "AMC FOSS",
+    "E-Cell",
+    "TRINETRA Photography Club",
+    "AWS Cloud Club", 
+    "Aurora Dance Club",
+    "Literary and Fine Arts Club",
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook
@@ -101,6 +111,8 @@ function CreateEvent() {
         contact2: "",
         contact2num: "",
         type: "",
+        isHidden: true,
+        duration:1
       });
       // Redirect to home page after event creation
       navigate("/"); // Adjust the route to your home page
@@ -188,6 +200,23 @@ function CreateEvent() {
               className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
             />
           </div>
+        </div>
+
+        <div>
+          <label
+            htmlFor="duration"
+            className="block text-sm font-semibold text-gray-700"
+          >
+            Duration (in hours)
+          </label>
+          <input
+            type="number"
+            id="duration"
+            name="duration"
+            value={formData.duration}
+            onChange={handleChange}
+            className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
 
         <div>
@@ -423,6 +452,25 @@ function CreateEvent() {
             )}
           </>
         )}
+
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="isHidden"
+            name="isHidden"
+            checked={formData.isHidden}
+            onChange={(e) =>
+              setFormData((prevData) => ({
+                ...prevData,
+                isHidden: e.target.checked,
+              }))
+            }
+            className="mr-2"
+          />
+          <label htmlFor="isHidden" className="text-sm font-semibold text-gray-700">
+            Hide this event from public view
+          </label>
+        </div>
 
         <div className="flex justify-between">
           <button
