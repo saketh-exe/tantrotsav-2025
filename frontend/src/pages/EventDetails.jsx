@@ -185,7 +185,21 @@ function EventDetails() {
               </p>
 
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start ">
-                <Eventpill imgsrc={Calender} content={new Date(event.date).toLocaleDateString('en-GB')} />
+              {(() => {
+                      // Parse and format the date
+                  let formattedDate = new Date(event.date).toLocaleDateString('en-GB').slice(0,2)
+                  if(formattedDate === "28"){
+                    formattedDate = "29th & 30th Jan"
+                  }
+                  else{
+                    formattedDate = `${formattedDate}th Jan`
+                  }
+
+                  return (
+                    <Eventpill imgsrc={Calender} content={formattedDate} />
+                  );
+                })()}
+
                 {event.time && <Eventpill imgsrc={Clock} content={event.time ? event.time : "12:00"} />}
                 <Eventpill imgsrc={Location} content={event.location} />
                 <Eventpill imgsrc={Club} content={event.clubName} />

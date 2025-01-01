@@ -4,9 +4,14 @@ import PropTypes from "prop-types";
 import useAuthStore from "../store/authStore";
 import { useState } from "react";
 import { toast } from "react-hot-toast"; // Import react-hot-toast
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css"; // Import effect styles
 
 
 function EventCard({ event }) {
+
+   if(event.isHidden) return;
+
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(false);
   const pending = ["67737e4188d8600ff314c594","67738c877b3bfd288ffb7dbc","6773a110de2fd564adc4eae2","6773a24ede2fd564adc4eaee"] // id's of pending events 
@@ -74,41 +79,46 @@ function EventCard({ event }) {
 
   return (
     <div
-  className="w-[300px] h-[420px] rounded-[12px]  flex flex-col justify-start pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white "
+  className="w-[300px] h-[420px] rounded-[12px]  flex flex-col justify-between pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white "
   
 >
   <div className="transition-all duration-500 flex justify-center">
     {/* Card Image with fixed size */}
     <div className="w-full h-[180px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)] border-opacity-50">
-      { pending.includes(event._id) ? 
-      <>
-        <img
-          src={event.thumbnail || "/default-thumbnail.jpg"}
-          alt={event.title}
-          className="w-full h-full object-cover rounded-md select-none"
-        />
-      </>
-        :
-        <Link to={`/events/${event._id}`}>
-        <img
-          src={event.thumbnail || "/default-thumbnail.jpg"}
-          alt={event.title}
-          className="w-full h-full object-cover rounded-md select-none "
-        />
-      </Link>}
+    {pending.includes(event._id) ? (
+            <LazyLoadImage
+              src={event.thumbnail || "/default-thumbnail.jpg"}
+              alt={event.title}
+              effect="blur"
+              width="100%"
+              height="100%"
+              className="w-full h-full object-cover rounded-md select-none"
+            />
+          ) : (
+            <Link to={`/events/${event._id}`}>
+              <LazyLoadImage
+                src={event.thumbnail || "/default-thumbnail.jpg"}
+                alt={event.title}
+                effect="blur"
+                width="100%"
+                height="100%"
+                className="w-full h-full object-cover rounded-md select-none"
+              />
+            </Link>
+          )}
     </div>
   </div>
 
   <div className="flex flex-col items-center">
    { pending.includes(event._id) ?
    <>
-   <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1">
+   <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
         {event.title}
       </h3>
    </>
    : 
    <Link to={`/events/${event._id}`}>
-      <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1">
+      <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
         {event.title}
       </h3>
     </Link>}
@@ -117,21 +127,32 @@ function EventCard({ event }) {
     </p>
 
     <div className="mt-[10px] text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
-      {event.date && (
-        <p className="text-sm">
-          <strong className="text-white">Date:</strong>{" "}
-          <span className="text-gray-100">
-         { pending.includes(event._id) ? "Coming Soon" : new Date(event.date).toLocaleDateString()}
-          </span>
-        </p>
-      )}
-      <p className="text-sm">
-        <strong className="text-white">Registration Fee:</strong>{" "}
-        <span className="text-gray-100">
-          {pending.includes(event._id) ? "N/A" : event.registrationFee ? `₹${event.registrationFee}` : "N/A"}
-        </span>
-      </p>
-    </div>
+  {event.date && (
+    <p className="text-sm">
+      <strong className="text-white">Date:</strong>{" "}
+      <span className="text-gray-100">
+        {pending.includes(event._id)
+          ? "Coming Soon"
+          : (() => {
+              let formattedDate = new Date(event.date).toLocaleDateString('en-GB').slice(0, 2);
+              return formattedDate === "28"
+                ? "29th & 30th Jan"
+                : `${formattedDate}th Jan`;
+            })()}
+      </span>
+    </p>
+  )}
+  <p className="text-sm">
+    <strong className="text-white">Registration Fee:</strong>{" "}
+    <span className="text-gray-100">
+      {pending.includes(event._id)
+        ? "N/A"
+        : event.registrationFee
+        ? `₹${event.registrationFee}`
+        : "N/A"}
+    </span>
+  </p>
+</div>
   </div>
 
   {/* Footer with Action Buttons */}

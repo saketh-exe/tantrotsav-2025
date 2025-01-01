@@ -32,7 +32,18 @@ function CreateEvent() {
     'Sports Club',
     'Drama Club',
     "Shows",
-    "IEEE STUDENT BRANCH"
+    "IEEE STUDENT BRANCH",
+    "SAE CLUB",
+    "Robotics Club",
+    "CAMHI Club",
+    "AMC FOSS",
+    "FACT Club",
+    "E-Cell",
+    "TRINETRA",
+    "AURORA",
+    "AWS Cloud Club",
+
+    
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook

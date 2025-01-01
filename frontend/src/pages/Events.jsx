@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiSearch, FiFilter } from 'react-icons/fi'; // Import icons
-import EventCard from '../components/EventCard';
+import EventCardLazy from '../components/EventCardLazy'; // Import lazy-loaded EventCard
 import Loading from "../components/Loading";
 
 function Events() {
@@ -96,10 +96,13 @@ function Events() {
       </div>
 
       {/* Display Events */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-32 justify-items-center mt-24">
-        {filteredEvents.map((event) => (
-          <EventCard key={event._id} event={event} />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
+      {filteredEvents.map((event) => (
+  <div key={event._id} className="lazy-card">
+    <EventCardLazy event={event} />
+  </div>
+))}
+
       </div>
 
       {/* No Results Fallback */}
