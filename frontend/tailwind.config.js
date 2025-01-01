@@ -6,13 +6,16 @@ export const content = [
   "./pages/**/*.{js,ts,jsx,tsx,mdx}",
   "./components/**/*.{js,ts,jsx,tsx,mdx}",
   "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  "./index.html",
 ];
 export const darkMode = "class";
 export const theme = {
   extend: {
     screens: {
       md: "950px",
-      "hide-img": { min: "950px", max: "1250px" }, // Change the 'md' breakpoint to 900px
+      "hide-img": { min: "950px", max: "1250px" }, 
+      "hide-cursor": { min: "728px" },
+
     },
   },
 };

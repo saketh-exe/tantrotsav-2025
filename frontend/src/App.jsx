@@ -99,7 +99,7 @@ function App() {
         </Routes>
       </Router>
       <Toaster />
-      {navigator.maxTouchPoints==0 && <AnimatedCursor
+      {<div className="hidden  hide-cursor:block"><AnimatedCursor
       color="255,155,0"
       innerSize={25}
       outerSize={30}
@@ -107,13 +107,15 @@ function App() {
       outerScale={2}
       outerAlpha={0.9}
       trailingSpeed={4}
+      
       outerStyle={{
         backgroundColor : "wheat"
       }}
       innerStyle={{
         backgroundColor : "orange"
       }}
-    />}
+    />
+    </div>}
     </div>
   );
 }
