@@ -25,6 +25,8 @@ function UpdateEvent() {
     contact2: "",
     contact2num: "",
     type: "",
+    isHidden: true,
+    duration: 1
   });
 
   // Handle form cancellation
@@ -48,6 +50,8 @@ function UpdateEvent() {
       contact2: "",
       contact2num: "",
       type: "",
+      isHidden: true,
+      duration: 1
     });
   };
 
@@ -264,6 +268,24 @@ function UpdateEvent() {
               />
             </div>
           </div>
+
+          <div>
+            <label
+              htmlFor="duration"
+              className="block text-sm font-semibold text-gray-700"
+            >
+              Duration (in hours)
+            </label>
+            <input
+              type="number"
+              id="duration"
+              name="duration"
+              value={formData.duration}
+              onChange={handleChange}
+              className="mt-2 w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
           {/* Location */}
           <div>
             <label
@@ -500,6 +522,25 @@ function UpdateEvent() {
               )}
             </>
           )}
+
+          <div className="flex items-center">
+            <input
+              type="checkbox"
+              id="isHidden"
+              name="isHidden"
+              checked={formData.isHidden}
+              onChange={(e) =>
+                setFormData((prevData) => ({
+                  ...prevData,
+                  isHidden: e.target.checked,
+                }))
+              }
+              className="mr-2"
+            />
+            <label htmlFor="isHidden" className="text-sm font-semibold text-gray-700">
+              Hide this event from public view
+            </label>
+          </div>
 
           {/* Submit Button */}
           <div className="flex gap-4">

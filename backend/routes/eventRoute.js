@@ -43,6 +43,8 @@ router.post('/add', async (req, res) => {
     contact2,
     contact2num,
     type,
+    isHidden,
+    duration
   } = req.body;
 
   try {
@@ -64,6 +66,8 @@ router.post('/add', async (req, res) => {
       contact2,
       contact2num,
       type,
+      isHidden,
+      duration
     });
 
     await newEvent.save();
@@ -179,7 +183,10 @@ router.get('/:eventId', async (req, res) => {
   const { eventId } = req.params;
 
   try {
-    const event = await Event.findById(eventId); // Find event by ID
+    var event = await Event.findById(eventId); // Find event by ID
+    if (event.isHidden === undefined) {
+      event.isHidden = false;
+    }
     if (!event) {
       return res.status(404).json({ message: 'Event not found' }); // Handle if event is not found
     }
@@ -213,6 +220,8 @@ router.put('/:eventId', async (req, res) => {
     contact2,
     contact2num,
     type,
+    isHidden,
+    duration
   } = req.body;
 
   try {
@@ -239,6 +248,8 @@ router.put('/:eventId', async (req, res) => {
     event.contact2 = contact2;
     event.contact2num = contact2num;
     event.type = type;
+    event.isHidden = isHidden,
+      event.duration = duration
 
     await event.save(); // Save the updated event details
     res.status(200).json({ message: 'Event updated successfully', event }); // Return success message
