@@ -37,6 +37,16 @@ export default function Body({ onScroll }) {
       <div className="flex justify-center items-center flex-col w-full min-h-screen ">
         <Herotext />
         <Coundown />
+
+        {/* Event Date */}
+        <div className="w-full mt-4 bg-gradient-to-r from-black via-slate-800 to-black p-4">
+          <p className="text-2xl text-center font-bold text-white mb-2">
+            29th & 30th Jan 2025
+          </p>
+          <p className="text-lg text-center font-semibold text-white">
+            Contest to Conquest
+          </p>
+        </div>
       </div>
       <About />
       <Featured />

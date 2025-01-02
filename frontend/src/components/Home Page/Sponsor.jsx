@@ -19,12 +19,12 @@ export default function Sponsor() {
         </div>
         <div className="flex justify-center items-center">
           <img
-            src={Sponsor1} // <= IIT MADRAS maybe the second sponsor.
+            src={Sponsor2} // <= IIT MADRAS maybe the second sponsor.
             alt="Sponsor 2"
             className="w-24 sm:w-32 lg:w-40"
           />
         </div>
-        <div className="flex justify-center items-center">
+        {/* <div className="flex justify-center items-center">
           <img
             src={Sponsor1}
             alt="Sponsor 3"
@@ -37,7 +37,7 @@ export default function Sponsor() {
             alt="Sponsor 4"
             className="w-24 sm:w-32 lg:w-40"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
