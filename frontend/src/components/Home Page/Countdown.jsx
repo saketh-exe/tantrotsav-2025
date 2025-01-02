@@ -34,8 +34,8 @@ export default function Coundown() {
     });
     
 return (
-    <div className="flex flex-wrap justify-center gap-6 w-11/12 sm:w-3/4 text-4xl sm:text-6xl align-middle h-fit mt-16 sm:mt-32 text-slate-300">
-  <div className="bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm p-6 sm:p-8 flex flex-col justify-center items-center w-2/5 sm:w-1/6 rounded-lg"> {/* Days */}
+    <div className="flex flex-wrap justify-center gap-6 w-11/12 sm:w-3/4 text-4xl sm:text-6xl align-middle h-fit mt-16 sm:mt-12 text-slate-300">
+  <div className="bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm p-0 sm:p-0 flex flex-col justify-center items-center w-2/5 sm:w-1/6 rounded-lg"> {/* Days */}
     <span className="text-center mt-4 text-3xl sm:text-4xl">
       {timeLeft.days}
     </span>

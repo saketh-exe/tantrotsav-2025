@@ -74,7 +74,7 @@ function Events() {
         </div>
 
         {/* Filter Dropdown */}
-        <div className="relative w-full max-w-[180px] sm:max-w-[130px]">
+        {/* <div className="relative w-full max-w-[180px] sm:max-w-[130px]">
           <FiFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
           <select
             value={clubFilter}
@@ -87,14 +87,17 @@ function Events() {
               </option>
             ))}
           </select>
-        </div>
+        </div> */}
         <a href="#" target="_blank" rel="noopener noreferrer">
-          <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
+          {/* <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
             Download Brochure
-          </button>
+          </button> */}
         </a>
       </div>
-
+      <div className="w-full text-center text-xl text-red-400">
+        *Registrations will opened soon.<br></br>
+        Stay tuned for more events  
+      </div>
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
         {filteredEvents.map((event) =>{

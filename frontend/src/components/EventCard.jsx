@@ -142,10 +142,11 @@ function EventCard({ event }) {
             <strong className="text-white">Registration Fee:</strong>{" "}
             <span className="text-gray-100">
               {pending.includes(event._id)
-                ? "N/A"
+                ? "N/D"
                 : event.registrationFee
-                  ? `₹${event.registrationFee}`
-                  : "N/A"}
+                ?"N/D"
+                  // ? `₹${event.registrationFee}`
+                  : "N/D"}
             </span>
           </p>
         </div>

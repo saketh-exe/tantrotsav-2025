@@ -15,13 +15,13 @@ export default function Herotext() {
    */
   const text = [
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["तं", "त्रो", "त्स", "व"],
+    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்"],
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
     ["తం", "త్రో", "త్స", "వ్"], // change last letter
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்"],
-    ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
     ["ത", "ന്ത്രോ", "ത്സ", "വം"],
+    ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
+    ["तं", "त्रो", "त्स", "व"],
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -29,7 +29,7 @@ export default function Herotext() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % text.length);
-    }, 4000); // Change text every 4 seconds
+    }, 3000); // Change text every 4 seconds
 
     return () => clearInterval(interval);
   }, [text.length]);
@@ -80,7 +80,7 @@ export default function Herotext() {
             <motion.span
               key={`${currentIndex}-${index}`}
               variants={textVariants}
-              transition={{ duration: 1, type: "spring" }}
+              transition={{ duration: 0.7, type: "spring" }}
               style={{
                 textShadow: "0 0 20px wheat",
                 color: "white",
