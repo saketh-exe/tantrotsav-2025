@@ -7,22 +7,19 @@ import Loading from "../components/Loading";
 function Events() {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState('');
-  const [clubFilter, setClubFilter] = useState('All'); // New state for filter
+  const [searchQuery, setSearchQuery] = useState("");
+  const [clubFilter, setClubFilter] = useState("All"); // New state for filter
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(
-          `/api/events`
-        );
+        const response = await axios.get(`/api/events`);
         setEvents(response.data);
         setFilteredEvents(response.data); // Initial filtering
       } catch (error) {
-        console.error('Error fetching events:', error);
-      }
-      finally {
+        console.error("Error fetching events:", error);
+      } finally {
         setIsLoading(false);
       }
     };
@@ -37,7 +34,7 @@ function Events() {
       event.title.toLowerCase().includes(query)
     );
 
-    if (clubFilter !== 'All') {
+    if (clubFilter !== "All") {
       filtered = filtered.filter((event) => event.clubName === clubFilter);
     }
 
@@ -46,7 +43,7 @@ function Events() {
 
   // Extract unique club names for filtering
   const uniqueClubs = [
-    'All',
+    "All",
     ...new Set(events.map((event) => event.clubName)),
   ];
 
@@ -95,18 +92,19 @@ function Events() {
         </a>
       </div>
       <div className="w-full text-center text-xl text-red-400">
-        *Registrations will opened soon.<br></br>
-        Stay tuned for more events  
+        *Registrations will be opened soon.<br></br>
+        Stay tuned for more events
       </div>
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
-        {filteredEvents.map((event) =>{
-       
-          return !event.isHidden && (
-            <div key={event._id} className="lazy-card">
-              <EventCardLazy event={event} />
-            </div>
-          )
+        {filteredEvents.map((event) => {
+          return (
+            !event.isHidden && (
+              <div key={event._id} className="lazy-card">
+                <EventCardLazy event={event} />
+              </div>
+            )
+          );
         })}
       </div>
 
