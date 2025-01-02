@@ -186,13 +186,13 @@ function EventDetails() {
               </p>
 
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start ">
-              {(() => {
-                      // Parse and format the date
-                  let formattedDate = new Date(event.date).toLocaleDateString('en-GB').slice(0,2)
-                  if(formattedDate === "28"){
+                {(() => {
+                  // Parse and format the date
+                  let formattedDate = new Date(event.date).toLocaleDateString('en-GB').slice(0, 2)
+                  if (formattedDate === "28") {
                     formattedDate = "29th & 30th Jan"
                   }
-                  else{
+                  else {
                     formattedDate = `${formattedDate}th Jan`
                   }
 
@@ -202,37 +202,37 @@ function EventDetails() {
                 })()}
 
                 {event.time && <Eventpill imgsrc={Clock} content={event.time ? event.time : "12:00"} />}
-                {event.duration && <Eventpill imgsrc={Duration} content={event.duration ? `${event.duration} hour(s)` : "1 hour(s)"} />}
+                {(event.duration && event.duration != 0) && <Eventpill imgsrc={Duration} content={event.duration ? `${event.duration} hour(s)` : "1 hour(s)"} />}
                 <Eventpill imgsrc={Location} content={event.location} />
                 <Eventpill imgsrc={Club} content={event.clubName} />
-                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} />
+                {/* <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} /> */}
                 <Eventpill imgsrc={team} content={event.teamSize} /> {/* Team size here {event.teamSize} */}
                 {(event.prize1st > 0 || event.prize2nd > 0) && (
-                <Eventpill
-                  content={
-                    <div className="flex flex-col w-full gap-y-1 items-center justify-center">
-                      {event.prize1st > 0 && (
-                        <div className="flex w-full border-b border-black justify-center items-center">
-                          <img src={medal1} className="w-6" alt="1st Prize" />
-                          ₹{event.prize1st}
-                        </div>
-                      )}
-                      {event.prize2nd > 0 && (
-                        <div className="flex w-full justify-center items-center">
-                          <img src={medal2} className="w-6" alt="2nd Prize" />
-                          ₹{event.prize2nd}
-                        </div>
-                      )}
-                    </div>
-                  }
-                />
-              )}
+                  <Eventpill
+                    content={
+                      <div className="flex flex-col w-full gap-y-1 items-center justify-center">
+                        {event.prize1st > 0 && (
+                          <div className="flex w-full border-b border-black justify-center items-center">
+                            <img src={medal1} className="w-6" alt="1st Prize" />
+                            ₹{event.prize1st}
+                          </div>
+                        )}
+                        {event.prize2nd > 0 && (
+                          <div className="flex w-full justify-center items-center">
+                            <img src={medal2} className="w-6" alt="2nd Prize" />
+                            ₹{event.prize2nd}
+                          </div>
+                        )}
+                      </div>
+                    }
+                  />
+                )}
                 <Eventpill imgsrc={EvntTyp} content={event.type} /> {/* Type of show event.type */}
 
               </div>
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start "> {/* need to map to no of coordinators */}
                 {event.contact1 && (<div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out"
-                onClick={() => window.location.href = `tel:+${event.contact1num}`}>
+                  onClick={() => window.location.href = `tel:+${event.contact1num}`}>
                   <img src={Phone} className="w-4" />
                   <p>{event.contact1} : </p>
                   {event.contact1num}
