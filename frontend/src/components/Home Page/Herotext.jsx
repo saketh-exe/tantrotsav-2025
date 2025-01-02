@@ -90,21 +90,33 @@ export default function Herotext() {
           ))}
         </motion.div>
       </AnimatePresence>
-      <span className=" mb-4 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
-      <span style={{fontFamily: "s",fontSize: "clamp(1.5rem, 2vw, 3rem)"}} className="text-yellow-100 mr-2">
-        A
-        </span>
-        <span>
-          
-        </span>
-        Tech Fest by
-        <a href="https://www.amrita.edu/campus/chennai/" target="_blank" className="hover:bg-blue-200 transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-blue-800 underline underline-offset-4">
-        <span style={{fontFamily: "s",fontSize: "clamp(1.5rem, 2vw, 3rem)"}} className="ml-2">
-        A
-        </span>
-        mrita Chennai Campus 
-      </a>
-        </span>  
+      <span 
+  className="mb-4 text-yellow-100 text-center" 
+  style={{ fontSize: "clamp(1rem, 2.5vw, 1.5rem)" }}
+>
+  <span 
+    style={{ fontFamily: "s", fontSize: "clamp(1.2rem, 2vw, 2.5rem)" }} 
+    className="text-yellow-100 mr-2"
+  >
+    A
+  </span>
+  <span>Tech Fest by</span>
+  <a 
+    href="https://www.amrita.edu/campus/chennai/" 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="hover:bg-blue-200 transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-blue-800 underline underline-offset-4"
+  >
+    <span 
+      style={{ fontFamily: "s", fontSize: "clamp(1.2rem, 2vw, 2.5rem)" }} 
+      className="ml-2"
+    >
+      A
+    </span>
+    mrita Chennai Campus
+  </a>
+</span>
+ 
         
       <span className=" mb-4 text-yellow-100 " style={{ fontSize: "clamp(1rem, 3vw, 2rem)"}}>
         100+ Events | ₹10,00,000+ Prize Pool 
