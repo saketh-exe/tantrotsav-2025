@@ -19,7 +19,7 @@ export default function Logos() {
            return ((prevLogoidx + 1) % logos.length);
             
           });
-        }, 3000);
+        }, 1500);
     
         return () => clearInterval(logoInterval); // Cleanup interval on unmount
       }, []);

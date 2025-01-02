@@ -75,6 +75,7 @@ function UpdateEvent() {
     "TRINETRA",
     "AURORA",
     "AWS Cloud Club",
+    "Cognizance",
   ];
 
   // Fetch events for selection
