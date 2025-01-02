@@ -125,7 +125,7 @@ function EventCard({ event }) {
             <p className="text-sm">
               <strong className="text-white">Date:</strong>{" "}
               <span className="text-gray-100">
-                {!pending.includes(event._id)
+                {pending.includes(event._id)
                   ? "Coming Soon"
                   : (() => {
                       let formattedDate = new Date(event.date)

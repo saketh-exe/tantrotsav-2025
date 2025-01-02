@@ -230,13 +230,13 @@ function EventDetails() {
               </div>
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start "> {/* need to map to no of coordinators */}
                 {event.contact1 && (<div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out"
-                onClick={() => window.location.href = `tel://${event.contact1num}`}>
+                onClick={() => window.location.href = `tel:+${event.contact1num}`}>
                   <img src={Phone} className="w-4" />
                   <p>{event.contact1} : </p>
                   {event.contact1num}
                 </div>)}
                 {event.contact2 && (<div className="p-1 px-3 bg-white rounded-full flex items-center gap-2 text-sm font-bold text-black mb:w-48 w-fit justify-center mr-2 md:mr-4 mb-4 hover:bg-orange-200 transition-all ease-in-out"
-                  onClick={() => window.location.href = `tel://${event.contact2num}`}>
+                  onClick={() => window.location.href = `tel:+${event.contact2num}`}>
                   <img src={Phone} className="w-4" />
                   <p>{event.contact2} : </p>
                   {event.contact2num}
