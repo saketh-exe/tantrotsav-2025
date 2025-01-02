@@ -26,7 +26,7 @@ function UpdateEvent() {
     contact2num: "",
     type: "",
     isHidden: true,
-    duration: 1
+    duration: 1,
   });
 
   // Handle form cancellation
@@ -51,21 +51,22 @@ function UpdateEvent() {
       contact2num: "",
       type: "",
       isHidden: true,
-      duration: 1
+      duration: 1,
     });
   };
 
   const clubNames = [
-    'Tech Club',
-    'Science Club',
-    'Art Club',
-    'Music Club',
-    'Literature Club',
-    'Sports Club',
-    'Drama Club',
-    'Shows',
+    "Tech Club",
+    "Science Club",
+    "Art Club",
+    "Music Club",
+    "Literature Club",
+    "Sports Club",
+    "Drama Club",
+    "Shows",
     "IEEE STUDENT BRANCH",
     "SAE CLUB",
+    "Neuronix Club",
     "Robotics Club",
     "CAMHI Club",
     "AMC FOSS",
@@ -74,7 +75,6 @@ function UpdateEvent() {
     "TRINETRA",
     "AURORA",
     "AWS Cloud Club",
-
   ];
 
   // Fetch events for selection
@@ -537,7 +537,10 @@ function UpdateEvent() {
               }
               className="mr-2"
             />
-            <label htmlFor="isHidden" className="text-sm font-semibold text-gray-700">
+            <label
+              htmlFor="isHidden"
+              className="text-sm font-semibold text-gray-700"
+            >
               Hide this event from public view
             </label>
           </div>
