@@ -5,7 +5,7 @@ export default function Herotext() {
   /**
    * An array of arrays containing the word "TANTROTSAV" in different languages.
    * Each inner array represents the word in a specific language.
-   * 
+   *
    * Languages:
    * - English
    * - Hindi
@@ -15,15 +15,13 @@ export default function Herotext() {
    */
   const text = [
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்" ],
+    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்"],
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
     ["తం", "త్రో", "త్స", "వ్"], // change last letter
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["ത", "ന്ത്രോ", "ത്സ", "വം" ],
+    ["ത", "ന്ത്രോ", "ത്സ", "വം"],
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
     ["तं", "त्रो", "त्स", "व"],
-
-    
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,11 +55,17 @@ export default function Herotext() {
         marginTop: "clamp(5rem, 10vw, 10rem)",
       }}
     >
-      <span className="font-medium mb-1 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 3vw, 4rem)" }}>
-        Welcome to 
+      <span
+        className="font-medium mb-1 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 3vw, 4rem)" }}
+      >
+        Welcome to
       </span>
-      <span className="font-light mb-4 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 2vw, 4rem)" }}>
-      3rd Edition of
+      <span
+        className="font-light mb-4 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 2vw, 4rem)" }}
+      >
+        3rd Edition of
       </span>
       <AnimatePresence mode="wait">
         <motion.div
