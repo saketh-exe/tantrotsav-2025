@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import Loading from "../components/Loading";
 import Clock from "../assets/Clock.svg"
+import Duration from "../assets/hourglass.svg"
 import Calender from "../assets/Calendar.svg"
 import Location from "../assets/Location.svg"
 import Rupee from "../assets/Rupee.svg"
@@ -201,6 +202,7 @@ function EventDetails() {
                 })()}
 
                 {event.time && <Eventpill imgsrc={Clock} content={event.time ? event.time : "12:00"} />}
+                {event.duration && <Eventpill imgsrc={Duration} content={event.duration ? `${event.duration} hour(s)` : "1 hour(s)"} />}
                 <Eventpill imgsrc={Location} content={event.location} />
                 <Eventpill imgsrc={Club} content={event.clubName} />
                 <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} />
