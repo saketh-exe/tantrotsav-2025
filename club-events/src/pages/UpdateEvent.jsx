@@ -56,13 +56,6 @@ function UpdateEvent() {
   };
 
   const clubNames = [
-    "Tech Club",
-    "Science Club",
-    "Art Club",
-    "Music Club",
-    "Literature Club",
-    "Sports Club",
-    "Drama Club",
     "Shows",
     "IEEE STUDENT BRANCH",
     "SAE CLUB",
