@@ -95,7 +95,8 @@ function EventCard({ event }) {
                 effect="blur"
                 width="100%"
                 height="100%"
-                className="w-full h-full object-cover rounded-md select-none"
+                className="w-full h-full object-cover  rounded-md select-none"
+                style={{objectPosition: "0px -30px"}}
               />
             </Link>
           )}
@@ -125,9 +126,7 @@ function EventCard({ event }) {
             <p className="text-sm">
               <strong className="text-white">Date:</strong>{" "}
               <span className="text-gray-100">
-                {pending.includes(event._id)
-                  ? "Coming Soon"
-                  : (() => {
+                {(() => {
                       let formattedDate = new Date(event.date)
                         .toLocaleDateString("en-GB")
                         .slice(0, 2);
