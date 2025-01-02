@@ -5,7 +5,7 @@ export default function Herotext() {
   /**
    * An array of arrays containing the word "TANTROTSAV" in different languages.
    * Each inner array represents the word in a specific language.
-   * 
+   *
    * Languages:
    * - English
    * - Hindi
@@ -19,11 +19,9 @@ export default function Herotext() {
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
     ["తం", "త్రో", "త్స", "వ్"], // change last letter
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்" ],
+    ["த", "ந்", "த்", "ரோ", "த்", "ஸ", "வ்"],
     ["T", "A", "N", "T", "R", "O", "T", "S", "A", "V"],
-    ["ത", "ന്ത്രോ", "ത്സ", "വം" ],
-
-    
+    ["ത", "ന്ത്രോ", "ത്സ", "വം"],
   ];
 
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -57,11 +55,17 @@ export default function Herotext() {
         marginTop: "clamp(5rem, 10vw, 10rem)",
       }}
     >
-      <span className="font-medium mb-1 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 3vw, 4rem)" }}>
-        Welcome to 
+      <span
+        className="font-medium mb-1 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 3vw, 4rem)" }}
+      >
+        Welcome to
       </span>
-      <span className="font-light mb-4 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 2vw, 4rem)" }}>
-      3rd Edition of
+      <span
+        className="font-light mb-4 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 2vw, 4rem)" }}
+      >
+        3rd Edition of
       </span>
       <AnimatePresence mode="wait">
         <motion.div
@@ -90,24 +94,38 @@ export default function Herotext() {
           ))}
         </motion.div>
       </AnimatePresence>
-      <span className=" mb-4 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}>
-      <span style={{fontFamily: "s",fontSize: "clamp(1.5rem, 2vw, 3rem)"}} className="text-yellow-100 mr-2">
-        A
+      <span
+        className=" mb-4 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
+      >
+        <span
+          style={{ fontFamily: "s", fontSize: "clamp(1.5rem, 2vw, 3rem)" }}
+          className="text-yellow-100 mr-2"
+        >
+          A
         </span>
-        <span>
-          
-        </span>
+        <span></span>
         Tech Fest by
-        <a href="https://www.amrita.edu/campus/chennai/" target="_blank" className="hover:bg-blue-200 transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-blue-800 underline underline-offset-4">
-        <span style={{fontFamily: "s",fontSize: "clamp(1.5rem, 2vw, 3rem)"}} className="ml-2">
-        A
-        </span>
-        mrita Chennai Campus 
-      </a>
-        </span>  
-        
-      <span className=" mb-4 text-yellow-100 " style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)"}}>
-        100+ Events | ₹10,00,000+ Prize Pool 
+        <a
+          href="https://www.amrita.edu/campus/chennai/"
+          target="_blank"
+          className="hover:bg-blue-200 transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-blue-800 underline underline-offset-4"
+        >
+          <span
+            style={{ fontFamily: "s", fontSize: "clamp(1.5rem, 2vw, 3rem)" }}
+            className="ml-2"
+          >
+            A
+          </span>
+          mrita Chennai Campus
+        </a>
+      </span>
+
+      <span
+        className=" mb-4 text-yellow-100 "
+        style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
+      >
+        100+ Events | ₹10,00,000+ Prize Pool
       </span>
     </div>
   );
