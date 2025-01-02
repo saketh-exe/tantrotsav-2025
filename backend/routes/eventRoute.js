@@ -11,6 +11,11 @@ const departments = ['CSE', 'CYS', 'AIE', 'ECE', 'RAI', 'ARE', 'MECH', 'CCE'];
 router.get('/', async (req, res) => {
   try {
     const events = await Event.find(); // Fetch all events from the database
+    events.forEach(event => {
+      if (event.isHidden === undefined) {
+      event.isHidden = false;
+      }
+    });
     res.status(200).json(events);
   } catch (error) {
     console.error(error);
