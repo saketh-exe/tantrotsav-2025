@@ -7,19 +7,22 @@ import Loading from "../components/Loading";
 function Events() {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [clubFilter, setClubFilter] = useState("All"); // New state for filter
+  const [searchQuery, setSearchQuery] = useState('');
+  const [clubFilter, setClubFilter] = useState('All'); // New state for filter
   const [filteredEvents, setFilteredEvents] = useState([]);
 
   useEffect(() => {
     const fetchEvents = async () => {
       try {
-        const response = await axios.get(`/api/events`);
+        const response = await axios.get(
+          `/api/events`
+        );
         setEvents(response.data);
         setFilteredEvents(response.data); // Initial filtering
       } catch (error) {
-        console.error("Error fetching events:", error);
-      } finally {
+        console.error('Error fetching events:', error);
+      }
+      finally {
         setIsLoading(false);
       }
     };
@@ -34,7 +37,7 @@ function Events() {
       event.title.toLowerCase().includes(query)
     );
 
-    if (clubFilter !== "All") {
+    if (clubFilter !== 'All') {
       filtered = filtered.filter((event) => event.clubName === clubFilter);
     }
 
@@ -43,7 +46,7 @@ function Events() {
 
   // Extract unique club names for filtering
   const uniqueClubs = [
-    "All",
+    'All',
     ...new Set(events.map((event) => event.clubName)),
   ];
 
@@ -85,11 +88,7 @@ function Events() {
             ))}
           </select>
         </div>
-        <a
-          href="https://www.google.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href="#" target="_blank" rel="noopener noreferrer">
           <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
             Download Brochure
           </button>
