@@ -66,6 +66,7 @@ function UpdateEvent() {
     "Shows",
     "IEEE STUDENT BRANCH",
     "SAE CLUB",
+    "AMIGOS Gaming Club",
     "Neuronix Club",
     "Robotics Club",
     "CAMHI Club",
