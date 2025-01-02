@@ -59,9 +59,6 @@ function UpdateEvent() {
     "Shows",
     "IEEE STUDENT BRANCH",
     "SAE CLUB",
-    "AMIGOS Gaming Club",
-    "Cognizance",
-    "Neuronix Club",
     "Robotics Club",
     "CAMHI Club",
     "AMC FOSS",
@@ -70,7 +67,17 @@ function UpdateEvent() {
     "TRINETRA",
     "AURORA",
     "AWS Cloud Club",
+    "MAC2H-1",
+    "Neuronix Club",
+    "AMIGOS Gaming Club",
     "Cognizance",
+    "AMC FOSS",
+    "E-Cell",
+    "Mahi Club",
+    "TRINETRA Photography Club",
+    "AWS Cloud Club",
+    "Aurora Dance Club",
+    "Literary and Fine Arts Club",
   ];
 
   // Fetch events for selection

@@ -22,7 +22,7 @@ function CreateEvent() {
     contact2num: "",
     type: "",
     isHidden: true,
-    duration:1
+    duration: 1,
   });
 
   const clubNames = [
@@ -43,8 +43,9 @@ function CreateEvent() {
     "Cognizance",
     "AMC FOSS",
     "E-Cell",
+    "Mahi Club",
     "TRINETRA Photography Club",
-    "AWS Cloud Club", 
+    "AWS Cloud Club",
     "Aurora Dance Club",
     "Literary and Fine Arts Club",
   ];
@@ -118,7 +119,7 @@ function CreateEvent() {
         contact2num: "",
         type: "",
         isHidden: true,
-        duration:1
+        duration: 1,
       });
       // Redirect to home page after event creation
       navigate("/"); // Adjust the route to your home page
@@ -473,7 +474,10 @@ function CreateEvent() {
             }
             className="mr-2"
           />
-          <label htmlFor="isHidden" className="text-sm font-semibold text-gray-700">
+          <label
+            htmlFor="isHidden"
+            className="text-sm font-semibold text-gray-700"
+          >
             Hide this event from public view
           </label>
         </div>
