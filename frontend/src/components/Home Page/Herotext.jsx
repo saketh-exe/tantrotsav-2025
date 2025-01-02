@@ -55,16 +55,10 @@ export default function Herotext() {
         marginTop: "clamp(5rem, 10vw, 10rem)",
       }}
     >
-      <span
-        className="font-medium mb-1 text-yellow-100 "
-        style={{ fontSize: "clamp(1.5rem, 3vw, 4rem)" }}
-      >
+      <span className="font-medium mb-1 text-yellow-100 text-3xl lg:text-5xl">
         Welcome to
       </span>
-      <span
-        className="font-light mb-4 text-yellow-100 "
-        style={{ fontSize: "clamp(1.5rem, 2vw, 4rem)" }}
-      >
+      <span className="font-light mb-4 mt-2 text-yellow-100 text-base lg:text-xl">
         3rd Edition of
       </span>
       <AnimatePresence mode="wait">
@@ -84,7 +78,7 @@ export default function Herotext() {
               style={{
                 textShadow: "0 0 20px wheat",
                 color: "white",
-                fontSize: "clamp(2rem, 8vw, 8rem)", // Responsive font size
+                fontSize: "clamp(3rem, 8vw, 8rem)", // Responsive font size
                 fontWeight: "900",
               }}
               className="herotxt"
@@ -94,14 +88,8 @@ export default function Herotext() {
           ))}
         </motion.div>
       </AnimatePresence>
-      <span
-        className=" mb-4 text-yellow-100 "
-        style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
-      >
-        <span
-          style={{ fontFamily: "s", fontSize: "clamp(1.5rem, 2vw, 3rem)" }}
-          className="text-yellow-100 mr-2"
-        >
+      <span className=" mb-4 text-yellow-100 text-base lg:text-xl mt-3">
+        <span style={{ fontFamily: "s" }} className="text-yellow-100 mr-2">
           A
         </span>
         <span></span>
@@ -109,24 +97,23 @@ export default function Herotext() {
         <a
           href="https://www.amrita.edu/campus/chennai/"
           target="_blank"
-          className="hover:bg-blue-200 transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-blue-800 underline underline-offset-4"
+          className="transition-all duration-500 ease-in-out pr-2 rounded-3xl text-yellow-100 hover:text-yellow-300 underline underline-offset-4"
         >
-          <span
-            style={{ fontFamily: "s", fontSize: "clamp(1.5rem, 2vw, 3rem)" }}
-            className="ml-2"
-          >
+          <span style={{ fontFamily: "s" }} className="ml-2">
             A
           </span>
           mrita Chennai Campus
         </a>
       </span>
 
-      <span
-        className=" mb-4 text-yellow-100 "
-        style={{ fontSize: "clamp(1.5rem, 3vw, 2rem)" }}
-      >
-        100+ Events | ₹10,00,000+ Prize Pool
-      </span>
+      <div className="mb-3 p-2 bg-slate-800/25 text-center w-full">
+        <span
+          className="mb-4 font-medium text-yellow-100 text-base lg:text-xl"
+          style={{ fontFamily: "Poppins" }}
+        >
+          100+ Events | ₹10,00,000+ Prize Pool
+        </span>
+      </div>
     </div>
   );
 }
