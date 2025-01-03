@@ -38,11 +38,15 @@ export default function Body({ onScroll }) {
         <Herotext />
 
         {/* Event Date */}
-        <div className="w-full mt-4 bg-gradient-to-r from-black via-slate-800 to-black p-4">
-          <p className="text-2xl text-center font-bold text-white mb-2">
-            29th & 30th Jan 2025
+        <div className="w-full bg-gradient-to-r from-black via-slate-800 to-black p-4 text-emerald-300">
+          <p className="text-2xl text-center font-bold mb-2 text-white">
+            29<sup className="text-base">th</sup> & 30
+            <sup className="text-base">th</sup> Jan 2025
           </p>
-          <p className="text-lg text-center font-semibold text-white">
+          <p
+            className="text-xl lg:text-2xl text-center font-semibold"
+            style={{ fontFamily: "Iceberg" }}
+          >
             Contest to Conquest
           </p>
         </div>

@@ -59,7 +59,7 @@ export default function Herotext() {
         Welcome to
       </span>
       <span className="font-light mb-4 mt-2 text-yellow-100 text-base lg:text-xl">
-        3rd Edition of
+        3<sup style={{ fontFamily: "sans" }}>rd</sup> Edition of
       </span>
       <AnimatePresence mode="wait">
         <motion.div
@@ -108,10 +108,10 @@ export default function Herotext() {
 
       <div className="mb-3 p-2 bg-slate-800/25 text-center w-full">
         <span
-          className="mb-4 font-medium text-yellow-100 text-base lg:text-xl"
+          className="mb-4 font-medium text-green-200 text-base lg:text-xl"
           style={{ fontFamily: "Poppins" }}
         >
-          100+ Events | ₹10,00,000+ Prize Pool
+          100+ Events | ₹ 10 Lakh+ Prize Pool
         </span>
       </div>
     </div>
