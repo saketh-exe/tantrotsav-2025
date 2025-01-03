@@ -85,14 +85,14 @@ function App() {
                 </RouteGuard>
               }
             />
-            <Route
+            {/* <Route
               path="/cart"
               element={
                 <RouteGuard>
                   <Cart />
                 </RouteGuard>
               }
-            />
+            /> */}
             {/* Add other protected routes here */}
           </Route>
           <Route path="*" element={<NotFound />} /> {/* Default route for 404 */}
