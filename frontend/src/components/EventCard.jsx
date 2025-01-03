@@ -6,6 +6,7 @@ import { useState } from "react";
 import { toast } from "react-hot-toast"; // Import react-hot-toast
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css"; // Import effect styles
+import place from "../assets/loads.gif"
 
 function EventCard({ event }) {
   const { user, setUser } = useAuthStore();
@@ -92,8 +93,9 @@ function EventCard({ event }) {
               <LazyLoadImage
                 src={event.thumbnail || "/default-thumbnail.jpg"}
                 alt={event.title}
-                effect="blur"
+                effect 
                 width="100%"
+                placeholderSrc={place}
                 height="100%"
                 className="w-full h-full object-cover  rounded-md select-none"
                 style={{objectPosition: "0px -30px"}}
