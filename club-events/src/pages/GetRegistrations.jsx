@@ -25,10 +25,10 @@ function GetRegistrations() {
     const fetchData = async () => {
       try {
         const eventsResponse = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events`
+          `/api/events`
         );
         // const departmentsResponse = await axios.get(
-        //   `${import.meta.env.VITE_BACKEND_URL}/api/events/departments`
+        //   `/api/events/departments`
         // );
 
         const eventOptions = eventsResponse.data.map((event) => ({
@@ -64,12 +64,12 @@ function GetRegistrations() {
       let response;
       if (selectedEvent) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedEvent.value
+          `/api/events/${selectedEvent.value
           }/registrations`
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/department/${selectedDepartment.value
+          `/api/events/department/${selectedDepartment.value
           }/registrations`
         );
       }
@@ -92,13 +92,13 @@ function GetRegistrations() {
       let response;
       if (selectedEvent) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedEvent.value
+          `/api/events/${selectedEvent.value
           }/registrations/excel`,
           { responseType: 'blob' }
         );
       } else if (selectedDepartment) {
         response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events/department/${selectedDepartment.value
+          `/api/events/department/${selectedDepartment.value
           }/registrations/excel`,
           { responseType: 'blob' }
         );
