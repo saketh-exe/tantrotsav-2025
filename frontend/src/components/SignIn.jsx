@@ -22,7 +22,7 @@ function SignIn() {
           `/api/auth/login`,
           { email: user.email }
         );
-        console.log('Response from the backend:', response.data);
+        // console.log('Response from the backend:', response.data);
 
         setUser(user);
         // If the user doesn't exist, redirect to the register page
