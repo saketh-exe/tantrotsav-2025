@@ -48,6 +48,7 @@ function CreateEvent() {
     "AWS Cloud Club",
     "Aurora Dance Club",
     "Literary and Fine Arts Club",
+    "Collaborated Events"
   ];
 
   const navigate = useNavigate(); // Initialize useNavigate hook

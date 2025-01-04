@@ -78,6 +78,7 @@ function UpdateEvent() {
     "AWS Cloud Club",
     "Aurora Dance Club",
     "Literary and Fine Arts Club",
+    "Collaborated Events"
   ];
 
   // Fetch events for selection
