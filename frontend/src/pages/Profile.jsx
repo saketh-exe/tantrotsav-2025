@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
 function Profile() {
   const { user } = useAuthStore();
   const [registeredEvents, setRegisteredEvents] = useState([]);
-  console.log(user);
+  // console.log(user);
 
   useEffect(() => {
     const fetchRegisteredEvents = async () => {

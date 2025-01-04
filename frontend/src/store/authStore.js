@@ -27,7 +27,7 @@ onAuthStateChanged(auth, async (user) => {
       );
       if (response.data.code === 200) {
         // Set the user registration status
-        console.log(response);
+        // console.log(response);
         useAuthStore.getState().setUser(response.data.user);
         useAuthStore.getState().setUserRegistrationStatus(true);
       } else {

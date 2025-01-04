@@ -13,7 +13,7 @@ function Logout() {
       await signOut(auth);
       // Clear the user from the Zustand store
       clearUser();
-      console.log('User logged out successfully')
+      // console.log('User logged out successfully')
       // Navigate to / page
       // window.location.href = '/';
       toast.success('Logged out successfully');

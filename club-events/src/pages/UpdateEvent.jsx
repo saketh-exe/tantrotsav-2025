@@ -85,7 +85,7 @@ function UpdateEvent() {
     async function fetchEvents() {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_BACKEND_URL}/api/events`
+          `/api/events`
         );
         const eventOptions = response.data.map((event) => ({
           value: event._id,
@@ -105,7 +105,7 @@ function UpdateEvent() {
     console.log("Selected Event:", selectedOption);
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedOption.value}`
+        `/api/events/${selectedOption.value}`
       );
       const eventData = response.data;
 
@@ -167,7 +167,7 @@ function UpdateEvent() {
 
     try {
       const response = await axios.put(
-        `${import.meta.env.VITE_BACKEND_URL}/api/events/${selectedEvent.value}`,
+        `/api/events/${selectedEvent.value}`,
         formData
       );
       alert("Event updated successfully!");

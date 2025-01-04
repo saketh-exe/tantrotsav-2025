@@ -94,7 +94,7 @@ function CreateEvent() {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/api/events/add`,
+        `/api/events/add`,
         formData
       );
       console.log("Event Created:", response.data);

@@ -22,7 +22,7 @@ function Cart() {
           `/api/users/${user.email}/cart`
         );
         setCartItems(response.data.cart); // Set the cart items
-        console.log('Cart items:', response.data.cart);
+        // console.log('Cart items:', response.data.cart);
       } catch (error) {
         console.error('Error fetching cart items:', error);
       } finally {
@@ -61,14 +61,14 @@ function Cart() {
       redirect_url: `https://tantrotsav.amrita.edu/api/ccavenue-handle`,
       cancel_url: `https://tantrotsav.amrita.edu/api/ccavenue-handle`,
     };
-    console.log('Payment Data:', paymentData);
+    // console.log('Payment Data:', paymentData);
     try {
       const encReq = CCAvenue.getEncryptedOrder(paymentData);
 
-      console.log('Encrypted Request:', encReq);
+      // console.log('Encrypted Request:', encReq);
 
       const accessCode = import.meta.env.VITE_ACCESS_CODE; // Replace with actual access code
-      console.log('Access Code:', accessCode);
+      // console.log('Access Code:', accessCode);
       const paymentURL = `https://secure.ccavenue.com/transaction/transaction.do?command=initiateTransaction&merchant_id=${paymentData.merchant_id}&encRequest=${encReq}&access_code=${accessCode}`;
 
       // Redirect to CCAvenue Payment Gateway
