@@ -6,6 +6,7 @@ import CartItem from '../components/CartItem';
 // import { useNavigate } from 'react-router-dom';
 import CCAvenue from '../utils/CCAvenue';
 import crypto from 'crypto';
+import Loading from '../components/Loading';
 
 function Cart() {
   const { user } = useAuthStore(); // Get the user info
@@ -79,7 +80,7 @@ function Cart() {
   };
 
   if (isLoading) {
-    return <div>Loading your cart...</div>;
+    return <Loading/>;
   }
 
   const totalCost = cartItems.reduce(

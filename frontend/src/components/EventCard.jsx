@@ -26,6 +26,7 @@ function EventCard({ event }) {
     setIsLoading(true);
 
     try {
+      toast.success("Adding")
       // Fetch user's cart to check for any conflicting events
       const cartResponse = await axios.get(`/api/users/${user.email}/cart`);
       const cartItems = cartResponse.data.cart;
@@ -145,8 +146,8 @@ function EventCard({ event }) {
               {pending.includes(event._id)
                 ? "N/D"
                 : event.registrationFee
-                ?"N/D"
-                  // ? `₹${event.registrationFee}`
+                
+                  ? `₹${event.registrationFee}`
                   : "N/D"}
             </span>
           </p>
@@ -166,11 +167,11 @@ function EventCard({ event }) {
               View Details
             </Link>
           )}
-          {false && (
+          {user &&(
             <button
               onClick={addToCart}
               className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-                isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+                isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
               }`}
               disabled={isLoading}
             >

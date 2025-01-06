@@ -9,6 +9,7 @@ function CartItem({ item }) {
   const { user, setUser } = useAuthStore();
   const navigate = useNavigate()
   const removeFromCart = async (eventId) => {
+    toast.success("Removing")
     try {
       const response = await axios.delete(
         `/api/users/${
@@ -16,8 +17,9 @@ function CartItem({ item }) {
         }/cart/${eventId}`
       );
       setUser(response.data.user);
+      toast.success("Removed")
     } catch (error) {
-      console.error('Error removing item from cart:', error);
+      
       toast.error('Failed to remove item from cart');
     }
   };
@@ -31,7 +33,8 @@ function CartItem({ item }) {
       key={item.eventId._id}
       className="flex justify-between items-center bg-white border-4 border-[#acacac] rounded-lg shadow-md md:p-4 p-1 duration-200 mb-4 backdrop-blur-xl bg-opacity-25"
     >
-      <button className="flex items-center gap-4 hover:bg-yellow-900 md:p-4  p-2 rounded-xl bg-opacity-5 transition-all ease-in-out w-full">
+      <button className="flex items-center gap-4 hover:bg-yellow-900 md:p-4  p-2 rounded-xl bg-opacity-5 transition-all ease-in-out w-full" 
+      onClick={() => handleRedirect(item.eventId._id)}>
         <button>
         <img
           src={item.eventId.thumbnail || '/default-thumbnail.jpg'}

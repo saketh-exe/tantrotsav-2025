@@ -89,10 +89,10 @@ function Events() {
         </div>
       </div>
 
-      <div className="w-full text-center text-xl text-red-400">
+      {/* <div className="w-full text-center text-xl text-red-400">
         *Registrations will open soon.<br />
         Stay tuned for more events.
-      </div>
+      </div> */}
 
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
