@@ -146,9 +146,8 @@ function EventCard({ event }) {
               {pending.includes(event._id)
                 ? "N/D"
                 : event.registrationFee
-                
                   ? `₹${event.registrationFee}`
-                  : "N/D"}
+                  : "Free"}
             </span>
           </p>
         </div>
@@ -167,7 +166,7 @@ function EventCard({ event }) {
               View Details
             </Link>
           )}
-          {user &&(
+          {event.registrationFee ?(user && (
             <button
               onClick={addToCart}
               className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
@@ -177,7 +176,7 @@ function EventCard({ event }) {
             >
               {isLoading ? "Adding..." : "Add to Cart"}
             </button>
-          )}
+          )):<></>}
         </div>
       )}
     </div>

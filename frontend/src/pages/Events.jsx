@@ -87,6 +87,7 @@ function Events() {
               ))}
           </select>
         </div>
+              <a href="https://iili.io/2glbAcg.png" target="_blank" className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">brochure</a>
       </div>
 
       {/* <div className="w-full text-center text-xl text-red-400">
@@ -96,16 +97,33 @@ function Events() {
 
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
-        {filteredEvents.map((event) => {
-          return (
-            !event.isHidden && (
-              <div key={event._id} className="lazy-card">
-                <EventCardLazy event={event} />
-              </div>
-            )
-          );
-        })}
-      </div>
+  {(() => {
+    // Separate the first 4 events and the rest
+    const firstFourEvents = filteredEvents.slice(0, 4);
+    const remainingEvents = filteredEvents.slice(4);
+
+    // Shuffle the remaining events
+    for (let i = remainingEvents.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [remainingEvents[i], remainingEvents[j]] = [remainingEvents[j], remainingEvents[i]];
+    }
+
+    // Combine first 4 with shuffled remaining events
+    const randomizedEvents = [...firstFourEvents, ...remainingEvents];
+
+    // Map through the combined array
+    return randomizedEvents.map((event) => {
+      return (
+        !event.isHidden && (
+          <div key={event._id} className="lazy-card">
+            <EventCardLazy event={event} />
+          </div>
+        )
+      );
+    });
+  })()}
+</div>
+
 
       {/* No Results Fallback */}
       {filteredEvents.length === 0 && (

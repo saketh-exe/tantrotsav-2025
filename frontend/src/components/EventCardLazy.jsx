@@ -13,7 +13,7 @@ const EventCardLazy = ({ event }) => {
           observer.disconnect();
         }
       },
-      { threshold: 0.1 } // Trigger when 10% of the card is visible
+      { threshold: 0.5 } // Trigger when 10% of the card is visible
     );
 
     if (cardRef.current) observer.observe(cardRef.current);

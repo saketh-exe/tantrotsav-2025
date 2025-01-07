@@ -149,7 +149,7 @@ function EventDetails() {
                 <div className="flex gap-4">
                   {/* Add to cart */}
                   <div className=" flex justify-start">
-                    {user && (
+                    {event.registrationFee ? (user && (
                       <button
                         onClick={addToCart}
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
@@ -158,7 +158,7 @@ function EventDetails() {
                       >
                         {isLoading ? "Adding..." : "Add to Cart"}
                       </button>
-                    )}
+                    )):<></>}
 
                   </div>
                   {event.documents && (
@@ -183,6 +183,7 @@ function EventDetails() {
               </p>
               <p className="text-justify text-sm sm:text-base text-white ">
                 {event.description}
+                {event.registrationFee === 0 ?<p>This event requires no registration.</p>:<></>}
                 {event.documents && <strong className="text-green-200">PLEASE REFER DOCUMENTS FOR MORE INFO.</strong>}
               </p>
 
