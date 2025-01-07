@@ -87,7 +87,7 @@ function Events() {
               ))}
           </select>
         </div>
-              <a href="https://iili.io/2glbAcg.png" target="_blank" className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">brochure</a>
+        <a href="https://iili.io/2glbAcg.png" target="_blank" className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">View Brochure</a>
       </div>
 
       {/* <div className="w-full text-center text-xl text-red-400">
