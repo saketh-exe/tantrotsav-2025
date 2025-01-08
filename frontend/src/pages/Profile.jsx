@@ -322,9 +322,11 @@ function Profile() {
         {registeredEvents.length === 0 ? (
           <p className="text-center text-gray-400">No events registered yet, Hurry up!!</p>
         ) : (
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 w-full justify-center items-center md:justify-start mt-10">
             {registeredEvents.map((event) => (
+              
               <EventRegistered key={event._id} event={event} />
+              
             ))}
           </div>
         )}

@@ -1,43 +1,67 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import place from '../assets/loads.gif';
 
 function EventRegistered({ event }) {
   return (
-    <div className="w-[250px] h-[350px] bg-white border-2 border-[#323232] rounded-[5px] shadow-[4px_4px_#323232] flex flex-col justify-start p-[20px] gap-[10px] hover:scale-105 duration-200">
+    <div className="w-[300px] h-[420px] rounded-[12px] flex flex-col justify-between pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white">
       <div className="transition-all duration-500 flex justify-center">
-        {/* Card Image with fixed size */}
-        <div className="w-full h-[120px] relative border-2 rounded-md border-black bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.3)]">
-          <img
-            src={event.thumbnail || '/default-thumbnail.jpg'}
-            alt={event.title}
-            className="w-full h-full object-cover rounded-md"
-          />
+        <div className="w-full h-[180px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)] border-opacity-50">
+          <Link to={`/events/${event._id}`}>
+            <LazyLoadImage
+              src={event.thumbnail || '/default-thumbnail.jpg'}
+              alt={event.title}
+              effect
+              width="100%"
+              placeholderSrc={place}
+              height="100%"
+              className="w-full h-full object-cover rounded-md select-none"
+              style={{ objectPosition: '0px -30px' }}
+            />
+          </Link>
         </div>
       </div>
 
       <div className="flex flex-col items-center">
-        <h3 className="text-[20px] font-bold text-black hover:text-[#1d4ed8] transition-colors duration-300">
-          {event.title}
-        </h3>
-        <p className="text-[14px] max-w-[200px] font-normal text-[#4a4a4a] truncate">
+        <Link to={`/events/${event._id}`}>
+          <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
+            {event.title}
+          </h3>
+        </Link>
+        <p className="text-center text-[14px] max-w-[240px] font-normal text-[#d6d6d6] line-clamp-3">
           {event.description}
         </p>
 
-        <div className="mt-[10px] text-[14px] text-[#323232] flex flex-col items-center gap-[5px]">
+        <div className="mt-[10px] text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
+          {event.date && (
+            <p className="text-sm">
+              <strong className="text-white">Date:</strong>{' '}
+              <span className="text-gray-100">
+                {(() => {
+                  let formattedDate = new Date(event.date)
+                    .toLocaleDateString('en-GB')
+                    .slice(0, 2);
+                  return formattedDate === '28'
+                    ? '29th & 30th Jan'
+                    : `${formattedDate}th Jan`;
+                })()}
+              </span>
+            </p>
+          )}
           <p className="text-sm">
-            <strong className="text-[#000000]">Time:</strong>{' '}
-            <span className="text-black">{event.time}</span>
-          </p>
-          <p className="text-sm">
-            <strong className="text-[#000000]">Date:</strong>{' '}
-            <span className="text-black">
-              {new Date(event.date).toLocaleDateString()}
+            <strong className="text-white">Time:</strong>{' '}
+            <span className="text-gray-100">
+              {event.time}
             </span>
           </p>
         </div>
+      </div>
+
+      <div className="flex gap-2 justify-between">
         <Link
           to={`/events/${event._id}`}
-          className="p-2 rounded-md w-full bg-[#000000] text-white text-center mt-[10px] hover:bg-[#ffffff] transition-colors duration-300 hover:text-black border border-black"
+          className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300"
         >
           View Details
         </Link>
