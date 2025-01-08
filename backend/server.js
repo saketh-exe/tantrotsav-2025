@@ -9,6 +9,8 @@ const userRoutes = require('./routes/userRoutes');
 const ticketRoutes = require('./routes/ticketRoute');
 const ccavenueRoutes = require('./routes/ccavenueRoute'); // Import the CCAvenue route
 const dotenv = require('dotenv');
+const cookieParser = require('cookie-parser');
+
 
 dotenv.config(); // Load environment variables from a .env file
 
@@ -18,6 +20,7 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // Connect to MongoDB
 mongoose
