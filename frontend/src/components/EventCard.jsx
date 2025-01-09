@@ -14,7 +14,6 @@ function EventCard({ event }) {
   const pending = [
     "67737e4188d8600ff314c594",
     "67738c877b3bfd288ffb7dbc",
-    "6773a110de2fd564adc4eae2",
     "6773a24ede2fd564adc4eaee",
   ]; // id's of pending events
 
@@ -80,16 +79,7 @@ function EventCard({ event }) {
       <div className="transition-all duration-500 flex justify-center">
         {/* Card Image with fixed size */}
         <div className="w-full h-[180px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)] border-opacity-50">
-          {pending.includes(event._id) ? (
-            <LazyLoadImage
-              src={event.thumbnail || "/default-thumbnail.jpg"}
-              alt={event.title}
-              effect="blur"
-              width="100%"
-              height="100%"
-              className="w-full h-full object-cover rounded-md select-none"
-            />
-          ) : (
+          {(
             <Link to={`/events/${event._id}`}>
               <LazyLoadImage
                 src={event.thumbnail || "/default-thumbnail.jpg"}
@@ -107,13 +97,7 @@ function EventCard({ event }) {
       </div>
 
       <div className="flex flex-col items-center">
-        {pending.includes(event._id) ? (
-          <>
-            <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
-              {event.title}
-            </h3>
-          </>
-        ) : (
+        {(
           <Link to={`/events/${event._id}`}>
             <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
               {event.title}
@@ -143,10 +127,9 @@ function EventCard({ event }) {
           <p className="text-sm">
             <strong className="text-white">Registration Fee:</strong>{" "}
             <span className="text-gray-100">
-              {pending.includes(event._id)
-                ? "N/D"
-                : event.registrationFee
-                  ? `₹${event.registrationFee}`
+              {event.registrationFee ? 
+              event.registrationFee < 0 ? "N/D" :
+                  `₹${event.registrationFee}`
                   : "Free"}
             </span>
           </p>
@@ -154,11 +137,9 @@ function EventCard({ event }) {
       </div>
 
       {/* Footer with Action Buttons */}
-      {pending.includes(event._id) ? (
-        <div></div>
-      ) : (
+      {(
         <div className="flex gap-2 justify-between">
-          {!pending.includes(event._id) && (
+          {(
             <Link
               to={`/events/${event._id}`}
               className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300"
@@ -166,7 +147,18 @@ function EventCard({ event }) {
               View Details
             </Link>
           )}
-          {event.registrationFee ?(user && (
+          {event.registrationFee ? (user && (
+           pending.includes(event._id)
+           ? ( event.registrationFee > 0 ?<button
+              onClick={()=>console.log("buy now clicked")} // buy now 
+              className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+                isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
+              }`}
+              disabled={isLoading}
+            >
+              {isLoading ? "Buying ..." : "Buy now"}
+            </button>:<></>)
+            :
             <button
               onClick={addToCart}
               className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${

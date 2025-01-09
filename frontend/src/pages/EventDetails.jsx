@@ -22,7 +22,11 @@ import Eventpill from "../components/Eventpill";
 
 function EventDetails() {
   const navigate = useNavigate();
-
+  const pending = [
+    "67737e4188d8600ff314c594",
+    "67738c877b3bfd288ffb7dbc",
+    "6773a24ede2fd564adc4eaee",
+  ]; // id's of pending events
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
   const { eventId } = useParams();
@@ -149,8 +153,15 @@ function EventDetails() {
                 <div className="flex gap-4">
                   {/* Add to cart */}
                   <div className=" flex justify-start">
-                    {event.registrationFee ? (user && (
-                      <button
+                    {event.registrationFee&&event.registrationFee>0 ? (user && (
+                      pending.includes(event._id)?(<button
+                        onClick={()=> console.log("Buy clicked")} // buy 
+                        className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+                          }`}
+                        disabled={isLoading}
+                      >
+                        {isLoading ? "Buying..." : "Buy now "}
+                      </button>):<button
                         onClick={addToCart}
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
@@ -207,7 +218,7 @@ function EventDetails() {
                 {(event.duration && event.duration != 0) && <Eventpill imgsrc={Duration} content={event.duration ? `${event.duration} hour(s)` : "1 hour(s)"} />}
                 <Eventpill imgsrc={Location} content={event.location} />
                 <Eventpill imgsrc={Club} content={event.clubName} />
-                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? `${event.registrationFee}` : "Free"} />
+                <Eventpill imgsrc={Rupee} content={event.registrationFee != 0 ? event.registrationFee > 0 ?`${event.registrationFee}`:"N/D" : "Free"} />
                 <Eventpill imgsrc={team} content={event.teamSize} /> {/* Team size here {event.teamSize} */}
                 {(event.prize1st > 0 || event.prize2nd > 0) && (
                   <Eventpill
