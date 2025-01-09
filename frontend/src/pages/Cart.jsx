@@ -145,6 +145,8 @@ function Cart() {
             </div>
             <p className=' line-clamp-2  text-sm text-red-800'>
              *Events once registred can not be cancelled.</p>
+            <p className=' line-clamp-2  text-sm text-red-800'>
+             *In next page make sure your billing mail is same as Tantrotsav login mail.</p>
           </div>
         </div>
       )}
