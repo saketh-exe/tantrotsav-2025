@@ -14,7 +14,6 @@ function EventCard({ event }) {
   const pending = [
     "67737e4188d8600ff314c594",
     "67738c877b3bfd288ffb7dbc",
-    "6773a24ede2fd564adc4eaee",
   ]; // id's of pending events
 
   const addToCart = async () => {
@@ -147,17 +146,36 @@ function EventCard({ event }) {
               View Details
             </Link>
           )}
-          {event.registrationFee ? (user && (
+
+          {event.registrationFee ? 
+          (user && 
+            (
            pending.includes(event._id)
-           ? ( event.registrationFee > 0 ?<button
-              onClick={()=>console.log("buy now clicked")} // buy now 
-              className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-                isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-              }`}
-              disabled={isLoading}
-            >
-              {isLoading ? "Buying ..." : "Buy now"}
-            </button>:<></>)
+           ? 
+           ( event.registrationFee > 0 ?
+             event._id === "67738c877b3bfd288ffb7dbc" ? (
+                <button
+                className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+                  isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
+                }`}
+                disabled={isLoading}
+              >
+               OFFLINE
+              </button>
+              ) : (
+                <button
+                onClick={()=> console.log("buy now is clicked")}
+                className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+                  isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
+                }`}
+                disabled={isLoading}
+              >
+                {isLoading ? "Buying..." : "Buy now "}
+              </button>
+              )
+           
+            :
+            <></>)
             :
             <button
               onClick={addToCart}
@@ -169,6 +187,8 @@ function EventCard({ event }) {
               {isLoading ? "Adding..." : "Add to Cart"}
             </button>
           )):<></>}
+
+
         </div>
       )}
     </div>

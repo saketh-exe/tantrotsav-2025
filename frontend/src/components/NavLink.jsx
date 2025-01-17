@@ -1,7 +1,9 @@
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { useScrollContext } from './ContextProvider';
 
 function NavLink({ to, text, setIsMenuOpen ,active}) {
+  const {setIsScrolled} = useScrollContext()
   const activeStyle = {
     backgroundColor : "black",
     borderRadius : "6px",
@@ -12,7 +14,9 @@ function NavLink({ to, text, setIsMenuOpen ,active}) {
       to={to}
       style={active?activeStyle:{}}
       className="group relative flex items-center"
-      onClick={() => setIsMenuOpen(false)}
+      onClick={() => {setIsMenuOpen(false)
+        setIsScrolled(false)
+      }}
     >
       <span className="hover:text-[#ffffff] transition-all duration-300 hover:bg-black p-2 rounded-md font-[500] ">
         {text}

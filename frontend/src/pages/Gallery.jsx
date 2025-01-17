@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useRef , useEffect} from "react";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import "react-lazy-load-image-component/src/effects/blur.css";
+import { useScrollContext } from "../components/ContextProvider";
+
 
 const images = [
   "https://iili.io/2Si9CvV.md.webp",
@@ -53,14 +55,37 @@ const images = [
 ];
 
 function Gallery() {
+    const scrollContainerRef = useRef(null); // Ref for the scrollable container
+  
   const [criticalLoaded, setCriticalLoaded] = useState(0);
+ const { setIsScrolled } = useScrollContext();
+useEffect(() => {
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        setIsScrolled(scrollContainerRef.current.scrollTop > 0)
+      }
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll); // Attach scroll listener
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll); // Cleanup listener
+      }
+    };
+  }, []);
 
   const handleImageLoad = () => {
     setCriticalLoaded((prev) => prev + 1);
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 to-cyan-950 py-12 flex flex-col justify-center items-center pt-24">
+    <div ref={scrollContainerRef} className="relative z-10  h-screen w-full scrollbar-hide min-h-screen bg-gradient-to-br from-gray-900 to-cyan-950 py-12 overflow-y-scroll">
+      <div className="flex flex-col justify-center items-center pt-12 ">
       <h2 className="text-4xl font-semibold text-center text-white mb-12 animate__animated animate__fadeIn">
         Techfest Gallery
       </h2>
@@ -121,6 +146,9 @@ function Gallery() {
           }
         })}
       </div>
+      </div>
+      
+     
     </div>
   );
 }

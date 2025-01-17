@@ -7,46 +7,50 @@ import NavLink from "./NavLink";
 import Register from "./Register";
 import { useNavigate, useLocation } from "react-router-dom";
 import Logos from "./Logos";
+import { useScrollContext } from "./ContextProvider";
 
 
-function Navbar({ isScrolled }) {
+function Navbar() {
+
   const { user } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setscrolled] = useState(isScrolled);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-
+  const { issScrolled } = useScrollContext();
+  const [scrolled, setscrolled] = useState(issScrolled);
+  
   
 
   useEffect(() => {
-    setscrolled(isScrolled);
-  }, [isScrolled]);
+    setscrolled(issScrolled);
+    
+  }, [issScrolled]);
 
   const sstyle = {
-    position: "fixed",
+  
     top: 0,
-    left: "50%",
-    transform: "translateX(-50%)",
-    transformOrigin: "top center",
-    width: "70%",
+    // left: "50%",
+    // transform: "translateX(-50%)",
+    // transformOrigin: "top center",
+    width: "75%",
     padding: "10px 5px",
-    backgroundColor: "#dff0ff",
+ 
     color: "black",
     borderRadius: "50px",
     boxShadow: "0 4px 10px rgba(0, 0, 0, 0.2)",
     transition: "all 0.3s ease",
-    margin: "10px",
+    marginTop: "10px",
   };
 
   const norm = {
-    position: "fixed",
+    
     top: 0,
     left: 0,
     transform: "none",
     transformOrigin: "top left",
     width: "100%",
     padding: "10px 20px",
-    backgroundColor: "#dff0ff",
+   
     color: "black",
     borderRadius: "0",
     boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
@@ -54,8 +58,9 @@ function Navbar({ isScrolled }) {
   };
 
   return (
-    <nav
-      className="flex justify-evenly items-center overflow-x-hidden fixed z-50 h-16 w-full mx-auto md:justify-around "
+    <div className="flex justify-center items-center w-full  z-50 fixed top-0 h-fit">
+<nav
+      className="flex justify-evenly items-center overflow-x-hidden  h-16 w-full  md:justify-around bg-slate-100 bg-opacity-85"
       style={scrolled ? sstyle : norm}
     >
       {/* Logo */}
@@ -63,11 +68,11 @@ function Navbar({ isScrolled }) {
 
       {/* Navigation Links */}
       <div
-        className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-[#dff0ff] shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
+        className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-transparent shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
           isMenuOpen ? "translate-x-0" : "-translate-x-full"
         } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
       >
-        <div className="flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full bg-[#dff0ff]">
+        <div className={`flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full ${isMenuOpen? "bg-white":"bg-transparent"}`}>
           <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} active={pathname === "/"} />
           <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} active={pathname === "/events"} />
           <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} active={pathname === "/gallery"} />
@@ -96,7 +101,7 @@ function Navbar({ isScrolled }) {
       {/* Cart and Profile Section */}
       <div className="flex items-center gap-4 md:gap-4 z-40">
         {user ? (
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {<Link to={"/cart"} className="relative">
               <FaShoppingCart className="h-6 w-6 text-gray-700 hover:scale-125 transition-transform duration-200" />
               <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-2">
@@ -134,6 +139,8 @@ function Navbar({ isScrolled }) {
         </button>
       </div>
     </nav>
+    </div>
+    
   );
 }
 

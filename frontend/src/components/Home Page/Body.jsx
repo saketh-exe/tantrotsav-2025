@@ -5,14 +5,18 @@ import About from "./About";
 import Featured from "./Featured";
 import Contact from "./Contact";
 import Sponsor from "./Sponsor";
+import { useScrollContext } from "../ContextProvider";
 
-export default function Body({ onScroll }) {
+export default function Body() {
   const scrollContainerRef = useRef(null); // Ref for the scrollable container
+  const { setIsScrolled } = useScrollContext();
 
+  
   useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {
-        onScroll(scrollContainerRef.current.scrollTop); // Notify parent about the scrollTop value
+        // Notify parent about the scrollTop value
+        setIsScrolled(scrollContainerRef.current.scrollTop > 0)
       }
     };
 

@@ -13,29 +13,25 @@ import Gallery from "./pages/Gallery";
 import Failed from "./pages/Failed";
 import NotFound from "./pages/NotFound";
 import Success from "./pages/Success";
-import { useState } from "react"; // Import `useState` from React
 import Accommodation from "./pages/Accommodation"
 import AnimatedCursor from "react-animated-cursor";
-
+import { ScrollProvider } from "./components/ContextProvider";
 
 function App() {
-  const [isScrolled, setIsScrolled] = useState(false); // State to track scroll
-
-  // Function to handle scroll and update the state
-  const handleScroll = (scrollTop) => {
-    setIsScrolled(scrollTop > 0); // Set `isScrolled` based on scrollTop
-  };
-
+ 
   return (
     <div>
       <Router>
-        <Navbar isScrolled={isScrolled} />
+        <ScrollProvider>
+
+        
+        <Navbar/>
         <Routes>
           <Route
             path="/"
             element={
               <RouteGuard>
-                <Home onScroll={handleScroll} />
+                <Home/>
               </RouteGuard>
             }
           />
@@ -97,6 +93,7 @@ function App() {
           </Route>
           <Route path="*" element={<NotFound />} /> {/* Default route for 404 */}
         </Routes>
+        </ScrollProvider>
       </Router>
       <Toaster />
       {<div className="hidden  hide-cursor:block"><AnimatedCursor
