@@ -55,9 +55,8 @@ const images = [
 ];
 
 function Gallery() {
-    const scrollContainerRef = useRef(null); // Ref for the scrollable container
-  
   const [criticalLoaded, setCriticalLoaded] = useState(0);
+ const scrollContainerRef = useRef(null); 
  const { setIsScrolled } = useScrollContext();
 useEffect(() => {
     const handleScroll = () => {

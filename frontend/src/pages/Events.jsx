@@ -1,8 +1,9 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import { FiSearch, FiFilter } from "react-icons/fi"; // Import icons
 import EventCardLazy from "../components/EventCardLazy"; // Import lazy-loaded EventCard
 import Loading from "../components/Loading";
+import { useScrollContext } from '../components/ContextProvider';
 
 function Events() {
   const [events, setEvents] = useState([]);
@@ -10,7 +11,10 @@ function Events() {
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState('All'); // New state for type filter
   const [filteredEvents, setFilteredEvents] = useState([]);
-
+  
+  const scrollContainerRef = useRef(null); 
+  const { setIsScrolled } = useScrollContext();
+  const [randomizedEvents, setRandomizedEvents] = useState([]);
   useEffect(() => {
     const fetchEvents = async () => {
       try {
@@ -41,6 +45,54 @@ function Events() {
     setFilteredEvents(filtered);
   }, [searchQuery, typeFilter, events]);
 
+  
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        setIsScrolled(scrollContainerRef.current.scrollTop > 0)
+      }
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll); // Attach scroll listener
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll); // Cleanup listener
+      }
+    };
+  }, [scrollContainerRef.current]); //scroll logic 
+  
+  useEffect(() => {
+    // Ensure filteredEvents exists and is not empty
+    if (!filteredEvents || filteredEvents.length === 0) return;
+
+    // Separate the first 4 events and the rest
+    const firstFourEvents = filteredEvents.slice(0, 4);
+    const remainingEvents = filteredEvents.slice(4);
+
+    // Shuffle the remaining events
+    for (let i = remainingEvents.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [remainingEvents[i], remainingEvents[j]] = [remainingEvents[j], remainingEvents[i]];
+    }
+
+    // Combine first 4 with shuffled remaining events
+    const combinedEvents = [...firstFourEvents, ...remainingEvents];
+
+    // Update the state with the processed events
+    setRandomizedEvents(combinedEvents);
+  }, [filteredEvents]); // Run the effect whenever filteredEvents changes
+  
+  
+  
+  
   // Extract unique event types for filtering
   const uniqueTypes = [
     'All',
@@ -53,7 +105,8 @@ function Events() {
   }
 
   return (
-    <div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28 bg-gradient-to-br from-black to-indigo-950 text-white">
+    <div ref={scrollContainerRef} className="relative z-10  h-screen w-full scrollbar-hide min-h-screen bg-gradient-to-br from-red-950 to-indigo-950  overflow-y-scroll">
+<div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28 bg-gradient-to-br from-indigo-950 to-red-950 text-white">
       <h2 className="text-5xl font-bold text-center mb-8">Upcoming Events</h2>
 
       {/* Search and Filter Section */}
@@ -97,31 +150,15 @@ function Events() {
 
       {/* Display Events */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
-  {(() => {
-    // Separate the first 4 events and the rest
-    const firstFourEvents = filteredEvents.slice(0, 4);
-    const remainingEvents = filteredEvents.slice(4);
-
-    // Shuffle the remaining events
-    for (let i = remainingEvents.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [remainingEvents[i], remainingEvents[j]] = [remainingEvents[j], remainingEvents[i]];
-    }
-
-    // Combine first 4 with shuffled remaining events
-    const randomizedEvents = [...firstFourEvents, ...remainingEvents];
-
-    // Map through the combined array
-    return randomizedEvents.map((event) => {
-      return (
-        !event.isHidden && (
-          <div key={event._id} className="lazy-card">
-            <EventCardLazy event={event} />
-          </div>
-        )
-      );
-    });
-  })()}
+  {randomizedEvents.map((event) => {
+        return (
+          !event.isHidden && (
+            <div key={event._id} className="lazy-card">
+              <EventCardLazy event={event} />
+            </div>
+          )
+        );
+      })}
 </div>
 
 
@@ -132,6 +169,8 @@ function Events() {
         </p>
       )}
     </div>
+    </div>
+    
   );
 }
 

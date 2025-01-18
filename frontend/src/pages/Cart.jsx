@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect ,useRef} from 'react';
 import axios from 'axios';
 import useAuthStore from '../store/authStore'; // Assuming you are using Zustand or any other state management
 import { FaShoppingCart } from 'react-icons/fa'; // Import React Icons
@@ -7,11 +7,14 @@ import CartItem from '../components/CartItem';
 import CCAvenue from '../utils/CCAvenue';
 import crypto from 'crypto';
 import Loading from '../components/Loading';
-
+import { useScrollContext } from '../components/ContextProvider';
 function Cart() {
   const { user } = useAuthStore(); // Get the user info
   const [cartItems, setCartItems] = useState([]); // State to hold cart items
   const [isLoading, setIsLoading] = useState(true); // Loading state for fetching cart items
+  
+  const scrollContainerRef = useRef(null); 
+  const { setIsScrolled } = useScrollContext();
   // const router = useNavigate();
 
   useEffect(() => {
@@ -34,6 +37,32 @@ function Cart() {
     fetchCartItems();
   }, [user]); // Refetch cart when the user changes
 
+
+  useEffect(() => {
+    if (isLoading) {
+      return;
+    }
+    const handleScroll = () => {
+      if (scrollContainerRef.current) {
+        setIsScrolled(scrollContainerRef.current.scrollTop > 0)
+      }
+    };
+
+    const scrollContainer = scrollContainerRef.current;
+
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll); // Attach scroll listener
+    }
+
+    return () => {
+      if (scrollContainer) {
+        scrollContainer.removeEventListener("scroll", handleScroll); // Cleanup listener
+      }
+    };
+  }, [scrollContainerRef.current]); //scroll logic 
+  
+  
+  
   const proceedToCheckout = async () => {
     if (cartItems.length === 0) return;
 
@@ -88,8 +117,12 @@ function Cart() {
     0
   );
 
+
+  
+
   return (
-    <div className="flex py-28 w-full bg-gradient-to-br from-gray-900 to-green-950 justify-center flex-col md:flex-row min-h-screen h-fit">
+    <div ref={scrollContainerRef} className="relative z-10  h-screen w-full scrollbar-hide min-h-screen bg-gradient-to-br from-gray-900 to-green-950  overflow-y-scroll">
+      <div className="flex py-28 w-full bg-gradient-to-br from-gray-900 to-green-950 justify-center flex-col md:flex-row min-h-screen h-fit">
       {/* Left Side: Cart Items */}
       <div className="w-full flex flex-col items-center md:w-1/2">
         {cartItems.length === 0 ? (
@@ -150,7 +183,9 @@ function Cart() {
           </div>
         </div>
       )}
+      </div>
     </div>
+    
   );
 }
 
