@@ -1,5 +1,5 @@
 import React from "react";
-import Sponsor1 from "../../assets/Decathlon_Logo.png";
+import Sponsor1 from "../../assets/tkt9.png";
 import Sponsor2 from "../../assets/e-cell_logo.png";
 import Sponsor3 from "../../assets/EDD_Logo.png";
 

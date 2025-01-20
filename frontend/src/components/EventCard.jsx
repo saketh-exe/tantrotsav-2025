@@ -163,15 +163,15 @@ function EventCard({ event }) {
                OFFLINE
               </button>
               ) : (
-                <button
-                onClick={()=> console.log("buy now is clicked")}
+                <a
+                href="https://www.theticket9.com/event/tantrotsav-25-dj-night" target="_blank"
                 className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
                   isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
                 }`}
                 disabled={isLoading}
               >
                 {isLoading ? "Buying..." : "Buy now "}
-              </button>
+              </a>
               )
            
             :

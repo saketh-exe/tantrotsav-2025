@@ -160,14 +160,14 @@ function EventDetails() {
                         disabled={isLoading}
                       >
                         {"Offline Registration only "}
-                      </button>:<button
-                        onClick={()=> console.log("Buy clicked")} // buy 
+                      </button>:<a
+                        href="https://www.theticket9.com/event/tantrotsav-25-dj-night" target="_blank"
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
                         disabled={isLoading}
                       >
                         {isLoading ? "Buying..": "Buy Now"}
-                      </button>)
+                      </a>)
                       :
                       <button
                         onClick={addToCart}
