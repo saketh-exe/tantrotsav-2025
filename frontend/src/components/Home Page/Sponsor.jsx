@@ -1,7 +1,6 @@
 import React from "react";
-import Sponsor1 from "../../assets/Decathlon_Logo.png";
-import Sponsor2 from "../../assets/e-cell_logo.png";
-import Sponsor3 from "../../assets/EDD_Logo.png";
+import Sponsor1 from "../../assets/e-cell_logo.png";
+import Sponsor2 from "../../assets/EDD_Logo.png";
 
 export default function Sponsor() {
   return (
@@ -22,13 +21,6 @@ export default function Sponsor() {
           <img
             src={Sponsor2}
             alt="Sponsor 2"
-            className="w-24 sm:w-32 lg:w-40"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor3}
-            alt="Sponsor 3"
             className="w-24 sm:w-32 lg:w-40"
           />
         </div>
