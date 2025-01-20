@@ -25,6 +25,13 @@ export default function Sponsor() {
             className="w-24 sm:w-32 lg:w-40"
           />
         </div>
+        <div className="flex justify-center items-center">
+          <img
+            src={Sponsor3}
+            alt="Sponsor 2"
+            className="w-24 sm:w-32 lg:w-40"
+          />
+        </div>
       </div>
     </div>
   );
