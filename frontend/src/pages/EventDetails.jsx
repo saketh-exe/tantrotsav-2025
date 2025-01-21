@@ -18,6 +18,7 @@ import medal1 from "../assets/medal1.svg"
 import medal2 from "../assets/medal.svg"
 import EvntTyp from "../assets/Eventtype.svg"
 import Eventpill from "../components/Eventpill";
+import Sponsor1 from "../assets/tkt9.png"
 
 
 function EventDetails() {
@@ -123,7 +124,7 @@ function EventDetails() {
       setIsLoading(false);
     }
   };
-
+  
   return (
     <>
       <div className="min-h-screen h-auto bg-gradient-to-br from-gray-900 to-teal-950 p-4 pb-8 pt-24">
@@ -132,7 +133,7 @@ function EventDetails() {
           onClick={() => {
             navigate("/events");
           }}
-        >
+          >
           {"<"} Events
         </button>
         <div className="flex flex-col lg:flex-row justify-center items-start lg:items-stretch gap-6 lg:gap-8">
@@ -141,7 +142,7 @@ function EventDetails() {
             src={event.thumbnail || "/default-thumbnail.jpg"}
             alt={event.title}
             className="w-full lg:w-[40%] max-h-[45vh] lg:max-h-[80vh] rounded-2xl object-contain"
-          />
+            />
 
           {/* Right Section (Content) */}
           <div className="w-full lg:pl-8 flex flex-col justify-between p-8">
@@ -152,21 +153,21 @@ function EventDetails() {
                 </h1>
                 <div className="flex gap-4">
                   {/* Add to cart */}
-                  <div className=" flex justify-start">
+                  <div className=" flex justify-start items-center">
                     {event.registrationFee  &&  event.registrationFee > 0 ? (user && (
                       pending.includes(event._id) ?
                       (event._id==="67738c877b3bfd288ffb7dbc" ||   event._id === "67792b8a11d21c4fb86a6372" ?<button
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
-                        disabled={isLoading}
-                      >
+                          disabled={isLoading}
+                          >
                         {"Offline Registration only "}
                       </button>:<a
                         href="https://www.theticket9.com/event/tantrotsav-25-dj-night" target="_blank"
-                        className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+                        className={`text-sm sm:text-base h-full  px-2.5 border-2 border-lime-300 py-2 flex items-center text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
-                        disabled={isLoading}
-                      >
+                          disabled={isLoading}
+                          >
                         {isLoading ? "Buying..": "Buy Now"}
                       </a>)
                       :
@@ -174,8 +175,8 @@ function EventDetails() {
                         onClick={addToCart}
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
-                        disabled={isLoading}
-                      >
+                          disabled={isLoading}
+                          >
                         {isLoading ? "Adding..." : "Add to Cart"}
                       </button>
                     )):<></>}
@@ -183,9 +184,9 @@ function EventDetails() {
                   </div>
                   {event.documents && (
                     <a
-                      href={event.documents}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    href={event.documents}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     >
                       <button className="text-sm sm:text-base px-2.5 block text-center border-2 border-blue-600 bg-blue-600 text-white py-2  rounded-lg hover:bg-blue-800 transition">
                         Download Document
@@ -217,7 +218,7 @@ function EventDetails() {
                   else {
                     formattedDate = `${formattedDate}th Jan`
                   }
-
+                  
                   return (
                     <Eventpill imgsrc={Calender} content={formattedDate} />
                   );
@@ -231,8 +232,8 @@ function EventDetails() {
                 <Eventpill imgsrc={team} content={event.teamSize} /> {/* Team size here {event.teamSize} */}
                 {(event.prize1st > 0 || event.prize2nd > 0) && (
                   <Eventpill
-                    content={
-                      <div className="flex flex-col w-full gap-y-1 items-center justify-center">
+                  content={
+                    <div className="flex flex-col w-full gap-y-1 items-center justify-center">
                         {event.prize1st > 0 && (
                           <div className="flex w-full border-b border-black justify-center items-center">
                             <img src={medal1} className="w-6" alt="1st Prize" />
@@ -247,9 +248,10 @@ function EventDetails() {
                         )}
                       </div>
                     }
-                  />
-                )}
+                    />
+                  )}
                 <Eventpill imgsrc={EvntTyp} content={event.type} /> {/* Type of show event.type */}
+                
 
               </div>
               <div className=" flex  mt-6 flex-wrap  justify-center md:justify-start "> {/* need to map to no of coordinators */}
@@ -266,6 +268,13 @@ function EventDetails() {
                   +{event.contact2num}
                 </div>)}
               </div>
+                {event._id === "67737e4188d8600ff314c594" ? <div className="flex items-center justify-center text-2xl md:justify-normal">
+                  <p className="pt-6 pr-5 font-semibold ">
+
+                  Ticketing partner : 
+                  </p>
+                  <img src={Sponsor1} className="w-32"></img>
+                </div>:<></>}
 
 
             </div>
