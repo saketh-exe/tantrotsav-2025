@@ -32,7 +32,7 @@ export default function Accommodation() {
                 link;
               </p>
               <a
-                href="https://forms.office.com/r/LFQP2niepT"
+                href="https://forms.gle/urJ4BagCFo7QYLyMA"
                 target="_blank"
                 className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >

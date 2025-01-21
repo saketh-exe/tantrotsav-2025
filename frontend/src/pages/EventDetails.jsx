@@ -25,6 +25,7 @@ function EventDetails() {
   const pending = [
     "67737e4188d8600ff314c594",
     "67738c877b3bfd288ffb7dbc",
+    "67792b8a11d21c4fb86a6372",
   ]; // id's of pending events
   const { user, setUser } = useAuthStore();
   const [isLoading, setIsLoading] = useState(true);
@@ -154,7 +155,7 @@ function EventDetails() {
                   <div className=" flex justify-start">
                     {event.registrationFee  &&  event.registrationFee > 0 ? (user && (
                       pending.includes(event._id) ?
-                      (event._id==="67738c877b3bfd288ffb7dbc"?<button
+                      (event._id==="67738c877b3bfd288ffb7dbc" ||   event._id === "67792b8a11d21c4fb86a6372" ?<button
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
                           }`}
                         disabled={isLoading}
