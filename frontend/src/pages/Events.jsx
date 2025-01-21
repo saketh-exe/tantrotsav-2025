@@ -4,7 +4,7 @@ import { FiSearch, FiFilter } from "react-icons/fi"; // Import icons
 import EventCardLazy from "../components/EventCardLazy"; // Import lazy-loaded EventCard
 import Loading from "../components/Loading";
 import { useScrollContext } from '../components/ContextProvider';
-
+import logo from "../assets/image.png"
 function Events() {
   const [events, setEvents] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -140,7 +140,21 @@ function Events() {
               ))}
           </select>
         </div>
-        <a href="https://iili.io/2glbAcg.png" target="_blank" className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all">View Brochure</a>
+        <a 
+  href="https://iili.io/2glbAcg.png" 
+  target="_blank" 
+  download 
+  className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all"
+>
+  View Brochure
+</a>
+        <a 
+  href={logo}
+  download 
+  className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all"
+>
+  Download Brochure
+</a>
       </div>
 
       {/* <div className="w-full text-center text-xl text-red-400">
