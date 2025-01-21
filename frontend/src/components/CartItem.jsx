@@ -50,9 +50,20 @@ function CartItem({ item }) {
           </h3>
           </button>
           
-          <p className="text-sm md:text-base text-gray-200">
-            {new Date(item.eventId.date).toLocaleDateString('en-GB')}
-          </p>
+          {(() => {
+                            // Parse and format the date
+                            let formattedDate = new Date(item.eventId.date).toLocaleDateString('en-GB').slice(0, 2)
+                            if (formattedDate === "28") {
+                              formattedDate = "29th & 30th Jan"
+                            }
+                            else {
+                              formattedDate = `${formattedDate}th Jan`
+                            }
+                            
+                            return (
+                              <p className='text-white'>{formattedDate}</p>
+                            );
+                          })()}
           <p className="text-sm text-gray-300">
             ₹{item.eventId.registrationFee}
           </p>
