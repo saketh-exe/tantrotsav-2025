@@ -14,6 +14,7 @@ function EventCard({ event }) {
   const pending = [
     "67737e4188d8600ff314c594",
     "67738c877b3bfd288ffb7dbc",
+    ,"67792b8a11d21c4fb86a6372"
   ]; // id's of pending events
 
   const addToCart = async () => {
@@ -153,7 +154,7 @@ function EventCard({ event }) {
            pending.includes(event._id)
            ? 
            ( event.registrationFee > 0 ?
-             event._id === "67738c877b3bfd288ffb7dbc" ? (
+             event._id === "67738c877b3bfd288ffb7dbc" ||   event._id === "67792b8a11d21c4fb86a6372" ? (
                 <button
                 className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
                   isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
