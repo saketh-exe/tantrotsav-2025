@@ -1,6 +1,5 @@
 const https = require('https');
 
-const fetch = require('node-fetch');
 
 function sendNotification({ name, email, phone, category, message }) {
   return fetch('https://ntfy.sh', {
