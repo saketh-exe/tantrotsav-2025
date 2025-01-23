@@ -6,12 +6,13 @@ const SupportPage = ({ User }) => {
   const [form, setForm] = useState({
     name: User.name,
     email: User.email,
+    phone: User.phoneNumber,
     category: "Payment Related",
     message: "",
   });
 
   useEffect(() => {
-    setForm({ ...form, name: User.name, email: User.email });
+    setForm({ ...form, name: User.name, email: User.email, phone: User.phoneNumber });
   }, [User]);
 
   const handleChange = (e) => {
@@ -40,6 +41,7 @@ const SupportPage = ({ User }) => {
       setForm({
         name: User.name,
         email: User.email,
+        phone: User.phoneNumber,
         category: "Payment Related",
         message: "",
       });
