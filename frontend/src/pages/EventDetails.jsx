@@ -19,7 +19,7 @@ import medal2 from "../assets/medal.svg"
 import EvntTyp from "../assets/Eventtype.svg"
 import Eventpill from "../components/Eventpill";
 import Sponsor1 from "../assets/tkt9.png"
-
+import Register from "../components/Register";
 
 function EventDetails() {
   const navigate = useNavigate();
@@ -154,7 +154,7 @@ function EventDetails() {
                 <div className="flex gap-4">
                   {/* Add to cart */}
                   <div className=" flex justify-start items-center">
-                    {event.registrationFee  &&  event.registrationFee > 0 ? (user && (
+                    {event.registrationFee  &&  event.registrationFee > 0 && !event.isHidden  ? ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28)) && (
                       pending.includes(event._id) ?
                       (event._id==="67738c877b3bfd288ffb7dbc" ||   event._id === "67792b8a11d21c4fb86a6372" ?<button
                         className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
@@ -180,7 +180,16 @@ function EventDetails() {
                         {isLoading ? "Adding..." : "Add to Cart"}
                       </button>
                     )):<></>}
-
+                      {new Date() > new Date(2025, 0, 28) ? <button
+            className={`text-sm sm:text-base px-2.5 border-2 border-lime-300 py-2 inline-block text-black bg-lime-300 rounded-lg hover:bg-white hover:text-black hover:border-2 hover:border-black transition ${isLoading ? "bg-gray-300 cursor-not-allowed" : ""
+                          }`}
+            disabled={isLoading}
+          >
+           On-Spot
+          </button> : <></>}
+          {
+            !user && new Date() < new Date(2025, 0, 28) && eventId != "67737e4188d8600ff314c594" ? <Register /> : <></>
+          }
                   </div>
                   {event.documents && (
                     <a

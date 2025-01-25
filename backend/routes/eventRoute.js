@@ -10,7 +10,7 @@ const departments = ["CSE", "CYS", "AIE", "ECE", "RAI", "ARE", "MECH", "CCE"];
 // Route to get all events
 router.get("/", async (req, res) => {
   try {
-    const events = await Event.find(); // Fetch all events from the database
+    const events = await Event.find({}, { registeredUsers: 0 });
     events.forEach((event) => {
       if (event.isHidden === undefined) {
         event.isHidden = false;
