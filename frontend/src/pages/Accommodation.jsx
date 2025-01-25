@@ -1,9 +1,13 @@
-import React from "react";
+import React ,{useEffect} from "react";
 import Support from "./Support.jsx";
 import useAuthStore from "../store/authStore";
 
 export default function Accommodation() {
   let { user } = useAuthStore();
+
+  useEffect(() => {
+    document.title = "Services | Tantrotsav - Amrita Vishwa Vidyapeetham";
+  }, []);
   return (
     <div className="bg-gradient-to-br from-gray-900 to-green-900 min-h-screen h-fit pt-10">
       <div className="text-center p-8">

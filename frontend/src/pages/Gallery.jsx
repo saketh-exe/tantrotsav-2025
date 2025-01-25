@@ -58,6 +58,10 @@ function Gallery() {
   const [criticalLoaded, setCriticalLoaded] = useState(0);
  const scrollContainerRef = useRef(null); 
  const { setIsScrolled } = useScrollContext();
+
+ useEffect(() => {
+  document.title = "Gallery | Tantrotsav - Amrita Vishwa Vidyapeetham";
+}, []);
 useEffect(() => {
     const handleScroll = () => {
       if (scrollContainerRef.current) {

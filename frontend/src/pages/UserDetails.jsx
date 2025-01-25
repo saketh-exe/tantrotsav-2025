@@ -60,6 +60,10 @@ function UserDetails() {
   const isAmritaChennaiStudent = watch('isAmritaChennaiStudent');
 
   useEffect(() => {
+    document.title = "Registration | Tantrotsav - Amrita Vishwa Vidyapeetham";
+  }, []);
+
+  useEffect(() => {
     if (user) {
       reset({
         name: user.displayName || '',

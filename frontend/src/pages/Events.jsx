@@ -21,6 +21,7 @@ function Events() {
         const response = await axios.get(`/api/events`);
         setEvents(response.data);
         setFilteredEvents(response.data); // Initial filtering
+        document.title="Events | Tantrotsav - Amrita Vishwa Vidyapeetham"
       } catch (error) {
         console.error('Error fetching events:', error);
       } finally {

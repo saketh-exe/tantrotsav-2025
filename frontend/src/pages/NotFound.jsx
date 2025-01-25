@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import NotFoundImage from '../assets/404.png';
+import { useEffect } from 'react';
 
 function Failed() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+      document.title = "Page Not Found | Tantrotsav - Amrita Vishwa Vidyapeetham";
+    }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-red-500 to-pink-600 text-white">

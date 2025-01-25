@@ -18,6 +18,10 @@ function Cart() {
   // const router = useNavigate();
 
   useEffect(() => {
+    document.title = "Cart | Tantrotsav - Amrita Vishwa Vidyapeetham";
+  }, []);
+
+  useEffect(() => {
     if (!user) return; // If no user, do not fetch cart items
 
     const fetchCartItems = async () => {
