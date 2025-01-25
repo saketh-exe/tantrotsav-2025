@@ -148,7 +148,7 @@ function EventCard({ event }) {
             </Link>
           )}
 
-          {event.registrationFee ? 
+          {(event.registrationFee && event.isRegistrationOpen) ? 
           ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28)) &&
             (
            pending.includes(event._id)
@@ -189,13 +189,23 @@ function EventCard({ event }) {
             </button>
           )):<></>}
           {
-            new Date() > new Date(2025, 0, 28) ? <button
+            (new Date() > new Date(2025, 0, 28) && event.registrationFee && event.isRegistrationOpen) ? <button
             className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
               isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
             }`}
             disabled={isLoading}
           >
            On-Spot
+          </button> : <></>
+          }
+          {
+            !event.isRegistrationOpen ? <button
+            className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+              isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
+            }`}
+            disabled={isLoading}
+          >
+           Closed
           </button> : <></>
           }
 

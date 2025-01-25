@@ -20,6 +20,7 @@ const eventSchema = new mongoose.Schema({
   type: { type: String }, 
   isHidden: { type: Boolean, default: true }, // Hide the event from public view,
   duration: { type: Number, default: 1 }, // Duration of the event in hours
+  isRegistrationOpen : {type: Boolean , default: true},
   registeredUsers: [
     {
       type: mongoose.Schema.Types.ObjectId,
