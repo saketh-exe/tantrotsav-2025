@@ -73,7 +73,7 @@ function EventCard({ event }) {
       setIsLoading(false);
     }
   };
-
+ 
   return (
     <div className="w-[300px] h-[420px] rounded-[12px]  flex flex-col justify-between pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white ">
       <div className="transition-all duration-500 flex justify-center">
@@ -149,7 +149,7 @@ function EventCard({ event }) {
           )}
 
           {event.registrationFee ? 
-          (user && 
+          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28)) &&
             (
            pending.includes(event._id)
            ? 
@@ -188,6 +188,16 @@ function EventCard({ event }) {
               {isLoading ? "Adding..." : "Add to Cart"}
             </button>
           )):<></>}
+          {
+            new Date() > new Date(2025, 0, 28) ? <button
+            className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
+              isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
+            }`}
+            disabled={isLoading}
+          >
+           On-Spot
+          </button> : <></>
+          }
 
 
         </div>

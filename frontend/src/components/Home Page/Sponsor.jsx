@@ -2,9 +2,10 @@ import React from "react";
 import Sponsor1 from "../../assets/tkt9.png";
 import Sponsor2 from "../../assets/e-cell_logo.png";
 import Sponsor6 from "../../assets/EDD_Logo.png";
-import Sponsor5 from "../../assets/Guvi.jpg";
+import Sponsor5 from "../../assets/Guvihcl.png";
 import Sponsor3 from "../../assets/LWT_bg.png";
 import Sponsor4 from "../../assets/Liveai_bg.png";
+import Sponsor7 from "../../assets/some.jpg";
 
 export default function Sponsor() {
   return (
@@ -37,18 +38,26 @@ export default function Sponsor() {
         </div>
         <div className="flex justify-center items-center">
           <img
-            src={Sponsor4}
+            src={Sponsor5}
+            alt="Sponsor 5"
+            className="w-20 sm:w-32 lg:w-36"
+          />
+        </div>
+        <div className="flex justify-center items-center">
+          <img
+            src={Sponsor7}
             alt="Sponsor 4"
             className="w-20 sm:w-32 lg:w-36"
           />
         </div>
         <div className="flex justify-center items-center">
           <img
-            src={Sponsor5}
-            alt="Sponsor 5"
+            src={Sponsor4}
+            alt="Sponsor 4"
             className="w-20 sm:w-32 lg:w-36"
           />
         </div>
+        
         <div className="flex justify-center items-center">
           <img
             src={Sponsor6}
