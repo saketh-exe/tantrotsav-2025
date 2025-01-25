@@ -1,7 +1,12 @@
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
 function Success() {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    document.title = "Successful | Tantrotsav - Amrita Vishwa Vidyapeetham";
+  }, []);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-green-400 to-teal-500 text-white">

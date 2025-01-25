@@ -133,6 +133,10 @@ function Profile() {
   // console.log(user);
 
   useEffect(() => {
+    document.title = "Profile | Tantrotsav - Amrita Vishwa Vidyapeetham";
+  }, []);
+
+  useEffect(() => {
     const fetchRegisteredEvents = async () => {
       if (user.registeredEvents.length === 0) return;
       const events = await Promise.all(

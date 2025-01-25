@@ -40,6 +40,8 @@ function EventDetails() {
           `/api/events/${eventId}`
         );
         setEvent(response.data);
+
+        document.title=`${response.data.title} | Tantrotsav - Amrita Vishwa Vidyapeetham`
       } catch (error) {
         console.error("Error fetching event details:", error);
         setEvent(null);
