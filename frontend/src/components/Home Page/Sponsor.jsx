@@ -16,7 +16,7 @@ export default function Sponsor() {
         Partners & Sponsors
       </h2>
       
-        <Marquee speed={70}>
+        <Marquee speed={70} pauseOnHover={true}>
        <SponsorItem SponsorImg={Sponsor1} altText={"Sponsor1"}/>
        <SponsorItem SponsorImg={Sponsor2} altText={"Sponsor2"}/>
        <SponsorItem SponsorImg={Sponsor3} altText={"Sponsor3"}/>

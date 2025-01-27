@@ -6,7 +6,7 @@ export default function SponsorItem({SponsorImg, altText}) {
               <img
                 src={SponsorImg}
                 alt={altText}
-                className="w-20 sm:w-32 lg:w-36"
+                className="w-36 sm:w-32 lg:w-36"
               />
             </div>
   )
