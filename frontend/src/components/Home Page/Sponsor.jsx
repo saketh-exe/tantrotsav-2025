@@ -6,6 +6,7 @@ import Sponsor5 from "../../assets/Guvihcl.png";
 import Sponsor3 from "../../assets/LWT_bg.png";
 import Sponsor4 from "../../assets/Liveai_bg.png";
 import Sponsor7 from "../../assets/ShantiBooks.jpg";
+import Sponsor8 from "../../assets/NCG.png"
 
 export default function Sponsor() {
   return (
@@ -51,6 +52,13 @@ export default function Sponsor() {
           />
         </div>
 
+        <div className="flex justify-center items-center">
+          <img
+            src={Sponsor8}
+            alt="Sponsor 8"
+            className="w-20 sm:w-32 lg:w-36"
+          />
+        </div>
         <div className="flex justify-center items-center">
           <img
             src={Sponsor6}
