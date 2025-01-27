@@ -195,7 +195,7 @@ function EventDetails() {
                                   }`}
                     disabled={isLoading}
                   >
-                   Closed
+                   Registrations Closed !
                   </button> : <></>
                   }
 
