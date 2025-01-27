@@ -205,7 +205,7 @@ function EventCard({ event }) {
             }`}
             disabled={isLoading}
           >
-           Closed
+           Registrations Closed !
           </button> : <></>
           }
 
