@@ -7,73 +7,27 @@ import Sponsor3 from "../../assets/LWT_bg.png";
 import Sponsor4 from "../../assets/Liveai_bg.png";
 import Sponsor7 from "../../assets/ShantiBooks.jpg";
 import Sponsor8 from "../../assets/NCG.png"
-
+import Marquee from "react-fast-marquee";
+import SponsorItem from "./SponsorItem";
 export default function Sponsor() {
   return (
-    <div className="mt-12">
-      <h2 className="font-semibold text-4xl sm:text-2xl md:text-3xl lg:text-4xl  text-center mb-3 text-white">
+    <div className="my-28">
+      <h2 className="font-semibold text-4xl sm:text-2xl md:text-3xl lg:text-4xl  text-center mb-10 text-white">
         Partners & Sponsors
       </h2>
-      <div className="w-full h-auto bg-gradient-to-r from-black via-slate-500 to-black flex flex-wrap justify-center items-center gap-4 p-4 sm:gap-6 sm:p-6 lg:gap-8 lg:p-8 my-6">
-        {/* Sponsors */}
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor1}
-            alt="Sponsor 1"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor2}
-            alt="Sponsor 2"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor3}
-            alt="Sponsor 3"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor5}
-            alt="Sponsor 5"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor4}
-            alt="Sponsor 4"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
+      
+        <Marquee speed={70}>
+       <SponsorItem SponsorImg={Sponsor1} altText={"Sponsor1"}/>
+       <SponsorItem SponsorImg={Sponsor2} altText={"Sponsor2"}/>
+       <SponsorItem SponsorImg={Sponsor3} altText={"Sponsor3"}/>
+       <SponsorItem SponsorImg={Sponsor4} altText={"Sponsor4"}/>
+       <SponsorItem SponsorImg={Sponsor5} altText={"Sponsor5"}/>
+       <SponsorItem SponsorImg={Sponsor6} altText={"Sponsor6"}/>
+       <SponsorItem SponsorImg={Sponsor7} altText={"Sponsor7"}/>
+       <SponsorItem SponsorImg={Sponsor8} altText={"Sponsor8"}/>
+        </Marquee>
 
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor8}
-            alt="Sponsor 8"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor6}
-            alt="Sponsor 6"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-        <div className="flex justify-center items-center">
-          <img
-            src={Sponsor7}
-            alt="Sponsor 7"
-            className="w-20 sm:w-32 lg:w-36"
-          />
-        </div>
-      </div>
+
     </div>
   );
 }
