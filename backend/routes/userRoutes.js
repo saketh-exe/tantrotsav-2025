@@ -40,6 +40,13 @@ router.post('/:email/cart', async (req, res) => {
     const isEventInCart = user.cart.some(
       (item) => item.eventId.toString() === eventId
     );
+
+    const isEventAlreadyRegistered = user.registeredEvents.includes(eventId);
+  
+    if (isEventAlreadyRegistered) {
+      return res.status(400).json({ error: 'Event already registered' });
+    }
+
     if (isEventInCart) {
       return res.status(400).json({ error: 'Event already in cart' });
     }
