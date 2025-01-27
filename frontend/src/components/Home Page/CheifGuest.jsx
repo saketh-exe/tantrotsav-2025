@@ -8,7 +8,7 @@ export default function CheifGuest() {
       <h2 className="font-semibold text-4xl sm:text-2xl md:text-3xl lg:text-4xl  text-center mb-3 text-white">
         Chief Guests
       </h2>
-      <div className="w-full h-auto bg-gradient-to-r from-black via-slate-500 to-black flex flex-wrap justify-center items-center gap-4 p-4 sm:gap-6 sm:p-6 lg:gap-8 lg:p-8 my-6">
+      <div className="w-full h-auto bg-gradient-to-r from-black via-slate-600 to-black flex flex-wrap justify-center items-center gap-4 p-4 sm:gap-6 sm:p-6 lg:gap-8 lg:p-8 my-6">
         <div className="text-white flex-col justify-center items-center mb-6">
           <img
             src={Guest2}

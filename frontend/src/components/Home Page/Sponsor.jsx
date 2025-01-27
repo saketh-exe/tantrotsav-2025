@@ -16,7 +16,7 @@ export default function Sponsor() {
         Partners & Sponsors
       </h2>
       
-        <Marquee speed={70} pauseOnHover={true}>
+        <Marquee speed={85}  className="bg-gradient-to-r from-black via-slate-600 to-black p-4 sm:p-6 lg:p-8 backdrop-filter  bg-opacity-10">
        <SponsorItem SponsorImg={Sponsor1} altText={"Sponsor1"}/>
        <SponsorItem SponsorImg={Sponsor2} altText={"Sponsor2"}/>
        <SponsorItem SponsorImg={Sponsor3} altText={"Sponsor3"}/>

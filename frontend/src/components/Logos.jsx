@@ -3,8 +3,10 @@ import { useState,useEffect } from 'react';
 import { motion,AnimatePresence } from "framer-motion";
 import logo1 from "../assets/uniLogo1.svg"
 import logo2 from "../assets/Tantrotsav.svg"
+import { useNavigate } from "react-router-dom";
 
 export default function Logos() {
+  const navigate = useNavigate();
     // Logo management
       const logos = [
         logo1,logo2
@@ -33,6 +35,7 @@ export default function Logos() {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 1 }}
               transition={{ duration: 0.5 }}
+              onClick={()=>navigate('/')}
             >
               <img src={logos[currentLogoidx]} alt="Logo" className="lg:h-8 h-6 hide-img:hidden" />
             </motion.div>
