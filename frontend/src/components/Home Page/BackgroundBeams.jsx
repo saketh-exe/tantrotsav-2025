@@ -4,6 +4,22 @@ import { cn } from "../../lib/utils";
 
 export const BackgroundBeams = React.memo(({ className, num, pathCount = 20 }) => {
   // Dynamically generate paths if they follow a pattern
+  // const colors = ["#3a66c5", "gold", "red"];
+  const colors = [
+    "#3a66c5", "gold", "red", "#18CCFC", "#508faf",
+    "#8a2be2",    // Bright Purple
+    "#32cd32",    // Lime Green
+    "#ff69b4",    // Hot Pink
+    "#ff7f50",    // Coral
+    "#00ced1",    // Dark Turquoise
+    "#daa520",    // Goldenrod
+    "#4b0082",    // Indigo
+    "#ff4500",    // Orange Red
+    "#7cfc00",    // Lawn Green
+    "#9370db"     // Medium Purple
+  ];
+  let mainColor = colors[Math.floor(Math.random() * colors.length)];
+  let subColor = colors[Math.floor(Math.random() * colors.length)];
   const generatePaths = (count) => {
     const paths = [];
     for (let i = 0; i < count; i++) {
@@ -38,7 +54,7 @@ export const BackgroundBeams = React.memo(({ className, num, pathCount = 20 }) =
               d={path}
               stroke={`url(#linearGradient-${index})`}
               strokeOpacity="0.6"
-              strokeWidth="1.5"
+              strokeWidth="1.7"
             />
             <motion.linearGradient
               id={`linearGradient-${index}`}
@@ -62,9 +78,9 @@ export const BackgroundBeams = React.memo(({ className, num, pathCount = 20 }) =
               }}
             >
               <stop stopColor="#18CCFC" stopOpacity="0" />
-              <stop stopColor="white" />
-              <stop offset="50.5%" stopColor="#3a66c5" />
-              <stop offset="100%" stopColor="#508faf" stopOpacity="0" />
+              <stop stopColor={subColor} />
+              <stop offset="70.5%" stopColor={mainColor} />
+              <stop offset="100%" stopColor="white" stopOpacity="0" />
             </motion.linearGradient>
           </React.Fragment>
         ))}
