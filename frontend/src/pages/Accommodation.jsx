@@ -1,4 +1,4 @@
-import React ,{useEffect} from "react";
+import React, { useEffect } from "react";
 import Support from "./Support.jsx";
 import useAuthStore from "../store/authStore";
 
@@ -36,11 +36,10 @@ export default function Accommodation() {
                 link;
               </p>
               <a
-                href="https://forms.gle/urJ4BagCFo7QYLyMA"
                 target="_blank"
                 className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
-                Book Now
+                Registrations Full!!
               </a>
               <div className="bg-blue-100 text-blue-900 p-4 mt-4 mb-4 rounded-lg text-xs font-semibold">
                 ** only limited seats are available and facilities will be
@@ -82,11 +81,10 @@ export default function Accommodation() {
                 clicking the link;
               </p>
               <a
-                href="https://forms.office.com/r/TNKz4GL4Ln"
                 target="_blank"
                 className="inline-block bg-zinc-800 w-full text-white my-2 p-2 font-bold rounded-lg hover:bg-transparent hover:border-solid border-2 border-zinc-800 hover:text-white hover:bg-slate-100 transition-all ease-in-out"
               >
-                Book Now
+                Registrations Full!!
               </a>
               <div className="bg-blue-100 text-blue-900 p-4 mt-4 mb-4 rounded-lg text-xs font-semibold">
                 ** only limited seats are available and facilities will be
