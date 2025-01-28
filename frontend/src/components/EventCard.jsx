@@ -142,14 +142,14 @@ function EventCard({ event }) {
           {(
             <Link
               to={`/events/${event._id}`}
-              className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300"
+              className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300 flex justify-center items-center"
             >
               View Details
             </Link>
           )}
 
           {(event.registrationFee && event.isRegistrationOpen) ? 
-          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 29)) &&
+          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28) || event.clubName === "Collaborated Events" || event.title === "DJ Night") &&
             (
            pending.includes(event._id)
            ? 
