@@ -149,7 +149,7 @@ function EventCard({ event }) {
           )}
 
           {(event.registrationFee && event.isRegistrationOpen) ? 
-          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28) || event.clubName === "Collaborated Events" || event.title === "DJ Night") &&
+          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28) || event.location === "Online" || event.title === "DJ Night") &&
             (
            pending.includes(event._id)
            ? 
