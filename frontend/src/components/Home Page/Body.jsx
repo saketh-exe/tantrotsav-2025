@@ -4,9 +4,10 @@ import Herotext from "./Herotext";
 import About from "./About";
 
 import Contact from "./Contact";
-import Sponsor from "./Sponsor";
+
 import { useScrollContext } from "../ContextProvider";
-import CheifGuest from "./CheifGuest";
+import ThisYear from "./ThisYear";
+
 
 export default function Body() {
   const scrollContainerRef = useRef(null); // Ref for the scrollable container
@@ -56,9 +57,9 @@ export default function Body() {
         </div>
         <Coundown />
       </div>
+      <ThisYear/>
       <About />
-      <CheifGuest />
-      <Sponsor />
+    
       <Contact />
     </div>
   );
