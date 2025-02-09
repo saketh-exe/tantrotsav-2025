@@ -1,22 +1,16 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
-import UserDetails from "./pages/UserDetails";
-import Profile from "./pages/Profile";
-import Cart from "./pages/Cart";
 import { Toaster } from "react-hot-toast";
-import ProtectedRoute from "./components/ProtectedRoute";
+
 import Events from "./pages/Events";
-import RouteGuard from "./components/RouteGuard"; // Import the global route guard
-import EventDetails from "./pages/EventDetails";
 import Gallery from "./pages/Gallery";
-import Failed from "./pages/Failed";
+
 import NotFound from "./pages/NotFound";
-import Success from "./pages/Success";
-import Accommodation from "./pages/Accommodation"
+
 import AnimatedCursor from "react-animated-cursor";
 import { ScrollProvider } from "./components/ContextProvider";
-
+import ThankYou from "./pages/ThankYou";
 function App() {
  
   return (
@@ -30,67 +24,41 @@ function App() {
           <Route
             path="/"
             element={
-              <RouteGuard>
-                <Home/>
-              </RouteGuard>
+           
+                <ThankYou/>
+           
             }
           />
-          <Route path="/register" element={<UserDetails />} />
+          <Route
+            path="/Home"
+            element={
+       
+                <Home/>
+          
+            }
+          
+          />
           <Route element={<Gallery />} path="/gallery" />
-          <Route element={<Success />} path="/success" />
-          <Route element={<Failed />} path="/failed" />
+          
+         
           <Route element={<NotFound />} path="/404" />
           <Route
             path="/events"
             element={
-              <RouteGuard>
+        
                 <Events />
-              </RouteGuard>
+            
             }
           />
           <Route
             path="/gallery"
             element={
-              <RouteGuard>
+           
                 <Gallery />
-              </RouteGuard>
+            
             }
           />
-          <Route
-            path="/support"
-            element={
-              <RouteGuard>
-                <Accommodation />
-              </RouteGuard>
-            }
-          />
-          <Route
-            path="/events/:eventId"
-            element={
-              <RouteGuard>
-                <EventDetails />
-              </RouteGuard>
-            }
-          />
-          <Route element={<ProtectedRoute />}>
-            <Route
-              path="/profile"
-              element={
-                <RouteGuard>
-                  <Profile />
-                </RouteGuard>
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <RouteGuard>
-                  <Cart />
-                </RouteGuard>
-              }
-            />
-            {/* Add other protected routes here */}
-          </Route>
+
           <Route path="*" element={<NotFound />} /> {/* Default route for 404 */}
         </Routes>
         </ScrollProvider>

@@ -1,36 +1,19 @@
-import { useState, useEffect,useRef } from "react";
-import axios from "axios";
+import { useState, useEffect, useRef } from "react";
 import { FiSearch, FiFilter } from "react-icons/fi"; // Import icons
 import EventCardLazy from "../components/EventCardLazy"; // Import lazy-loaded EventCard
 import Loading from "../components/Loading";
 import { useScrollContext } from '../components/ContextProvider';
-import logo from "../assets/image.png"
+import logo from "../assets/image.png";
+
 function Events() {
   const [events, setEvents] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState('All'); // New state for type filter
   const [filteredEvents, setFilteredEvents] = useState([]);
-  
   const scrollContainerRef = useRef(null); 
   const { setIsScrolled } = useScrollContext();
   const [randomizedEvents, setRandomizedEvents] = useState([]);
-  useEffect(() => {
-    const fetchEvents = async () => {
-      try {
-        const response = await axios.get(`/api/events`);
-        setEvents(response.data);
-        setFilteredEvents(response.data); // Initial filtering
-        document.title="Events | Tantrotsav - Amrita Vishwa Vidyapeetham"
-      } catch (error) {
-        console.error('Error fetching events:', error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchEvents();
-  }, []);
 
   // Automatically filter events as user types or changes the filter
   useEffect(() => {
@@ -46,14 +29,10 @@ function Events() {
     setFilteredEvents(filtered);
   }, [searchQuery, typeFilter, events]);
 
-  
   useEffect(() => {
-    if (isLoading) {
-      return;
-    }
     const handleScroll = () => {
       if (scrollContainerRef.current) {
-        setIsScrolled(scrollContainerRef.current.scrollTop > 0)
+        setIsScrolled(scrollContainerRef.current.scrollTop > 0);
       }
     };
 
@@ -68,8 +47,8 @@ function Events() {
         scrollContainer.removeEventListener("scroll", handleScroll); // Cleanup listener
       }
     };
-  }, [scrollContainerRef.current]); //scroll logic 
-  
+  }, [scrollContainerRef.current]);
+
   useEffect(() => {
     // Ensure filteredEvents exists and is not empty
     if (!filteredEvents || filteredEvents.length === 0) return;
@@ -90,10 +69,7 @@ function Events() {
     // Update the state with the processed events
     setRandomizedEvents(combinedEvents);
   }, [filteredEvents]); // Run the effect whenever filteredEvents changes
-  
-  
-  
-  
+
   // Extract unique event types for filtering
   const uniqueTypes = [
     'All',
@@ -106,86 +82,72 @@ function Events() {
   }
 
   return (
-    <div ref={scrollContainerRef} className="relative z-10  h-screen w-full scrollbar-hide min-h-screen bg-gradient-to-br from-red-950 to-indigo-950  overflow-y-scroll">
-<div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28 bg-gradient-to-br from-indigo-950 to-red-950 text-white">
-      <h2 className="text-5xl font-bold text-center mb-8">Upcoming Events</h2>
+    <div ref={scrollContainerRef} className="relative z-10 h-screen w-full scrollbar-hide min-h-screen bg-gradient-to-br from-red-950 to-indigo-950 overflow-y-scroll">
+      <div className="w-full min-h-screen py-16 px-4 sm:px-6 lg:px-8 pt-28 bg-gradient-to-br from-indigo-950 to-red-950 text-white">
+        <h2 className="text-5xl font-bold text-center mb-8">Upcoming Events</h2>
 
-      {/* Search and Filter Section */}
-      <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
-        {/* Search Bar */}
-        <div className="relative w-full max-w-[300px]">
-          <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
-          <input
-            type="text"
-            placeholder="Search events..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full p-2 pl-10 border-2 border-black rounded-[5px] text-[#323232] focus:outline-none focus:ring-2 focus:ring-black"
-          />
-        </div>
+        {/* Search and Filter Section */}
+        <div className="flex flex-col sm:flex-row justify-center items-center gap-4 mb-8">
+          {/* Search Bar */}
+          <div className="relative w-full max-w-[300px]">
+            <FiSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
+            <input
+              type="text"
+              placeholder="Search events..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full p-2 pl-10 border-2 border-black rounded-[5px] text-[#323232] focus:outline-none focus:ring-2 focus:ring-black"
+            />
+          </div>
 
-        {/* Filter Dropdown */}
-        <div className="relative w-full max-w-[180px] sm:max-w-[130px]">
-          <FiFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
-          <select
-            value={typeFilter}
-            onChange={(e) => setTypeFilter(e.target.value)}
-            className="w-full p-2 pl-10 border-2 border-black rounded-[5px] text-[#323232] bg-white focus:outline-none focus:ring-2 focus:ring-black appearance-none"
+          {/* Filter Dropdown */}
+          <div className="relative w-full max-w-[180px] sm:max-w-[130px]">
+            <FiFilter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-black" />
+            <select
+              value={typeFilter}
+              onChange={(e) => setTypeFilter(e.target.value)}
+              className="w-full p-2 pl-10 border-2 border-black rounded-[5px] text-[#323232] bg-white focus:outline-none focus:ring-2 focus:ring-black appearance-none"
+            >
+              {uniqueTypes
+                .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
+                .map((type) => (
+                  <option key={type} value={type} className="text-left">
+                    {type}
+                  </option>
+                ))}
+            </select>
+          </div>
+
+          <a 
+            href={logo}
+            download 
+            className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all"
           >
-            {uniqueTypes
-              .sort((a, b) => a.localeCompare(b)) // Sort alphabetically
-              .map((type) => (
-                <option key={type} value={type} className="text-left">
-                  {type}
-                </option>
-              ))}
-          </select>
+            Download Brochure
+          </a>
         </div>
-        <a 
-  href="https://iili.io/2glbAcg.png" 
-  target="_blank" 
-  download 
-  className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all"
->
-  View Brochure
-</a>
-        <a 
-  href={logo}
-  download 
-  className="bg-blue-500 text-white p-2 rounded-sm hover:bg-blue-600 transition-all"
->
-  Download Brochure
-</a>
+
+        {/* Display Events */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
+          {randomizedEvents.map((event) => {
+            return (
+              !event.isHidden && (
+                <div key={event._id} className="lazy-card">
+                  <EventCardLazy event={event} />
+                </div>
+              )
+            );
+          })}
+        </div>
+
+        {/* No Results Fallback */}
+        {filteredEvents.length === 0 && (
+          <p className="text-center text-gray-500 mt-8">
+            See you at 2026! 🚀
+          </p>
+        )}
       </div>
-
-      {/* <div className="w-full text-center text-xl text-red-400">
-        *Registrations will open soon.<br />
-        Stay tuned for more events.
-      </div> */}
-
-      {/* Display Events */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-y-20 justify-items-center mt-24">
-  {randomizedEvents.map((event) => {
-        return (
-          !event.isHidden && (
-            <div key={event._id} className="lazy-card">
-              <EventCardLazy event={event} />
-            </div>
-          )
-        );
-      })}
-</div>
-
-
-      {/* No Results Fallback */}
-      {filteredEvents.length === 0 && (
-        <p className="text-center text-gray-500 mt-8">
-          No events found matching your criteria.
-        </p>
-      )}
     </div>
-    </div>
-    
   );
 }
 

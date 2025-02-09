@@ -71,7 +71,7 @@ export const BackgroundBeams = React.memo(({ className, num, pathCount = 20 }) =
                 y2: ["0%", `${93 + index * 2}%`],
               }}
               transition={{
-                duration: 5+ (Math.random()*10),
+                duration: 2,
                 ease: "easeInOut",
                 repeat: Infinity,
                 repeatType: num === "rev" ? "reverse" : undefined,

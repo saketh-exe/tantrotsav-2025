@@ -1,7 +1,6 @@
 import axios from "axios";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
-import useAuthStore from "../store/authStore";
 import { useState } from "react";
 import { toast } from "react-hot-toast"; // Import react-hot-toast
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -9,78 +8,13 @@ import "react-lazy-load-image-component/src/effects/blur.css"; // Import effect 
 import place from "../assets/loads.gif"
 
 function EventCard({ event }) {
-  const { user, setUser } = useAuthStore();
-  const [isLoading, setIsLoading] = useState(false);
-  const pending = [
-    "67737e4188d8600ff314c594",
-    "67738c877b3bfd288ffb7dbc",
-    ,"67792b8a11d21c4fb86a6372"
-  ]; // id's of pending events
-
-  const addToCart = async () => {
-    if (!user) {
-      toast.error("Please sign in to add to cart");
-      return;
-    }
-    setIsLoading(true);
-
-    try {
-      toast.success("Adding")
-      // Fetch user's cart to check for any conflicting events
-      const cartResponse = await axios.get(`/api/users/${user.email}/cart`);
-      const cartItems = cartResponse.data.cart;
-
-      // Create a Date object for the event time
-      const eventDateTime = new Date(`${event.date} ${event.time}`);
-
-      // Check for events with the same date and time in the user's cart
-      const isConflict = cartItems.some((item) => {
-        const cartEventDateTime = new Date(
-          `${item.eventId.date} ${item.eventId.time}`
-        );
-        return cartEventDateTime.getTime() === eventDateTime.getTime();
-      });
-
-      if (isConflict) {
-        toast.error("You already have an event at the same time in your cart.");
-        setIsLoading(false);
-        return;
-      }
-
-      // Proceed to add the event to the cart if no conflict
-      // eslint-disable-next-line no-unused-vars
-      const response = await axios.post(`/api/users/${user.email}/cart`, {
-        eventId: event._id,
-      });
-
-      // Refetch updated user data
-      const updatedUserResponse = await axios.get(`/api/auth/${user.email}`);
-
-      // Update the Zustand store with new user data
-      setUser(updatedUserResponse.data.user);
-
-      toast.success("Event added to cart successfully!");
-    } catch (error) {
-      if (error.response?.data?.error === "Event is already in your cart") {
-        toast.error("This event is already in your cart!");
-      } else {
-        toast.error(
-          error.response?.data?.error ||
-            "Failed to add event to cart. Try again!"
-        );
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
- 
   return (
-    <div className="w-[300px] h-[420px] rounded-[12px]  flex flex-col justify-between pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white ">
+    <div className="w-[300px] h-[420px] rounded-[12px]  flex flex-col  pb-[14px] px-2 pt-2 gap-[10px] hover:scale-105 duration-200 bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm border-opacity-45 border border-white ">
       <div className="transition-all duration-500 flex justify-center">
         {/* Card Image with fixed size */}
         <div className="w-full h-[180px] relative border-2 rounded-md border-white bg-gradient-to-t from-transparent to-[rgba(0,0,0,0.5)] border-opacity-50">
           {(
-            <Link to={`/events/${event._id}`}>
+            
               <LazyLoadImage
                 src={event.thumbnail || "/default-thumbnail.jpg"}
                 alt={event.title}
@@ -91,24 +25,24 @@ function EventCard({ event }) {
                 className="w-full h-full object-cover  rounded-md select-none"
                 style={{objectPosition: "0px -30px"}}
               />
-            </Link>
+           
           )}
         </div>
       </div>
 
       <div className="flex flex-col items-center">
         {(
-          <Link to={`/events/${event._id}`}>
+         
             <h3 className="text-[20px] font-bold text-white transition-colors duration-300 mt-1 line-clamp-1">
               {event.title}
             </h3>
-          </Link>
+        
         )}
         <p className="text-center text-[14px] max-w-[240px] font-normal text-[#d6d6d6]  line-clamp-3">
           {event.description}
         </p>
 
-        <div className="mt-[10px] text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
+        <div className="mt-[10px] justify-center text-[14px] text-gray-200 flex flex-col items-center gap-[5px]">
           {event.date && (
             <p className="text-sm">
               <strong className="text-white">Date:</strong>{" "}
@@ -136,82 +70,7 @@ function EventCard({ event }) {
         </div>
       </div>
 
-      {/* Footer with Action Buttons */}
-      {(
-        <div className="flex gap-2 justify-between">
-          {(
-            <Link
-              to={`/events/${event._id}`}
-              className="text-xs py-[8px] px-[10px] w-full bg-black text-white font-medium text-center rounded-[5px] hover:bg-white hover:text-black border-2 border-white hover:border-white transition-colors duration-300 flex justify-center items-center"
-            >
-              View Details
-            </Link>
-          )}
-
-          {(event.registrationFee && event.isRegistrationOpen) ? 
-          ((user || event._id ===   "67737e4188d8600ff314c594") && (new Date() < new Date(2025, 0, 28) || event.location === "Online" || event.title === "DJ Night") &&
-            (
-           pending.includes(event._id)
-           ? 
-           ( event.registrationFee > 0 ?
-             event._id === "67738c877b3bfd288ffb7dbc" ||   event._id === "67792b8a11d21c4fb86a6372" ? (
-                <button
-                className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-                  isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-                }`}
-                disabled={isLoading}
-              >
-               OFFLINE
-              </button>
-              ) : (
-                <a
-                href="https://www.theticket9.com/event/tantrotsav-25-dj-night" target="_blank"
-                className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-                  isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-                }`}
-                disabled={isLoading}
-              >
-                {isLoading ? "Buying..." : "Buy now "}
-              </a>
-              )
-           
-            :
-            <></>)
-            :
-            <button
-              onClick={addToCart}
-              className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-                isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-              }`}
-              disabled={isLoading}
-            >
-              {isLoading ? "Adding..." : "Add to Cart"}
-            </button>
-          )):<></>}
-          {
-            (new Date() > new Date(2025, 0, 29) && event.registrationFee && event.isRegistrationOpen) ? <button
-            className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-              isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-            }`}
-            disabled={isLoading}
-          >
-           On-Spot
-          </button> : <></>
-          }
-          {
-            !event.isRegistrationOpen ? <button
-            className={`text-xs py-[8px] w-full px-[10px] border-2 border-white text-white font-medium text-center rounded-[5px] hover:bg-green-200 hover:text-black transition-colors duration-300 ${
-              isLoading ? "bg-green-300 cursor-not-allowed text-black" : ""
-            }`}
-            disabled={isLoading}
-          >
-           Registrations Closed !
-          </button> : <></>
-          }
-
-
-        </div>
-      )}
+      
     </div>
   );
 }

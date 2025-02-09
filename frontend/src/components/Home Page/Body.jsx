@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 import Coundown from "./Countdown";
 import Herotext from "./Herotext";
 import About from "./About";
-import Featured from "./Featured";
+
 import Contact from "./Contact";
 import Sponsor from "./Sponsor";
 import { useScrollContext } from "../ContextProvider";
@@ -57,7 +57,6 @@ export default function Body() {
         <Coundown />
       </div>
       <About />
-      <Featured />
       <CheifGuest />
       <Sponsor />
       <Contact />
