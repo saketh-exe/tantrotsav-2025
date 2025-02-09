@@ -36,9 +36,7 @@ function Navbar() {
     transition: "all 0.3s ease",
   };
 
-  if (pathname === "/") {
-    return <></>;
-  }
+ 
 
   return (
     <div className="flex justify-center items-center w-full z-50 fixed top-0 h-fit">

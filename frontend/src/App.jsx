@@ -21,16 +21,9 @@ function App() {
         
         <Navbar/>
         <Routes>
+          
           <Route
             path="/"
-            element={
-           
-                <ThankYou/>
-           
-            }
-          />
-          <Route
-            path="/Home"
             element={
        
                 <Home/>

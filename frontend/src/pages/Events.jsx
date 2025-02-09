@@ -143,7 +143,7 @@ function Events() {
         {/* No Results Fallback */}
         {filteredEvents.length === 0 && (
           <p className="text-center text-gray-500 mt-8">
-            See you at 2026! 🚀
+            See you in 2026! 🚀
           </p>
         )}
       </div>
