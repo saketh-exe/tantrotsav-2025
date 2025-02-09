@@ -10,7 +10,7 @@ import NotFound from "./pages/NotFound";
 
 import AnimatedCursor from "react-animated-cursor";
 import { ScrollProvider } from "./components/ContextProvider";
-import ThankYou from "./pages/ThankYou";
+
 function App() {
  
   return (
