@@ -1,55 +1,73 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { FaShoppingCart, FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../assets/uniLogo.svg';
-import useAuthStore from '../store/authStore';
-import Logout from './Logout';
-import NavLink from './NavLink';
-import Register from './Register';
-import SignIn from './SignIn';
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import { FaShoppingCart, FaBars, FaTimes } from "react-icons/fa";
+
+import NavLink from "./NavLink";
+import Register from "./Register";
+import { useNavigate, useLocation } from "react-router-dom";
+import Logos from "./Logos";
+import { useScrollContext } from "./ContextProvider";
 
 function Navbar() {
-  const { user } = useAuthStore();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+  const { issScrolled , setIsScrolled } = useScrollContext();
+  const [scrolled, setscrolled] = useState(issScrolled);
+  
+  useEffect(() => {
+    setscrolled(issScrolled);
+  }, [issScrolled]);
+
+  const sstyle = {
+    width: "75%",
+    padding: "10px 5px",
+    borderRadius: "24px",
+    boxShadow: "0 4px 10px rgba(0, 0, 0, 0.4)",
+    transition: "all 0.3s ease",
+    marginTop: "10px",
+  };
+
+  const norm = {
+    width: "100%",
+    padding: "10px 20px",
+    borderRadius: "0",
+    boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)",
+    transition: "all 0.3s ease",
+  };
+
+ 
 
   return (
-    <nav className="sticky top-0 z-50 bg-white border-b p-3 shadow-sm">
-      <div className="max-w-6xl mx-auto flex items-center justify-between">
+    <div className="flex justify-center items-center w-full z-50 fixed top-0 h-fit">
+      <nav
+        className="flex justify-evenly items-center overflow-x-hidden h-16 w-full md:justify-around bg-slate-100 bg-opacity-85 text-black"
+        style={scrolled ? sstyle : norm}
+      >
         {/* Logo */}
-        <div className="flex items-center gap-4">
-          <img src={Logo} alt="Logo" className="lg:h-10 h-6" />
-        </div>
+        <Logos />
 
-        {/* Navigation Links (Responsive) */}
+        {/* Navigation Links */}
         <div
-          className={`fixed top-0 left-0 h-full w-3/4 max-w-sm bg-white shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
-            isMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          className={`fixed top-0 left-0 h-full w-2/3 max-w-sm bg-transparent shadow-lg rounded-r-lg transform transition-transform duration-500 ease-in-out z-50 ${
+            isMenuOpen ? "translate-x-0" : "-translate-x-full"
           } md:static md:block md:w-auto md:translate-x-0 md:rounded-none md:shadow-none`}
         >
-          <div className="flex flex-col md:flex-row md:gap-8 p-6 md:p-0 h-full">
-            <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} />
-            {user ? (
+          <div className={`flex flex-col md:flex-row md:gap-4 p-6 md:p-0 h-full ${isMenuOpen ? "bg-white" : "bg-transparent"}`}>
+            <NavLink to="/" text="Home" setIsMenuOpen={setIsMenuOpen} active={pathname === "/"} />
+            <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} active={pathname === "/events"} />
+            <NavLink to="/gallery" text="Gallery" setIsMenuOpen={setIsMenuOpen} active={pathname === "/gallery"} />
+            {false ? (
               <NavLink
                 to="/profile"
                 text="Profile"
                 setIsMenuOpen={setIsMenuOpen}
+                active={pathname === "/profile"}
               />
             ) : null}
-            <NavLink to="/events" text="Events" setIsMenuOpen={setIsMenuOpen} />
-            <NavLink
-              to="/gallery"
-              text="Gallery"
-              setIsMenuOpen={setIsMenuOpen}
-            />
-            <NavLink
-              to="/support"
-              text="Support"
-              setIsMenuOpen={setIsMenuOpen}
-            />
-            {!user && (
+            {!false && (
               <div className="flex flex-col gap-4 mt-6 md:hidden">
                 <Register />
-                <SignIn />
               </div>
             )}
           </div>
@@ -57,42 +75,40 @@ function Navbar() {
 
         {/* Cart and Profile Section */}
         <div className="flex items-center gap-4 md:gap-4 z-40">
-          {user ? (
-            <div className="flex items-center gap-4">
-              <Link to={'/cart'} className="relative">
-                <FaShoppingCart className="h-6 w-6 text-gray-700 cursor-pointer" />
-                <span className="absolute -top-1 -right-2 bg-red-500 text-white text-xs rounded-full px-1">
-                  {user?.cart?.length || 0}
-                </span>
-              </Link>
-              <img
-                src={user.profileImage || user.photoURL}
-                alt="Profile"
-                className="h-8 w-8 rounded-full hidden md:block"
-                referrerPolicy="no-referrer"
-              />
-              <Logout />
+          {false ? (
+            <div className="flex items-center gap-2 md:gap-4">
+              <button className="hover:p-1 hover:bg-black focus:p-1 focus:bg-black rounded-3xl transition-all ease-in-out">
+                <img
+                  src={"/path/to/default/image.jpg"} // Placeholder for profile image
+                  alt="Profile"
+                  className="h-8 w-8 rounded-full hidden md:block"
+                  referrerPolicy="no-referrer"
+                  onClick={() => {
+                    setIsScrolled(false);
+                    navigate("/profile");
+                  }}
+                />
+              </button>
+          
             </div>
           ) : (
             <div className="hidden md:flex md:items-center md:gap-4">
               <Register />
-              <SignIn />
             </div>
           )}
           {/* Hamburger Icon */}
           <button
             className="md:hidden text-gray-700 focus:outline-none"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            onClick={() => {
+              setIsMenuOpen(!isMenuOpen);
+              setscrolled(false);
+            }}
           >
-            {isMenuOpen ? (
-              <FaTimes className="h-6 w-6" />
-            ) : (
-              <FaBars className="h-6 w-6" />
-            )}
+            {isMenuOpen ? <FaTimes className="h-6 w-6" /> : <FaBars className="h-6 w-6" />}
           </button>
         </div>
-      </div>
-    </nav>
+      </nav>
+    </div>
   );
 }
 
